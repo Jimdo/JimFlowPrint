@@ -1,0 +1,14 @@
+<h1>TicketTypes</h1>
+
+<form action="{{ path('_ticket_types_edit') }}" method="post" {{ form_enctype(form) }}>
+    {% for ticket_type in form.ticket_types %}
+        <ul>
+            <li>{{ form_row(ticket_type.name) }}</li>
+            <li>{{ form_row(ticket_type.backgroundColor) }}</li>
+            <li>{{ form_row(ticket_type.textColor) }}</li>
+            <li>{{ form_row(ticket_type.isBackgroundFilled) }}</li>
+        </ul>
+    {% endfor %}
+
+    <input type="submit" />
+</form>
