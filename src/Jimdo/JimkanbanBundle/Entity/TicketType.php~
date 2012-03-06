@@ -45,7 +45,7 @@ class TicketType
     /**
      * @var boolean $is_background_filled
      *
-     * @ORM\Column(name="is_background_filled", type="boolean", nullable=true)
+     * @ORM\Column(name="is_background_filled", type="boolean", nullable=false)
      */
     private $isBackgroundFilled;
 
