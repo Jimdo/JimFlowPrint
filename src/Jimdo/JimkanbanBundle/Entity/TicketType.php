@@ -29,13 +29,6 @@ class TicketType
     private $name;
 
     /**
-     * @var string $text_color
-     *
-     * @ORM\Column(name="text_color", type="string", length=6)
-     */
-    private $textColor;
-
-    /**
      * @var string $background_color
      *
      * @ORM\Column(name="background_color", type="string", length=6)
@@ -78,26 +71,6 @@ class TicketType
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set text_color
-     *
-     * @param string $textColor
-     */
-    public function setTextColor($textColor)
-    {
-        $this->textColor = $textColor;
-    }
-
-    /**
-     * Get text_color
-     *
-     * @return string 
-     */
-    public function getTextColor()
-    {
-        return $this->textColor;
     }
 
     /**

@@ -1,14 +1,47 @@
-<h1>TicketTypes</h1>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" media="screen" href="/bundles/jimdojimkanban/css/colorpicker.css" />
+    
+    {% javascripts
+        '@JimdoJimkanbanBundle/Resources/public/js/*'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    
+    <script type="text/javascript">
+        $(function() {
+            $('input.jk-color-picker').ColorPicker({
+                onSubmit: function(hsb, hex, rgb, el) {
+                   $(el).val(hex)
+                   .css({'backgroundColor': '#' + hex});
+                }
+            });
+        
+        });
+        
+    </script>
+</head>
 
-<form action="{{ path('_ticket_types_edit') }}" method="post" {{ form_enctype(form) }}>
-    {% for ticket_type in form.ticket_types %}
-        <ul>
-            <li>{{ form_row(ticket_type.name) }}</li>
-            <li>{{ form_row(ticket_type.backgroundColor) }}</li>
-            <li>{{ form_row(ticket_type.textColor) }}</li>
-            <li>{{ form_row(ticket_type.isBackgroundFilled) }}</li>
-        </ul>
-    {% endfor %}
+<h1>TicketType edit</h1>
 
-    <input type="submit" />
+<form action="{{ path('tickettype_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
 </form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('tickettype') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('tickettype_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
