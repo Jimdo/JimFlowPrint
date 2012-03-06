@@ -6,3 +6,4 @@ web/uploads/*
 vendor
 composer.phar
 composer.lock
+app/config/parameters.ini
