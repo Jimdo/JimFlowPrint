@@ -19,7 +19,8 @@ class TicketTypeType extends AbstractType {
                     'label' => 'Background Color'
                 ))
                 ->add('isBackgroundFilled', 'checkbox', array(
-                    'label' => 'Fill entire background'
+                    'label' => 'Fill entire background',
+                    'required' => false
                 ))
         ;
     }
