@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Jimdo\JimkanbanBundle\Component\Validator\Constraints;
  
