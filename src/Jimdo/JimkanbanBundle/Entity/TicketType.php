@@ -34,7 +34,7 @@ class TicketType
     /**
      * @var string $background_color
      *
-     * @CustomAssert\HexColorCode()
+     * @CustomAssert\HexColorCode(message="Invalid hexadecimal color code")
      * 
      * @ORM\Column(name="background_color", type="string", length=6)
      */
