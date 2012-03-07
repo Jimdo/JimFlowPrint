@@ -3,6 +3,9 @@
 namespace Jimdo\JimkanbanBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Jimdo\JimkanbanBundle\Component\Validator\Constraints as CustomAssert;
 
 /**
  * Jimdo\JimkanbanBundle\Entity\TicketType
@@ -31,13 +34,15 @@ class TicketType
     /**
      * @var string $background_color
      *
+     * @CustomAssert\HexColorCode()
+     * 
      * @ORM\Column(name="background_color", type="string", length=6)
      */
     private $backgroundColor;
 
     /**
      * @var boolean $is_background_filled
-     *
+     * 
      * @ORM\Column(name="is_background_filled", type="boolean", nullable=true)
      */
     private $isBackgroundFilled;
