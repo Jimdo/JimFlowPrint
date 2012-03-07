@@ -1,3 +1,5 @@
+{% extends 'JimdoJimkanbanBundle::base.html.twig' %}
+{% block body %}
 <h1>TicketType creation</h1>
 
 <form action="{{ path('tickettype_create') }}" method="post" {{ form_enctype(form) }}>
@@ -14,3 +16,4 @@
         </a>
     </li>
 </ul>
+{% endblock %}
