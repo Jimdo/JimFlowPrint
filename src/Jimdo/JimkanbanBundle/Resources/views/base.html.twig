@@ -16,9 +16,13 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
+        <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
     </head>
     <body>
-     {% block body %}{% endblock %}
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
     </body>
 
 </html>
