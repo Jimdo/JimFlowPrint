@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Jimdo\JimkanbanBundle\Component\Validator\Constraints;
  
@@ -23,6 +23,6 @@ class HexColorCodeValidator extends ConstraintValidator
             return false;
         }
  
-        return false;
+        return true;
     }
 }
