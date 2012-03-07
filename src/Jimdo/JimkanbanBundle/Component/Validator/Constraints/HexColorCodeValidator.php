@@ -1,25 +1,29 @@
 <?php
 
 namespace Jimdo\JimkanbanBundle\Component\Validator\Constraints;
- 
+
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
  
 class HexColorCodeValidator extends ConstraintValidator
 {
-    /*
-     * Very simple validation logic to test german zip codes,
-     * usually german zip codes consists of 5 digits
+    /**
+     * @param $value
+     * @return bool
      */
-    private function isValidZipCode($value){
-        return 0 === preg_match('/\d[5]/', $value);
+    private function isValidHexColorCode($value){
+        return 0 < preg_match('/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value);
     }
- 
+
+    /**
+     * @param $value
+     * @param \Symfony\Component\Validator\Constraint $constraint
+     * @return bool
+     */
     public function isValid($value, Constraint $constraint)
     {
-        if(!$this->isValidZipCode($value) ) {
+        if (!$this->isValidHexColorCode($value) ) {
             $this->setMessage($constraint->message, array('{{ value }}' => $value));
- 
             return false;
         }
  
