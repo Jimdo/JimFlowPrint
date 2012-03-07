@@ -16,18 +16,6 @@
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
-        <script type="text/javascript">
-            $(function() {
-                $('input.jk-color-picker').ColorPicker({
-                    onSubmit: function(hsb, hex, rgb, el) {
-                       $(el).val(hex)
-                       .css({'backgroundColor': '#' + hex});
-                    }
-                });
-
-            });
-
-        </script>
     </head>
     <body>
      {% block body %}{% endblock %}
