@@ -6,5 +6,8 @@ $(function() {
                 'backgroundColor': '#' + hex
             });
         }
-    });
+    })
+    .css({backgroundColor: function() {
+        return '#' + $(this).val()
+    }});
 });
