@@ -1,11 +1,17 @@
 {% extends 'JimdoJimkanbanBundle::base.html.twig' %}
 {% block body %}
-<h1>TicketType creation</h1>
+<h1>TicketType edit</h1>
 
 <form action="{{ path('tickettype_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+
+    {% form_theme form 'JimdoJimkanbanBundle:Form:fields.html.twig' %}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.backgroundColor) }}
+    {{ form_row(form.isBackgroundFilled) }}
+    {{ form_rest(form) }}
     <p>
-        <button type="submit">Create</button>
+        <button class="button" type="submit">Save</button>
     </p>
 </form>
 
