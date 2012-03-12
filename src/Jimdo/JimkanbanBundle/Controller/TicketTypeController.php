@@ -20,34 +20,40 @@ class TicketTypeController extends Controller
     {
         $entities = $this->repository()->findAll();
 
-        return $this->render('JimdoJimkanbanBundle:TicketType:index.html.twig', array(
-            'entities' => $entities
-        ));
+        return $this->render(
+            'JimdoJimkanbanBundle:TicketType:index.html.twig',
+            array(
+                 'entities' => $entities
+            )
+        );
     }
 
 
     /**
-    * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
-    */
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
     public function newAction()
     {
         $ticketType = new TicketType();
-        $form   = $this->createTicketTypeForm($ticketType);
+        $form = $this->createTicketTypeForm($ticketType);
 
-        return $this->render('JimdoJimkanbanBundle:TicketType:new.html.twig', array(
-                                                                                   'entity' => $ticketType,
-                                                                                   'form'   => $form->createView()
-        ));
+        return $this->render(
+            'JimdoJimkanbanBundle:TicketType:new.html.twig',
+            array(
+                 'entity' => $ticketType,
+                 'form' => $form->createView()
+            )
+        );
     }
 
     /**
-    * @return \Symfony\Bundle\FrameworkBundle\Controller\RedirectResponse|\Symfony\Bundle\FrameworkBundle\Controller\Response
-    */
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\RedirectResponse|\Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
     public function createAction()
     {
-        $ticketType  = new TicketType();
+        $ticketType = new TicketType();
         $request = $this->getRequest();
-        $form    = $this->createTicketTypeForm($ticketType);
+        $form = $this->createTicketTypeForm($ticketType);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -59,18 +65,21 @@ class TicketTypeController extends Controller
 
         }
 
-        return $this->render('JimdoJimkanbanBundle:TicketType:new.html.twig', array(
-                                                                                   'entity' => $ticketType,
-                                                                                   'form'   => $form->createView()
-        ));
+        return $this->render(
+            'JimdoJimkanbanBundle:TicketType:new.html.twig',
+            array(
+                 'entity' => $ticketType,
+                 'form' => $form->createView()
+            )
+        );
     }
 
 
     /**
-    * @throws \Symfony\Bundle\FrameworkBundle\Controller\NotFoundHttpException
-    * @param $id
-    * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
-    */
+     * @throws \Symfony\Bundle\FrameworkBundle\Controller\NotFoundHttpException
+     * @param $id
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
     public function editAction($id)
     {
         $em = $this->entityManager();
@@ -84,18 +93,21 @@ class TicketTypeController extends Controller
         $editForm = $this->createTicketTypeForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('JimdoJimkanbanBundle:TicketType:edit.html.twig', array(
-                                                                                    'entity'      => $entity,
-                                                                                    'edit_form'   => $editForm->createView(),
-                                                                                    'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'JimdoJimkanbanBundle:TicketType:edit.html.twig',
+            array(
+                 'entity' => $entity,
+                 'edit_form' => $editForm->createView(),
+                 'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
-    * @throws \Symfony\Bundle\FrameworkBundle\Controller\NotFoundHttpException
-    * @param $id
-    * @return \Symfony\Bundle\FrameworkBundle\Controller\RedirectResponse|\Symfony\Bundle\FrameworkBundle\Controller\Response
-    */
+     * @throws \Symfony\Bundle\FrameworkBundle\Controller\NotFoundHttpException
+     * @param $id
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\RedirectResponse|\Symfony\Bundle\FrameworkBundle\Controller\Response
+     */
     public function updateAction($id)
     {
         $em = $this->entityManager();
@@ -120,18 +132,21 @@ class TicketTypeController extends Controller
             return $this->redirect($this->generateUrl('tickettype_edit', array('id' => $id)));
         }
 
-        return $this->render('JimdoJimkanbanBundle:TicketType:edit.html.twig', array(
-                                                                                    'entity'      => $entity,
-                                                                                    'edit_form'   => $editForm->createView(),
-                                                                                    'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render(
+            'JimdoJimkanbanBundle:TicketType:edit.html.twig',
+            array(
+                 'entity' => $entity,
+                 'edit_form' => $editForm->createView(),
+                 'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
-    * @throws \Symfony\Bundle\FrameworkBundle\Controller\NotFoundHttpException
-    * @param $id
-    * @return \Symfony\Bundle\FrameworkBundle\Controller\RedirectResponse
-    */
+     * @throws \Symfony\Bundle\FrameworkBundle\Controller\NotFoundHttpException
+     * @param $id
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\RedirectResponse
+     */
     public function deleteAction($id)
     {
         $form = $this->createDeleteForm($id);
@@ -155,21 +170,20 @@ class TicketTypeController extends Controller
     }
 
     /**
-    * @param $id
-    * @return Symfony\Component\Form\FormBuilder
-    */
+     * @param $id
+     * @return Symfony\Component\Form\FormBuilder
+     */
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-                ;
+                ->add('id', 'hidden')
+                ->getForm();
     }
 
     /**
-    * @param $entity
-    * @return \Symfony\Bundle\FrameworkBundle\Controller\Form
-    */
+     * @param $entity
+     * @return \Symfony\Bundle\FrameworkBundle\Controller\Form
+     */
     private function createTicketTypeForm($entity)
     {
         return $this->createForm(new TicketTypeForm(), $entity);
