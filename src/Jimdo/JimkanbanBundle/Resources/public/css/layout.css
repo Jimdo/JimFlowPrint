@@ -31,14 +31,11 @@ body, html {
 }
 
 
-/*Forms*/
-form label {
+.form_row {
     margin-top: 5px;
-    display: inline-block;
-    width: 200px;
+    font-size: 14px;
 }
-
-form input[type="text"] {
+.form_row input[type="text"] {
     width:150px;
 	height:27px;
 	line-height:27px;
@@ -47,4 +44,18 @@ form input[type="text"] {
 	color:#333;
 	background: #fff;
 	border:solid 1px #d9d9d9;
+}
+
+.form_row .label {
+    width: 200px;
+    float: left;
+}
+
+.form_row .field {
+    width: 200px;
+    float: left;
+}
+
+.form_row .error ul {
+    color: red;
 }
