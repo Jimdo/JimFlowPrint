@@ -75,7 +75,7 @@ class TicketTypeController extends Controller
     {
         $em = $this->entityManager();
 
-        $entity = $this->replace()->find($id);
+        $entity = $this->repository()->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TicketType entity.');
