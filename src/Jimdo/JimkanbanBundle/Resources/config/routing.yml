@@ -1,3 +1,7 @@
 JimdoJimkanbanBundle_tickettype:
-        resource: "@JimdoJimkanbanBundle/Resources/config/routing/tickettype.yml"
-        prefix:   /tickettype
+  resource: "@JimdoJimkanbanBundle/Resources/config/routing/tickettype.yml"
+  prefix:   /tickettype
+
+JimdoJimkanbanBundle_template:
+  resource: "@JimdoJimkanbanBundle/Resources/config/routing/template.yml"
+  prefix:   /template
