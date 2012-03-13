@@ -2,38 +2,28 @@
 {% block body %}
 <h1>TicketType list</h1>
 
-<table class="records_list">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Backgroundcolor</th>
-            <th>Isbackgroundfilled</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in entities %}
-        <tr>
-            <td><a href="{{ path('tickettype_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
-            <td>{{ entity.backgroundColor }}</td>
-            <td>{{ entity.isBackgroundFilled }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('tickettype_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
 
-<ul>
-    <li>
-        <a href="{{ path('tickettype_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+<div id="ticket_list">
+    {% for entity in entities %}
+        <div>
+            <div class="ticket" style="background-color: #{{ entity.backgroundColor }}">
+               {{ entity.name }}
+            </div>
+            <div class="edit">
+                <a class="button gray" href="{{ path('tickettype_edit', { 'id': entity.id }) }}">edit</a>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<p>
+    <a class="button orange" href="{{ path('tickettype_new') }}">
+        Create a new entry
+    </a>
+</p>
+
+
 {% endblock %}
