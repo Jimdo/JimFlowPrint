@@ -60,10 +60,6 @@ body, html {
     color: red;
 }
 
-#ticket_list div {
-    margin-top: 10px;
-}
-
 #ticket_list .ticket {
     width: 150px;
     height: 23px;
@@ -75,6 +71,11 @@ body, html {
 #ticket_list .edit {
     margin-left: 15px;
     float:left;
+}
+
+#ticket_list .item {
+    border-bottom: 1px solid #555;
+    padding: 10px;
 }
 
 .list_new_button {
