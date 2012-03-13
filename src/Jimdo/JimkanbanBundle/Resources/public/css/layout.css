@@ -3,7 +3,7 @@ body, html {
     padding: 0;
     background-color: #E1E2E6;
     width: 100%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family:Roboto, Arial, sans-serif;
 }
 
 #content {
@@ -27,7 +27,7 @@ body, html {
 
 .records_list {
     width: 90%;
-    text-align: center;
+
 }
 
 
@@ -58,4 +58,25 @@ body, html {
 
 .form_row .error ul {
     color: red;
+}
+
+#ticket_list div {
+    margin-top: 10px;
+}
+
+#ticket_list .ticket {
+    width: 150px;
+    height: 23px;
+    padding: 5px;
+    float:left;
+    text-align: center;
+}
+
+#ticket_list .edit {
+    margin-left: 15px;
+    float:left;
+}
+
+.list_new_button {
+    margin-top: 25px;
 }

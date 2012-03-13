@@ -11,21 +11,17 @@
     {{ form_row(edit_form.isBackgroundFilled) }}
     {{ form_rest(edit_form) }}
     <p>
-        <button class="button" type="submit">Save</button>
+        <button class="button orange" type="submit">Save</button>
     </p>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('tickettype') }}">
+<div class="record_actions">
+    <form action="{{ path('tickettype_delete', { 'id': entity.id }) }}" method="post">
+        {{ form_widget(delete_form) }}
+        <a class="button gray" href="{{ path('tickettype') }}">
             Back to the list
         </a>
-    </li>
-    <li>
-        <form action="{{ path('tickettype_delete', { 'id': entity.id }) }}" method="post">
-            {{ form_widget(delete_form) }}
-            <button class="button" type="submit">Delete</button>
-        </form>
-    </li>
-</ul>
+        <button class="button gray" type="submit">Delete</button>
+    </form>
+</div>
 {% endblock %}

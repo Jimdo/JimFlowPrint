@@ -12,6 +12,11 @@ $(function() {
                     .css({
                         'backgroundColor': '#' + hex
                     });
+            },
+            onChange: function(hsb, hex) {
+                $this.css({
+                    'backgroundColor': '#' + hex
+                }).val(hex)
             }
         })
             .css({backgroundColor: color});
