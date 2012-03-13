@@ -1,0 +1,3 @@
+template:
+    pattern:  /
+    defaults: { _controller: "JimdoJimkanbanBundle:Template:index" }
