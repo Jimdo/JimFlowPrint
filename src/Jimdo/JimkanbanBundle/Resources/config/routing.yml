@@ -1,4 +1,3 @@
-# src/Jimdo/JimkanbanBundle/Resources/config/routing.yml
-_ticket_types_edit:
-    pattern:  /ticket-types/edit
-    defaults: { _controller: JimdoJimkanbanBundle:TicketType:edit }
+JimdoJimkanbanBundle_tickettype:
+        resource: "@JimdoJimkanbanBundle/Resources/config/routing/tickettype.yml"
+        prefix:   /tickettype
