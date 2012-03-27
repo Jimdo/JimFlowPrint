@@ -20,7 +20,11 @@
 
     </head>
     <body>
+
         <div id="content">
+            <navigation>
+               {% include 'JimdoJimkanbanBundle::navigation.html.twig' %}
+            </navigation>
             {% block body %}{% endblock %}
         </div>
     </body>
