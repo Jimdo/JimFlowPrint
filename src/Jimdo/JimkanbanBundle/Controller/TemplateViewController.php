@@ -20,4 +20,6 @@ class TemplateController extends Controller
             'JimdoJimkanbanBundle:Template:note.html.twig'
         );
     }
+
+
 }
