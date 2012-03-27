@@ -3,6 +3,8 @@
 namespace Jimdo\JimkanbanBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Jimdo\JimkanbanBundle\Entity\Printer
@@ -30,7 +32,7 @@ class Printer
 
     /**
      * @var string $email
-     *
+     * @Assert\Email(message = "Email is not valid.")
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
