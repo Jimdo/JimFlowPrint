@@ -1,10 +1,10 @@
 JimdoJimkanbanBundle_tickettype:
   resource: "@JimdoJimkanbanBundle/Resources/config/routing/tickettype.yml"
-  prefix:   /tickettype
+  prefix:   /admin/tickettype
 
 JimdoJimkanbanBundle_printer:
   resource: "@JimdoJimkanbanBundle/Resources/config/routing/printer.yml"
-  prefix:   /printer
+  prefix:   /admin/printer
 
 JimdoJimkanbanBundle_template:
   resource: "@JimdoJimkanbanBundle/Resources/config/routing/template.yml"
