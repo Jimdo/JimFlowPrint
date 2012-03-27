@@ -12,7 +12,7 @@ class PrinterType extends AbstractType
         $builder
             ->add('name')
             ->add('email')
-            ->add('notes')
+            ->add('notes','textarea', array('required' => false))
         ;
     }
 
