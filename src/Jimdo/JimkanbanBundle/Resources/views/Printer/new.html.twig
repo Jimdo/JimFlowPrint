@@ -1,16 +1,23 @@
-<h1>Printer creation</h1>
+{% extends 'JimdoJimkanbanBundle::base.html.twig' %}
+{% block body %}
+<h1>Printer new</h1>
 
 <form action="{{ path('printer_create') }}" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
+
+    {% form_theme form 'JimdoJimkanbanBundle:Form:fields.html.twig' %}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.notes) }}
+    {{ form_rest(form) }}
     <p>
-        <button type="submit">Create</button>
+        <button class="button orange" type="submit">Save</button>
     </p>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('printer') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div class="record_actions">
+    <a class="button gray" href="{{ path('printer') }}">
+        Back to list
+    </a>
+</div>
+{% endblock %}
