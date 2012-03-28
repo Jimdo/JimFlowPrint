@@ -8,8 +8,6 @@ class TicketDateFilter implements FilterInterface {
         $data[$key] = date('d.m.Y', strtotime(substr($data[$key], 0, 10)));
 
         return $data;
-
     }
-
 
 }
