@@ -30,7 +30,6 @@ body, html {
 
 }
 
-
 .form_row {
     margin-top: 5px;
     font-size: 14px;
@@ -80,4 +79,13 @@ body, html {
 
 .list_new_button {
     margin-top: 25px;
+}
+
+label.required:after {
+    content: " *"
+}
+
+
+div.ticket, input.ticket {
+    color: #fff !important;
 }
