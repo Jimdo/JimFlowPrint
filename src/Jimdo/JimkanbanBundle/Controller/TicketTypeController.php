@@ -194,7 +194,7 @@ class TicketTypeController extends Controller
      */
     private function entityManager()
     {
-        return $this->getDoctrine()->getEntityManager();
+            return $this->getDoctrine()->getEntityManager();
 
     }
 

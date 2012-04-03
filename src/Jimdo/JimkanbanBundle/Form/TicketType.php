@@ -15,7 +15,7 @@ class TicketType extends AbstractType {
                 ->add('backgroundColor', 'text', array(
                     'label' => 'Background Color',
                     'attr' => array(
-                        'class' => 'jk-color-picker'
+                        'class' => 'jk-color-picker ticket'
                     )
                 ))
                 ->add('isBackgroundFilled', 'checkbox', array(
