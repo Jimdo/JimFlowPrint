@@ -1,0 +1,16 @@
+<html>
+    <head>
+        {% stylesheets
+            'bundles/jimdojimkanban/css/templates.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+
+    </head>
+    <body>
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>
