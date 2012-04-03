@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
  	        new Jimdo\JimkanbanBundle\JimdoJimkanbanBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new \Sensio\Bundle\BuzzBundle\SensioBuzzBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

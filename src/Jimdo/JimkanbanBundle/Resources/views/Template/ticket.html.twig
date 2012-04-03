@@ -1,0 +1,46 @@
+<html>
+    <head>
+        {% stylesheets
+            'bundles/jimdojimkanban/css/templates/view/ticket.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+
+    </head>
+    <body>
+         <div id="print-hint"></div>
+        <form id="kanban_form"  action="print.php" method="GET">
+
+
+<div id="card">
+	<textarea id="title" name="title">{{ title }}</textarea>
+
+	<div id="metaarea">
+		<div id="incident" style="background-color:none;">
+		<p id="type_title" class="ticket" style="border-top:1px solid #{{ type.backgroundColor }};background-color:#{{ type.backgroundColor }};">
+		    {{ type.name }}
+		</p>
+                <input type="hidden" name="type" value="Bug"/>
+		<p id="id" class="metatxt ">
+                    <input type="text" class="input-value-id" name="id" value="#{{ id }}" />
+                </p>
+		<p id="created" class="metatxt">
+			<span class="metadiscrp">created:</span>
+			<input type="text" class="input-value" name="created" value="{{ created }}" />
+		</p>
+		<p id="reporter" class="metatxt metatxt-last">
+			<span class="metadiscrp">reported by:</span>
+			<input type="text" class="input-value" name="reporter" value="{{ reporter }}" />
+		</p>
+		</div>
+		<img id="qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
+	</div>
+</div>        <input type="hidden" id="title_fontsize" name="title_fontsize" />
+        <input type="hidden"  name="template" value="" />
+        <input type="hidden" id="action"  name="action"/>
+        <input type="hidden" id="chosen_floor"  name="chosen_floor"/>
+         {% include 'JimdoJimkanbanBundle:Template:printer.html.twig' %}
+    </form>
+    </body>
+</html>

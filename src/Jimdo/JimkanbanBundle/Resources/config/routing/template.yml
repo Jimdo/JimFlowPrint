@@ -1,3 +1,7 @@
 template:
-    pattern:  /
-    defaults: { _controller: "JimdoJimkanbanBundle:Template:index" }
+    pattern:  /view/ticket/
+    defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticket" }
+
+template_print:
+    pattern:  /print/ticket/
+    defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:printticket" }

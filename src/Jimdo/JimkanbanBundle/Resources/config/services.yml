@@ -1,20 +1,17 @@
-<?xml version="1.0" ?>
+services:
+  jimdo.ticket_type_entity_filter:
+    class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketTypeEntityFilter
+    arguments:
+      - @doctrine.orm.default_entity_manager
 
-<container xmlns="http://symfony.com/schema/dic/services"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+  jimdo.ticket_date_filter:
+    class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketDateFilter
 
-    <!--
-    <parameters>
-        <parameter key="jimdo_jimkanban.example.class">Jimdo\JimkanbanBundle\Example</parameter>
-    </parameters>
-
-    <services>
-        <service id="jimdo_jimkanban.example" class="%jimdo_jimkanban.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
-</container>
+  jimdo.ticket_filter_chain:
+    class: Jimdo\JimkanbanBundle\Lib\Filter\FilterChain
+    arguments:
+      - @jimdo.ticket_date_filter
+      - @jimdo.ticket_type_entity_filter
+    calls:
+      - [add, [@jimdo.ticket_type_entity_filter, 'type' ]]
+      - [add, [@jimdo.ticket_date_filter, 'created' ]]
