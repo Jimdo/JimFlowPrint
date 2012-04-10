@@ -1,11 +1,9 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Lib\Filter\Templates;
-use Jimdo\JimkanbanBundle\Lib\Filter\FilterInterface;
-use \Doctrine\ORM\EntityManager;
+use \Jimdo\JimkanbanBundle\Lib\Filter\FilterInterface;
+use \Jimdo\JimkanbanBundle\Entity\TicketTypeRepository;
 
 class TicketTypeEntityFilter implements FilterInterface {
-
-    const ENTITY_NAME = 'JimdoJimkanbanBundle:TicketType';
 
     /**
      * @var \Doctrine\ORM\EntityRepository
@@ -13,9 +11,9 @@ class TicketTypeEntityFilter implements FilterInterface {
     private $repository;
 
 
-    public function __construct(EntityManager $em)
+    public function __construct(TicketTypeRepository $repository)
     {
-        $this->repository = $em->getRepository(self::ENTITY_NAME);
+        $this->repository = $repository;
     }
 
     public function filter(array $data, $key)

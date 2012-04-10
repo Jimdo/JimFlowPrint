@@ -1,8 +1,15 @@
 services:
+  jimdo.ticket_type_entity_repository:
+    class:            Jimdo\JimkanbanBundle\Entity\TicketTypeRepository
+    factory_service:  doctrine.orm.default_entity_manager
+    factory_method: getRepository
+    arguments:
+      - 'JimdoJimkanbanBundle:TicketType'
+
   jimdo.ticket_type_entity_filter:
     class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketTypeEntityFilter
     arguments:
-      - @doctrine.orm.default_entity_manager
+      - @jimdo.ticket_type_entity_repository
 
   jimdo.ticket_date_filter:
     class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketDateFilter
