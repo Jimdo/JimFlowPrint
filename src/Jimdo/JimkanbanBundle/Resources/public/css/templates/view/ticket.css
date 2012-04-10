@@ -1,32 +1,22 @@
 * {
-    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial,'Liberation Sans',FreeSans,sans-serif;
+    font-family:Roboto, Arial, sans-serif;
 }
 
-html,body{
-    width:148mm;
-    height:104mm;
-}
 
 p {
     margin:0;
     padding:0;
 }
+
 #card {
     width:148mm;
     height:104mm;
-    border-top: 0.5mm solid #5A5A59;
-    border-left: 0.5mm solid #5A5A59;
-    border-bottom: 0.5mm solid #5A5A59;
-    max-height: 104mm;
-        position:relative;
+    border: 0.5mm solid #5A5A59;
+    border-right:  none;
+    position:relative;
 }
-#text-gutter {
-    width:auto;
-    height:auto;
-    float:left;
-    background:yellow;
-}
-#title {
+
+#card textarea.description {
     width:97mm;
     height:101mm;
     float:left;
@@ -35,9 +25,8 @@ p {
     font-size: 46px;
     resize: none;
     border:none;
-    background:none;
 }
-#metaarea {
+#meta_area {
     text-align:right;
     float:right;
     width:46mm;
@@ -45,14 +34,14 @@ p {
     height:104mm;
 
 }
-#type_title {
+#meta_area #ticket_type {
     text-transform:uppercase;
     color:white;
     text-align:center;
     height:7.6mm;
     padding:2mm 0 0 0;
 }
-.metatxt {
+#meta_area .meta-text {
     padding-right:3mm;
     padding-top:2.5mm;
     height:14.7mm;
@@ -63,135 +52,39 @@ p {
 
 }
 
-.metatxt-last {
-    border-bottom:0mm;
+#meta_area .meta-text:last-of-type {
+    border-bottom: none;
 }
 
-.metadiscrp {
+#meta_area .meta-text span.description {
     font-size:3.14mm;
     color:#808080;
 }
-#id {
+#meta_area #ticket_id {
     padding-top:1.3mm;
     font-size:9mm;
     font-weight:bold;
 
 }
-#qr {
+#meta_area #ticket_qr {
     width:175px;
     position:absolute;
     right: -0.4mm;
     bottom: -0.7mm;
 }
 
-#incident {
-
-}
-.incident {
-    font-weight:bold;
-    text-transform:uppercase;
-    font-size:6.215mm !important;
-
-
-}
-
-#header{
-    height:10mm;
-    border-bottom:0.3mm dashed #000;
-}
-
-label{
-    font-size:11px;
-    color:#665;
-    display:block;
-}
-
-.hint-link {
-    font-size:3mm;
-}
-
-.submit{
-    width:100%;
-    font-size:36px;
-    margin-top:10mm;
-}
-
-#print-hint {
-    position: absolute;
-    top: 0px;
-    font-size:1.5em;
-    background-color: #E3E3E3;
-    width:100%;
-    text-align:center;
-    display:none;
-    padding-top:2mm;
-    padding-bottom:2mm;
-    z-index: 2;
-}
-
-#print-button {
-    margin-top:5mm;
-}
-
-#chosen-location {
-    width:100%;
-    font-size:24px;
-}
-
-#submit_button{
-    margin-top:5mm;
-}
-
-#hint{
-    font-size:24px;
-    background-color:#E0E0E0;
-    padding:4mm;
-    position:fixed;
-    bottom:0;
-    right:0;
-}
-
-#num-copies {
-    font-size:24px;
-}
-
-#chosen-floor-wrapper {
-    float:left;
-    width:80%;
-
-}
-
-#chosen-floor-wrapper div {
-    float:left;
-    margin-bottom:5px;
-    width:30%;
-    margin-right: 1%;
-}
-
-#chosen-floor-wrapper div input[type=button] {
-    display:block;
-    width: 100%;
-    font-size:1.1em;
-}
-
-#num-copies-wrapper {
-    float:right;
-    text-align:right;
-    width:20%;
-
-}
-
-.input-value {
+.meta-text input[type="text"] {
     border: 0px;
     text-align: right;
     width: 40mm;
     font-size:4.1mm;
 }
 
-.input-value-id {
-    border: 0px;
-    text-align: right;
-    width: 40mm;
+#meta_area #ticket_id input[type="text"] {
     font-size:9mm;
     font-weight: bold;
+}
+
+input[type="text"], textarea {
+    background-color: #FDFFDE;
 }
