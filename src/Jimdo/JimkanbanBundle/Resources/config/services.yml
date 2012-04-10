@@ -1,10 +1,18 @@
 services:
+
   jimdo.ticket_type_entity_repository:
     class:            Jimdo\JimkanbanBundle\Entity\TicketTypeRepository
     factory_service:  doctrine.orm.default_entity_manager
     factory_method: getRepository
     arguments:
       - 'JimdoJimkanbanBundle:TicketType'
+
+  jimdo.printer_entity_repository:
+    class:            Jimdo\JimkanbanBundle\Entity\PrinterRepository
+    factory_service:  doctrine.orm.default_entity_manager
+    factory_method: getRepository
+    arguments:
+      - 'JimdoJimkanbanBundle:Printer'
 
   jimdo.ticket_type_entity_filter:
     class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketTypeEntityFilter
@@ -20,9 +28,10 @@ services:
       - [add, [@jimdo.ticket_type_entity_filter, 'type' ]]
       - [add, [@jimdo.ticket_date_filter, 'created' ]]
 
-  jimdo.template_data:
-    class: Jimdo\JimkanbanBundle\Lib\TemplateData
+  jimdo.template_data_view:
+    class: Jimdo\JimkanbanBundle\Lib\TemplateDataView
     arguments:
       - @request
       - @jimdo.template_ticket_filter_chain
+      - @jimdo.printer_entity_repository
     scope: request
