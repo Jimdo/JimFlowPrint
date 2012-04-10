@@ -7,11 +7,15 @@ services:
   jimdo.ticket_date_filter:
     class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketDateFilter
 
-  jimdo.ticket_filter_chain:
+  jimdo.template_ticket_filter_chain:
     class: Jimdo\JimkanbanBundle\Lib\Filter\FilterChain
-    arguments:
-      - @jimdo.ticket_date_filter
-      - @jimdo.ticket_type_entity_filter
     calls:
       - [add, [@jimdo.ticket_type_entity_filter, 'type' ]]
       - [add, [@jimdo.ticket_date_filter, 'created' ]]
+
+  jimdo.template_data:
+    class: Jimdo\JimkanbanBundle\Lib\TemplateData
+    arguments:
+      - @request
+      - @jimdo.template_ticket_filter_chain
+    scope: request

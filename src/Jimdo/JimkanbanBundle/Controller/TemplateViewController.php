@@ -21,12 +21,12 @@ class TemplateViewController extends Controller
      */
     public function ticketAction(Request $request)
     {
-
-        $viewData = $this->getViewData($request);
+        $templateDataService = $this->container->get('jimdo.template_data');
+        $templateData = $templateDataService->getTemplateData();
 
         return $this->render(
             'JimdoJimkanbanBundle:Template:ticket.html.twig',
-            $viewData
+            $templateData
         );
     }
 
