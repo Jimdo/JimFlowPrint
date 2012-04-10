@@ -3,8 +3,9 @@ namespace Jimdo\JimkanbanBundle\Lib;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Request;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterChain;
+use \Doctrine\ORM\EntityManager;
 
-class TemplateData
+abstract class TemplateData
 {
     /**
      * @var \Symfony\Component\HttpFoundation\Request
@@ -27,7 +28,7 @@ class TemplateData
         return $this->filterChain->filter($this->getData());
     }
 
-    private function getData()
+    protected function getData()
     {
         $request = $this->request;
 
@@ -37,7 +38,7 @@ class TemplateData
             'title' => $request->get('title'),
             'reporter' => $request->get('reporter'),
             'type' => $request->get('type'),
-            //'printers' => $printer
+
         );
     }
 }
