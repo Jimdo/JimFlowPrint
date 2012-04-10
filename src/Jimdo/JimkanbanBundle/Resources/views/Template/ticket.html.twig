@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
 
-
+        <link href='http://fonts.googleapis.com/css?family=Roboto:100,400,700' rel='stylesheet' type='text/css' />
     </head>
     <body>
          <div id="print-hint"></div>
@@ -14,27 +14,25 @@
 
 
 <div id="card">
-	<textarea id="title" name="title">{{ title }}</textarea>
+	<textarea class="description" name="title">{{ title }}</textarea>
 
-	<div id="metaarea">
-		<div id="incident" style="background-color:none;">
-		<p id="type_title" class="ticket" style="border-top:1px solid #{{ type.backgroundColor }};background-color:#{{ type.backgroundColor }};">
+	<div id="meta_area">
+		<p id="ticket_type" style="border-top:1px solid #{{ type.backgroundColor }};background-color:#{{ type.backgroundColor }};">
 		    {{ type.name }}
 		</p>
-                <input type="hidden" name="type" value="Bug"/>
-		<p id="id" class="metatxt ">
-                    <input type="text" class="input-value-id" name="id" value="#{{ id }}" />
-                </p>
-		<p id="created" class="metatxt">
-			<span class="metadiscrp">created:</span>
-			<input type="text" class="input-value" name="created" value="{{ created }}" />
+        <input type="hidden" name="type" value="{{ type.name }}"/>
+		<p id="ticket_id" class="meta-text">
+            <input type="text" name="id" value="#{{ id }}" />
+        </p>
+		<p id="ticket_created" class="meta-text">
+			<span class="description">created:</span>
+			<input type="text" name="created" value="{{ created }}" />
 		</p>
-		<p id="reporter" class="metatxt metatxt-last">
-			<span class="metadiscrp">reported by:</span>
-			<input type="text" class="input-value" name="reporter" value="{{ reporter }}" />
+		<p id="ticket_reporter" class="meta-text">
+			<span class="description">reported by:</span>
+			<input type="text" name="reporter" value="{{ reporter }}" />
 		</p>
-		</div>
-		<img id="qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
+		<img id="ticket_qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
 	</div>
 </div>        <input type="hidden" id="title_fontsize" name="title_fontsize" />
         <input type="hidden"  name="template" value="" />
