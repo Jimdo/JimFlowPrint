@@ -32,9 +32,9 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
                 ->method('getName')
                 ->will($this->returnValue($someName));
 
-        $em = $this->getEntityManager($entity);
+        $repository = $this->getRepository($entity);
 
-        $filter = new TicketTypeEntityFilter($em);
+        $filter = new TicketTypeEntityFilter($repository);
 
         $data = array($someKeyName => $someName);
 
@@ -58,16 +58,16 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
 
         $data = array($someKeyName => $someName);
 
-        $em = $this->getEntityManager($notFoundEntity);
+        $repository = $this->getRepository($notFoundEntity);
 
-        $filter = new TicketTypeEntityFilter($em);
+        $filter = new TicketTypeEntityFilter($repository);
         $filter->filter($data, $someKeyName);
     }
 
-    private function getEntityManager($entity)
+    private function getRepository($entity)
     {
         $repository = $this->getMock(
-            '\Doctrine\ORM\EntityRepository',
+            '\Jimdo\JimkanbanBundle\Entity\TicketTypeRepository',
             array('findOneBy'),
             array(),
             '',
@@ -77,17 +77,6 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
                 ->method('findOneBy')
                 ->will($this->returnValue($entity));
 
-        $em = $this->getMock(
-            '\Doctrine\ORM\EntityManager',
-            array('getRepository'),
-            array(),
-            '',
-            false
-        );
-        $em->expects($this->once())
-                ->method('getRepository')
-                ->will($this->returnValue($repository));
-
-        return $em;
+        return $repository;
     }
 }
