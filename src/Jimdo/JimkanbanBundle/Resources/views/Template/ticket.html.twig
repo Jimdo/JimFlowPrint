@@ -2,6 +2,8 @@
     <head>
         {% stylesheets
             'bundles/jimdojimkanban/css/templates/view/ticket.css'
+            'bundles/jimdojimkanban/css/backend/buttons.css'
+            'bundles/jimdojimkanban/css/templates/printer-buttons.css'
         %}
         <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
@@ -10,7 +12,7 @@
     </head>
     <body>
          <div id="print-hint"></div>
-        <form id="kanban_form"  action="print.php" method="GET">
+        <form id="kanban_form"  action="" method="GET">
 
 
 <div id="card">
@@ -34,10 +36,9 @@
 		</p>
 		<img id="ticket_qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
 	</div>
-</div>        <input type="hidden" id="title_fontsize" name="title_fontsize" />
-        <input type="hidden"  name="template" value="" />
-        <input type="hidden" id="action"  name="action"/>
-        <input type="hidden" id="chosen_floor"  name="chosen_floor"/>
+</div>
+    <h1>Print</h1>
+    {% include 'JimdoJimkanbanBundle:Template:printer-buttons.html.twig' %}
     </form>
     </body>
 </html>
