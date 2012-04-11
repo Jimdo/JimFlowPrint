@@ -8,6 +8,10 @@ p {
     padding:0;
 }
 
+html, body {
+    width: 148mm;
+}
+
 #card {
     width:148mm;
     height:104mm;
@@ -17,8 +21,8 @@ p {
 }
 
 #card textarea.description {
-    width:97mm;
-    height:101mm;
+    width:102mm;
+    height:104mm;
     float:left;
     padding:2mm 0 0 4mm;
     margin:0;
@@ -66,7 +70,7 @@ p {
     font-weight:bold;
 
 }
-#meta_area #ticket_qr {
+#ticket_qr {
     width:175px;
     position:absolute;
     right: -0.4mm;
@@ -80,7 +84,7 @@ p {
     font-size:4.1mm;
 }
 
-#meta_area #ticket_id input[type="text"] {
+#ticket_id input[type="text"] {
     font-size:9mm;
     font-weight: bold;
 }

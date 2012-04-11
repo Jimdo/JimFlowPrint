@@ -21,7 +21,7 @@ class TemplateDataView extends  TemplateData {
     protected function getData() {
         return array_merge(
             parent::getData(),
-            $this->getPrinters()
+            array('printers' => $this->getPrinters() )
         );
     }
 
