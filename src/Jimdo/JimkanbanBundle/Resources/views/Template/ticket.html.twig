@@ -11,34 +11,34 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:100,400,700' rel='stylesheet' type='text/css' />
     </head>
     <body>
-         <div id="print-hint"></div>
         <form id="kanban_form"  action="" method="GET">
+            <div id="card">
+                <textarea class="description" name="title">{{ title }}</textarea>
 
+                <div id="meta_area">
+                    <p id="ticket_type" style="border-top:1px solid #{{ type.backgroundColor }};background-color:#{{ type.backgroundColor }};">
+                        {{ type.name }}
+                    </p>
+                    <input type="hidden" name="type" value="{{ type.name }}"/>
 
-<div id="card">
-	<textarea class="description" name="title">{{ title }}</textarea>
+                    <p id="ticket_id" class="meta-text">
+                        <input type="text" name="id" value="#{{ id }}" />
+                    </p>
 
-	<div id="meta_area">
-		<p id="ticket_type" style="border-top:1px solid #{{ type.backgroundColor }};background-color:#{{ type.backgroundColor }};">
-		    {{ type.name }}
-		</p>
-        <input type="hidden" name="type" value="{{ type.name }}"/>
-		<p id="ticket_id" class="meta-text">
-            <input type="text" name="id" value="#{{ id }}" />
-        </p>
-		<p id="ticket_created" class="meta-text">
-			<span class="description">created:</span>
-			<input type="text" name="created" value="{{ created }}" />
-		</p>
-		<p id="ticket_reporter" class="meta-text">
-			<span class="description">reported by:</span>
-			<input type="text" name="reporter" value="{{ reporter }}" />
-		</p>
-		<img id="ticket_qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
-	</div>
-</div>
-    <h1>Print</h1>
-    {% include 'JimdoJimkanbanBundle:Template:printer-buttons.html.twig' %}
-    </form>
+                    <p id="ticket_created" class="meta-text">
+                        <span class="description">created:</span>
+                        <input type="text" name="created" value="{{ created }}" />
+                    </p>
+
+                    <p id="ticket_reporter" class="meta-text">
+                        <span class="description">reported by:</span>
+                        <input type="text" name="reporter" value="{{ reporter }}" />
+                    </p>
+                    <img id="ticket_qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
+                </div>
+            </div>
+            <h1>Print</h1>
+            {% include 'JimdoJimkanbanBundle:Template:printer-buttons.html.twig' %}
+        </form>
     </body>
 </html>
