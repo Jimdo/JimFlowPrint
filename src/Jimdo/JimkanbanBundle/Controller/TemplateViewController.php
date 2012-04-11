@@ -21,6 +21,9 @@ class TemplateViewController extends Controller
      */
     public function ticketAction(Request $request)
     {
+
+        $mail =  $this->container->get('jimdo.email_printer');
+        $mail->doPrint('ddd');
         $templateDataService = $this->container->get('jimdo.template_data_view');
         $templateData = $templateDataService->getTemplateData();
 
