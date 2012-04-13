@@ -1,5 +1,4 @@
 services:
-
   jimdo.ticket_type_entity_repository:
     class:            Jimdo\JimkanbanBundle\Entity\TicketTypeRepository
     factory_service:  doctrine.orm.default_entity_manager
@@ -22,11 +21,15 @@ services:
   jimdo.ticket_date_filter:
     class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketDateFilter
 
+  jimdo.ticket_id_filter:
+    class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketIdFilter
+
   jimdo.template_ticket_filter_chain:
     class: Jimdo\JimkanbanBundle\Lib\Filter\FilterChain
     calls:
       - [add, [@jimdo.ticket_type_entity_filter, 'type' ]]
       - [add, [@jimdo.ticket_date_filter, 'created' ]]
+      - [add, [@jimdo.ticket_id_filter, 'id' ]]
 
   jimdo.template_data_view:
     class: Jimdo\JimkanbanBundle\Lib\TemplateDataView
