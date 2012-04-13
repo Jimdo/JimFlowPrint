@@ -15,7 +15,7 @@
             <div id="card">
                 <textarea class="description" name="title">{{ title }}</textarea>
 
-                <div id="meta_area">
+                <div id="meta_area" style="background-color: {{ type.isBackgroundFilled ? type.backgroundColor : 'none' }}">
                     <p id="ticket_type" style="border-top:1px solid #{{ type.backgroundColor }};background-color:#{{ type.backgroundColor }};">
                         {{ type.name }}
                     </p>
