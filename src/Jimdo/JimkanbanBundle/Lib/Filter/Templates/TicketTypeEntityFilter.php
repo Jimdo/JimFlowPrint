@@ -1,30 +1,15 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Lib\Filter\Templates;
+use \Jimdo\JimkanbanBundle\Lib\Filter\Templates\EntityFilter;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterInterface;
 use \Jimdo\JimkanbanBundle\Entity\TicketTypeRepository;
 
-class TicketTypeEntityFilter implements FilterInterface {
+class TicketTypeEntityFilter extends EntityFilter implements FilterInterface
+{
+    const FIND_BY = 'name';
 
-    /**
-     * @var \Doctrine\ORM\EntityRepository
-     */
-    private $repository;
-
-
-    public function __construct(TicketTypeRepository $repository)
+    protected function getFindBy()
     {
-        $this->repository = $repository;
-    }
-
-    public function filter(array $data, $key)
-    {
-        $entity = $this->repository->findOneBy(array('name' => $data[$key]));
-
-        if (!$entity) {
-            throw new \InvalidArgumentException($data[$key] . ' has no entity');
-        }
-
-        $data[$key] = $entity;
-        return $data;
+        return self::FIND_BY;
     }
 }
