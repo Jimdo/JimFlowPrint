@@ -11,7 +11,7 @@ class TicketIdFilterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function itShouldPrependAHashWhenNoneIsAlreadyExistent()
+    public function itShouldStripAwayAllHashes()
     {
         $id = '123';
         $someKey = self::SOME_KEY;
@@ -19,21 +19,7 @@ class TicketIdFilterTest extends \PHPUnit_Framework_TestCase
         $filter = new TicketIdFilter();
         $data = array($someKey => $id);
         $data = $filter->filter($data, $someKey);
-        $this->assertEquals('#' . $id, $data[$someKey]);
-    }
-
-    /**
-     * @test
-     */
-    public function itShouldNotPretendAHashWhenThereIsAlreadyOne()
-    {
-        $id = '#123';
-        $someKey = self::SOME_KEY;
-
-        $filter = new TicketIdFilter();
-        $data = array($someKey => $id);
-        $data = $filter->filter($data, $someKey);
-        $this->assertEquals('#' . $id, $data[$someKey]);
+        $this->assertNotContains('#', $data[$someKey]);
     }
 
 }
