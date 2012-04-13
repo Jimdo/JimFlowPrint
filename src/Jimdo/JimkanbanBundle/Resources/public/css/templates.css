@@ -37,7 +37,7 @@ p {
     border:none;
     background:none;
 }
-#metaarea {
+#meta_area {
     text-align:right;
     float:right;
     width:46mm;
@@ -52,7 +52,7 @@ p {
     height:7.6mm;
     padding:2mm 0 0 0;
 }
-.metatxt {
+.meta-text {
     padding-right:3mm;
     padding-top:2.5mm;
     height:14.7mm;
@@ -67,17 +67,17 @@ p {
     border-bottom:0mm;
 }
 
-.metadiscrp {
+.description {
     font-size:3.14mm;
     color:#808080;
 }
-#id {
+#ticket_id {
     padding-top:1.3mm;
     font-size:10mm;
     font-weight:bold;
 
 }
-#qr {
+#ticket_qr {
     width:175px;
     position:absolute;
     right: -0.4mm;
