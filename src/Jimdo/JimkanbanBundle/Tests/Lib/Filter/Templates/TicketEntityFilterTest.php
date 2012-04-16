@@ -32,7 +32,10 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
                 ->method('getName')
                 ->will($this->returnValue($someName));
 
-        $repository = $this->getRepository($entity);
+        $repository = $this->getRepository();
+        $repository->expects($this->any())
+                ->method('findOneBy')
+                ->will($this->returnValue($entity));
 
         $filter = new TicketTypeEntityFilter($repository);
 
@@ -45,26 +48,34 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
 
     }
 
-
     /**
      * @test
-     * @expectedException InvalidArgumentException
      */
-    public function itShouldThrowAnInvalidArgumentExceptionIfTypeIsNotFoundByName()
+    public function itShould()
     {
         $someName = self::SOME_VALID_NAME;
         $someKeyName = self::SOME_FILTER_KEY_NAME;
-        $notFoundEntity = null;
+        $entity = null;
+
+        $repository = $this->getRepository();
+
+        //make sure Repository returns no entity
+        $repository->expects($this->any())
+                ->method('findOneBy')
+                ->will($this->returnValue($entity));
+
+        //Filter should now call findOneBy for the second time, but this time trying to get the fallback Entity
+        $repository->expects($this->at(1))
+                ->method('findOneBy')
+                ->with($this->equalTo(array('isFallback' => true)));
 
         $data = array($someKeyName => $someName);
-
-        $repository = $this->getRepository($notFoundEntity);
-
         $filter = new TicketTypeEntityFilter($repository);
-        $filter->filter($data, $someKeyName);
+        $data = $filter->filter($data, $someKeyName);
+        $testEntity = $data[$someKeyName];
     }
 
-    private function getRepository($entity)
+    private function getRepository()
     {
         $repository = $this->getMock(
             '\Jimdo\JimkanbanBundle\Entity\TicketTypeRepository',
@@ -73,9 +84,7 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
             '',
             false
         );
-        $repository->expects($this->once())
-                ->method('findOneBy')
-                ->will($this->returnValue($entity));
+
 
         return $repository;
     }

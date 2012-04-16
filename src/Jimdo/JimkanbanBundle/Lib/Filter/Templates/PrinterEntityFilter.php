@@ -12,4 +12,9 @@ class PrinterEntityFilter extends EntityFilter implements FilterInterface
     {
         return self::FIND_BY;
     }
+
+    protected function handleNullResult($data, $key)
+    {
+        throw new \InvalidArgumentException($data[$key] . ' has no entity');
+    }
 }
