@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilder;
 class TicketType extends AbstractType {
 
     public function buildForm(FormBuilder $builder, array $options) {
+        $data = $options['data'];
+
         $builder
                 ->add('name', 'text', array(
                     'label' => 'Name'
@@ -22,7 +24,16 @@ class TicketType extends AbstractType {
                     'label' => 'Fill entire background',
                     'required' => false
                 ))
+        ->add('isFallback', $this->getIsFallbackType($data->getIsFallback()), array(
+                    'label' => 'Use if no or unknown type is specified?',
+                    'required' => false,
+                ))
         ;
+    }
+
+    private function getIsFallbackType($isFallback)
+    {
+        return $isFallback ? 'hidden' : 'checkbox';
     }
 
     public function getName() {

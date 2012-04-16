@@ -47,6 +47,13 @@ class TicketType
      */
     private $isBackgroundFilled;
 
+     /**
+     * @var boolean is_fallback
+     *
+     * @ORM\Column(name="is_fallback", type="boolean", nullable=true)
+     */
+    private $isFallback;
+
 
     /**
      * Get id
@@ -116,5 +123,25 @@ class TicketType
     public function getIsBackgroundFilled()
     {
         return $this->isBackgroundFilled;
+    }
+
+    /**
+     * Set is_fallback
+     *
+     * @param boolean $isFallback
+     */
+    public function setIsFallback($isFallback)
+    {
+        $this->isFallback = $isFallback;
+    }
+
+     /**
+     * Get is_fallback
+     *
+     * @return boolean
+     */
+    public function getIsFallback()
+    {
+        return $this->isFallback;
     }
 }

@@ -45,3 +45,15 @@ services:
     arguments:
      - @mailer
      - %mailer_user%
+
+
+
+
+
+
+
+  jimdo.listener.ticket_type.fallback:
+    class: Jimdo\JimkanbanBundle\Lib\Listener\TicketTypeFallbackListener
+    tags:
+      - { name: doctrine.event_listener, event: postPersist}
+      - { name: doctrine.event_listener, event: postUpdate }
