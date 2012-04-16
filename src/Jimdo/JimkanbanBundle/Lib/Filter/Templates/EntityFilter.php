@@ -17,17 +17,31 @@ abstract class EntityFilter
         $this->repository = $repository;
     }
 
+    protected function findOneBy($value)
+    {
+        return $this->repository->findOneBy(array($this->getFindBy() => $value));
+    }
+
     public function filter(array $data, $key)
     {
-        $entity = $this->repository->findOneBy(array($this->getFindBy() => $data[$key]));
+        $entity = $this->findOneBy($data[$key]);
 
-        if (!$entity) {
-            throw new \InvalidArgumentException($data[$key] . ' has no entity');
+        if (null === $entity) {
+            return $this->handleNullResult($data, $key);
         }
 
         $data[$key] = $entity;
         return $data;
     }
 
+    /**
+     * @return \Doctrine\ORM\EntityRepository
+     */
+    protected function getRepository()
+    {
+        return $this->repository;
+    }
+
     protected abstract function getFindBy();
+    protected abstract function handleNullResult($data, $key);
 }

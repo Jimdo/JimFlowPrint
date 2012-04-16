@@ -12,4 +12,16 @@ class TicketTypeEntityFilter extends EntityFilter implements FilterInterface
     {
         return self::FIND_BY;
     }
+
+    protected function handleNullResult($data, $key)
+    {
+        /**
+         * @var TicketTypeRepository
+         */
+        $repository = $this->getRepository();
+
+        $data[$key] =  $repository->findOneBy(array('isFallback' => true));
+        return $data;
+
+    }
 }
