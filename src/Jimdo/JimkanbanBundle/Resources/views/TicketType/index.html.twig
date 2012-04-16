@@ -11,6 +11,7 @@
             </div>
             <div class="edit">
                 <a class="button gray" href="{{ path('tickettype_edit', { 'id': entity.id }) }}">edit</a>
+                <span>{{entity.isFallback ? '(default type)' : ''}}</span>
             </div>
             <div style="clear: both;"></div>
         </div>
