@@ -8,7 +8,7 @@
     <table>
 
     {% for entity in entities %}
-        <tr>
+        <tr class="{{entity.isActive ? '' : 'deactivated'}}">
             <td>
                  {{ entity.name }}
             </td>
@@ -17,6 +17,7 @@
             </td>
             <td>
                  <a class="button gray" href="{{ path('printer_edit', { 'id': entity.id }) }}">edit</a>
+                 <span>{{entity.isActive ? '' : '(deactivated)'}}</span>
             </td>
 
         </tr>

@@ -1,8 +1,8 @@
 {% extends 'JimdoJimkanbanBundle::base.html.twig' %}
 {% block body %}
-<h1>Printer edit</h1>
+<h1>{{entity.name}} {{entity.isActive ? '' : '(deactivated)'}}</h1>
 
-<form action="{{ path('printer_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form id="printer_edit_form" action="{{ path('printer_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
 
     {% form_theme edit_form 'JimdoJimkanbanBundle:Form:fields.html.twig' %}
 
@@ -21,6 +21,7 @@
         <a class="button gray" href="{{ path('printer') }}">
             Back to list
         </a>
+        <a class="button gray" id="deactivate">{{entity.isActive ? 'Deactivate' : 'Activate'}}</a>
         <button class="button gray" type="submit">Delete</button>
     </form>
 </div>
