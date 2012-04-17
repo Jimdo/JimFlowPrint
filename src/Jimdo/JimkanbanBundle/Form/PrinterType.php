@@ -13,6 +13,7 @@ class PrinterType extends AbstractType
             ->add('name')
             ->add('email')
             ->add('notes','textarea', array('required' => false))
+            ->add('is_active','hidden', array('attr' => array('class' => 'is-active')))
         ;
     }
 

@@ -25,13 +25,14 @@ class Printer
 
     /**
      * @var string $name
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string $email
+     * @Assert\NotBlank()
      * @Assert\Email(message = "Email is not valid.")
      * @ORM\Column(name="email", type="string", length=255)
      */
@@ -43,6 +44,13 @@ class Printer
      * @ORM\Column(name="notes", type="text", nullable=true)
      */
     private $notes;
+
+     /**
+     * @var boolean $isActive
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive = true;
 
 
     /**
@@ -113,5 +121,25 @@ class Printer
     public function getNotes()
     {
         return $this->notes;
+    }
+
+
+    /**
+     * @param $isActive
+     * @return void
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
     }
 }

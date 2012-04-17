@@ -1,8 +1,5 @@
 <html>
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-
         {% stylesheets filter='cssrewrite'
             'bundles/jimdojimkanban/css/backend/*'
         %}
@@ -11,7 +8,8 @@
 
 
         {% javascripts
-            '@JimdoJimkanbanBundle/Resources/public/js/*'
+            '@JimdoJimkanbanBundle/Resources/public/js/jquery.js'
+            '@JimdoJimkanbanBundle/Resources/public/js/backend/*'
         %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}

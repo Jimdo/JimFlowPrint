@@ -27,7 +27,7 @@ class TemplateDataView extends  TemplateData {
 
     private function getPrinters()
     {
-        return $this->repository->findAll();
+        return $this->repository->findBy(array('isActive' => true));
     }
 
 }
