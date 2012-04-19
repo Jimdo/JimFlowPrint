@@ -9,3 +9,7 @@ JimdoJimkanbanBundle_printer:
 JimdoJimkanbanBundle_template:
   resource: "@JimdoJimkanbanBundle/Resources/config/routing/template.yml"
   prefix:   /template
+
+JimdoJimkanbanBundle_print:
+  resource: "@JimdoJimkanbanBundle/Resources/config/routing/print.yml"
+  prefix:   /print

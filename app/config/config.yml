@@ -60,6 +60,6 @@ jms_security_extra:
     secure_all_services: false
 
 knp_snappy:
-    pdf:
+    image:
         enabled:    true
-        binary:     /usr/bin/wkhtmltopdf
+        binary:     /usr/bin/wkhtmltoimage-old

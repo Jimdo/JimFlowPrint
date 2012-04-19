@@ -38,6 +38,7 @@ abstract class TemplateData
             'title' => $request->get('title'),
             'reporter' => $request->get('reporter'),
             'type' => $request->get('type'),
+            'printer' => $request->get('printer')
         );
     }
 }
