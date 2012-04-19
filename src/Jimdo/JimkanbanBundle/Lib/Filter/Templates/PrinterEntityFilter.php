@@ -15,6 +15,7 @@ class PrinterEntityFilter extends EntityFilter implements FilterInterface
 
     protected function handleNullResult($data, $key)
     {
-        throw new \InvalidArgumentException($data[$key] . ' has no entity');
+        $data[$key] = null;
+        return $data;
     }
 }

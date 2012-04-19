@@ -18,6 +18,11 @@ services:
     arguments:
       - @jimdo.ticket_type_entity_repository
 
+  jimdo.printer_filter:
+    class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\PrinterEntityFilter
+    arguments:
+      - @jimdo.printer_entity_repository
+
   jimdo.ticket_date_filter:
     class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketDateFilter
 
@@ -30,6 +35,7 @@ services:
       - [add, [@jimdo.ticket_type_entity_filter, 'type' ]]
       - [add, [@jimdo.ticket_date_filter, 'created' ]]
       - [add, [@jimdo.ticket_id_filter, 'id' ]]
+      - [add, [@jimdo.printer_filter, 'printer' ]]
 
   jimdo.template_data_view:
     class: Jimdo\JimkanbanBundle\Lib\TemplateDataView
@@ -46,11 +52,19 @@ services:
      - @mailer
      - %mailer_user%
 
+  jimdo.email_printing:
+    class: Jimdo\JimkanbanBundle\Lib\Printer\PrinterService
+    arguments:
+      - @jimdo.email_printer
+      - @jimdo.image_generator
 
 
 
-
-
+  jimdo.image_generator:
+    class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
+    arguments:
+      - @knp_snappy.image
+      - {format: 'png'}
 
   jimdo.listener.ticket_type.fallback:
     class: Jimdo\JimkanbanBundle\Lib\Listener\TicketTypeFallbackListener

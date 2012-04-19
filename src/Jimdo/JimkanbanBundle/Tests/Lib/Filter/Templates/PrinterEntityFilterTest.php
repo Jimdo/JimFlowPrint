@@ -42,9 +42,8 @@ class PrinterEntityFilterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException InvalidArgumentException
      */
-    public function itShouldThrowAnInvalidArgumentExceptionIfTypeIsNotFoundByName()
+    public function itShouldSetTheValueToNullIfNoPrinterIsFound()
     {
         $someId = self::SOME_ID;
         $someKeyName = self::SOME_FILTER_KEY_NAME;
@@ -55,7 +54,9 @@ class PrinterEntityFilterTest extends \PHPUnit_Framework_TestCase
         $repository = $this->getRepository($notFoundEntity);
 
         $filter = new PrinterEntityFilter($repository);
-        $filter->filter($data, $someKeyName);
+        $data = $filter->filter($data, $someKeyName);
+
+        $this->assertEquals(null, $data[$someKeyName]);
     }
 
     private function getRepository($entity)
