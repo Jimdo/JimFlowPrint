@@ -18,7 +18,7 @@
 <div class="record_actions">
     <form action="{{ path('printer_delete', { 'id': entity.id }) }}" method="post">
         {{ form_widget(delete_form) }}
-        <a class="button gray" href="{{ path('printer') }}">
+        <a class="button gray" href="{{ path('printer_list') }}">
             Back to list
         </a>
         <a class="button gray" id="deactivate">{{entity.isActive ? 'Deactivate' : 'Activate'}}</a>

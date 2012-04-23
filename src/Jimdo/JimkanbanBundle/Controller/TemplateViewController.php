@@ -29,4 +29,15 @@ class TemplateViewController extends Controller
             $templateData
         );
     }
+
+    public function ticketprintAction()
+    {
+        $templateDataService = $this->container->get('jimdo.template_data_view');
+        $templateData = $templateDataService->getTemplateData();
+
+        return $this->render(
+            'JimdoJimkanbanBundle:Template:print-ticket.html.twig',
+            $templateData
+        );
+    }
 }
