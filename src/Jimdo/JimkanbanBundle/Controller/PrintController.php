@@ -18,7 +18,7 @@ class PrintController extends Controller
         $templateData = $templateDataService->getTemplateData();
 
         $printingService = $this->get('jimdo.email_printing');
-        $printingService->doPrint($templateData['printer'], $this->generateUrl('template', $data, true));
+        $printingService->doPrint($templateData['printer'], $this->generateUrl('template_print_view', $data, true));
 
         return new Response('{"message": "ok"}' , 200);
     }

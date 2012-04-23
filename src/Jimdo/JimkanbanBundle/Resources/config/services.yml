@@ -64,7 +64,7 @@ services:
     class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
     arguments:
       - @knp_snappy.image
-      - {format: 'png'}
+      - {format: 'png', width: 0, quality: 100}
 
   jimdo.listener.ticket_type.fallback:
     class: Jimdo\JimkanbanBundle\Lib\Listener\TicketTypeFallbackListener

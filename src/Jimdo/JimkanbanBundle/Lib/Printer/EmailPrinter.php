@@ -23,7 +23,7 @@ class EmailPrinter implements PrinterInterface
 
     public function doPrint(Printer $printer, array $file)
     {
-        $attachment = \Swift_Attachment::newInstance($file['content'], 'ticket', $file['mime']);
+        $attachment = \Swift_Attachment::newInstance($file['content'], 'ticket.png', $file['mime']);
 
         $message = \Swift_Message::newInstance()
         ->setSubject('Hello Email')

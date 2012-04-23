@@ -1,4 +1,4 @@
-printer:
+printer_list:
     pattern:  /
     defaults: { _controller: "JimdoJimkanbanBundle:Printer:index" }
 

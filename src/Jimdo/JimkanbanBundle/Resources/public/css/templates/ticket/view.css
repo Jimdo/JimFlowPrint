@@ -1,0 +1,31 @@
+html, body {
+    width: 148mm;
+}
+
+
+#card textarea.description {
+    width:102mm;
+    height:98mm;
+    float:left;
+    padding:2mm 0 0 4mm;
+    margin:0;
+    font-size: 46px;
+    resize: none;
+    border:none;
+}
+
+.meta-text input[type="text"] {
+    border: 0px;
+    text-align: right;
+    width: 40mm;
+    font-size:4.1mm;
+}
+
+#ticket_id input[type="text"] {
+    font-size:9mm;
+    font-weight: bold;
+}
+
+input[type="text"], textarea {
+    background-color: #FDFFDE;
+}

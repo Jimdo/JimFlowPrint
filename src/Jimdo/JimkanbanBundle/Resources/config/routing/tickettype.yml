@@ -1,4 +1,4 @@
-tickettype:
+tickettype_list:
     pattern:  /
     defaults: { _controller: "JimdoJimkanbanBundle:TicketType:index" }
 
