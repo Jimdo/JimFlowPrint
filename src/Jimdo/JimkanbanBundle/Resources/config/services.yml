@@ -71,3 +71,12 @@ services:
     tags:
       - { name: doctrine.event_listener, event: postPersist}
       - { name: doctrine.event_listener, event: postUpdate }
+
+
+
+  jimdo.gcp.client:
+    class: Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient
+    arguments:
+      - @buzz
+      - drexler.robin@gmail.com
+      - svzfvzelituofhwn
