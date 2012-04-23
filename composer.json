@@ -11,28 +11,8 @@
         "sensio/distribution-bundle":     "2.0.*",
         "jms/security-extra-bundle":      "1.0.*",
         "knplabs/knp-snappy-bundle":      "*",
-        "sensio/buzz-bundle":             "0.1",
-	"KnpLabs/KnpOAuthBundle":         "2.0"
+        "sensio/buzz-bundle":             "0.1"
     },
-
-    "repositories": [
-    {
- "type": "package",
-               "package": {
-                   "version": "2.0",
-                   "name": "KnpLabs/KnpOAuthBundle",
-                   "source": {
-                       "url": "https://github.com/KnpLabs/KnpOAuthBundle.git",
-                       "type": "git",
-                       "reference": "2.0"
-                   },
-                   "dist": {
-                       "url": "https://github.com/KnpLabs/KnpOAuthBundle/zipball/2.0",
-                       "type": "zip"
-                   }
-               }
-           }
-    ],
 
     "autoload": {
         "psr-0": {
