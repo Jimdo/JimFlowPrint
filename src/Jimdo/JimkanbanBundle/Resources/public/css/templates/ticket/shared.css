@@ -22,7 +22,7 @@ p {
     float:left;
     width:46mm;
     background-color:#f8f8f8;
-    height:95mm;
+    /*height:95mm;*/
 
 }
 #meta_area #ticket_type {
