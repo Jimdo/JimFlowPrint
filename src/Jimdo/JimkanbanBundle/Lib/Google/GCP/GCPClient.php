@@ -3,13 +3,20 @@ namespace Jimdo\JimkanbanBundle\Lib\Google\GCP;
 
 use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient;
 
-class GCPClient extends GoogleClient
+class GCPClient
 {
+    /**
+     * @var \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient
+     */
+    private $client;
 
-    const SERVICE_NAME = 'cloudprint';
-    const SOURCE = 'Jimkanban2';
-    const ACCOUNT_TYPE = 'Google';
-
+    /**
+     * @param \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient $client
+     */
+    public function __construct(GoogleClient $client)
+    {
+        $this->client = $client;
+    }
     /**
      * @return string
      */
@@ -39,7 +46,7 @@ class GCPClient extends GoogleClient
      */
     public function getPrinterList()
     {
-        $response = $this->get('http://www.google.com/cloudprint/search');
+        $response = $this->client->get('http://www.google.com/cloudprint/search');
         $this->assertRequestIsSuccessful($response);
 
         $json = $this->getJson($response);
@@ -49,7 +56,7 @@ class GCPClient extends GoogleClient
 
     public function getPrinterInformation($printerId)
     {
-        return $this->get('http://www.google.com/cloudprint/printer?printerid=' . $printerId);
+        return $this->client->get('http://www.google.com/cloudprint/printer?printerid=' . $printerId);
     }
 
 
@@ -212,7 +219,7 @@ class GCPClient extends GoogleClient
             'contentTransferEncoding' => 'base64'
         );
 
-        $response = $this->post('http://www.google.com/cloudprint/submit', array(), $data);
+        $response = $this->client->post('http://www.google.com/cloudprint/submit', array(), $data);
         $this->assertRequestIsSuccessful($response);
 
         return $this->getJson($response);
@@ -232,7 +239,8 @@ class GCPClient extends GoogleClient
     private function assertRequestIsSuccessful(\Buzz\Message\Response $response)
     {
         if (!$response->isSuccessful()) {
-            throw new \Exception('Request to GCP was unsuccessful, because: ' . var_export($response, true));
+            //XXX Invent Exception fitting here
+            throw new \InvalidArgumentException('Request to GCP was unsuccessful, because: ' . var_export($response->getContent(), true));
         }
     }
 
