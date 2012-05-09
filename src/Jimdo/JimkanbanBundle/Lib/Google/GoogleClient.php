@@ -99,6 +99,7 @@ abstract class GoogleClient
     {
         if (!$this->isAuthorized()) {
             $response = $this->requestAuthToken();
+
             preg_match('/Auth=\S+/', $response->getContent(), $authToken);
             //Todo exception
             $this->authToken = $authToken[0];
