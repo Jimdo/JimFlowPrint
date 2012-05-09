@@ -4,5 +4,5 @@ use \Jimdo\JimkanbanBundle\Entity\Printer;
 
 interface PrinterInterface
 {
-    public function doPrint(Printer $printer, array $file);
+    public function doPrint($printer, array $file);
 }

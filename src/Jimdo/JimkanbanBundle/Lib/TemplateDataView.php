@@ -3,19 +3,20 @@ namespace Jimdo\JimkanbanBundle\Lib;
 use Jimdo\JimkanbanBundle\Lib\TemplateData;
 use Symfony\Component\HttpFoundation\Request;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterChain;
-use \Jimdo\JimkanbanBundle\Entity\PrinterRepository;
- 
-class TemplateDataView extends  TemplateData {
+use \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient;
 
-   /**
-    * @var \Jimdo\JimkanbanBundle\Entity\PrinterRepository
-    */
-   private $repository;
+class TemplateDataView extends TemplateData
+{
 
-   public function __construct(Request $request, FilterChain $filterChain, PrinterRepository $repository)
+    /**
+     * @var \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient
+     */
+    private $gcpClient;
+
+   public function __construct(Request $request, FilterChain $filterChain, GCPClient $gcpClient)
    {
        parent::__construct($request, $filterChain);
-       $this->repository = $repository;
+       $this->gcpClient = $gcpClient;
    }
 
     protected function getData() {
@@ -27,7 +28,7 @@ class TemplateDataView extends  TemplateData {
 
     private function getPrinters()
     {
-        return $this->repository->findBy(array('isActive' => true));
+        return $this->gcpClient->getPrinterList();
     }
 
 }
