@@ -3,7 +3,7 @@
 namespace Jimdo\JimkanbanBundle\Lib\Google;
 use \Buzz\Browser;
 
-abstract class GoogleClient
+class GoogleClient
 {
     const CLIENT_LOGIN_URL = 'https://www.google.com/accounts/ClientLogin';
 
@@ -32,11 +32,12 @@ abstract class GoogleClient
      * @param $email
      * @param $password
      */
-    public function __construct(Browser $httpClient, $email, $password)
+    public function __construct(Browser $httpClient, $email, $password, $serviceName)
     {
         $this->httpClient = $httpClient;
         $this->email = $email;
         $this->password = $password;
+        $this->serviceName = $serviceName;
     }
 
     /**
@@ -45,7 +46,7 @@ abstract class GoogleClient
      * @param $content
      * @return \Buzz\Message\Response
      */
-    protected  function post($url, $headers = array(), $content)
+    public  function post($url, $headers = array(), $content)
     {
         return $this->doRequest('POST', $url, $headers, $content);
     }
@@ -55,7 +56,7 @@ abstract class GoogleClient
      * @param array $headers
      * @return \Buzz\Message\Response
      */
-    protected function get($url, $headers = array())
+    public function get($url, $headers = array())
     {
         return $this->doRequest('GET', $url, $headers);
     }
@@ -87,7 +88,7 @@ abstract class GoogleClient
     /**
      * @return bool
      */
-    private function isAuthorized()
+    public function isAuthorized()
     {
         return null !== $this->authToken;
     }
@@ -101,7 +102,10 @@ abstract class GoogleClient
             $response = $this->requestAuthToken();
 
             preg_match('/Auth=\S+/', $response->getContent(), $authToken);
-            //Todo exception
+            if (!isset($authToken[0])) {
+                throw new \InvalidArgumentException('Google does not want to let you in. Check your Credentials');
+            }
+
             $this->authToken = $authToken[0];
         }
     }
@@ -122,8 +126,18 @@ abstract class GoogleClient
         return $this->httpClient->post(self::CLIENT_LOGIN_URL, array(), $postData);
     }
 
-    protected abstract function getAccountType();
-    protected abstract function getSource();
-    protected abstract function getServiceName();
+    private function getSource()
+    {
+        return 'JimKanban';
+    }
 
+    private function getServiceName()
+    {
+        return $this->serviceName;
+    }
+
+    private function getAccountType()
+    {
+        return 'Google';
+    }
 }
