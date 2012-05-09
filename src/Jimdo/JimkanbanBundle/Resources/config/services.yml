@@ -13,6 +13,14 @@ services:
     arguments:
       - 'JimdoJimkanbanBundle:Printer'
 
+
+  jimdo.gcp.client:
+    class: Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient
+    arguments:
+      - @buzz
+      - %gcp.email%
+      - %gcp.password%
+
   jimdo.ticket_type_entity_filter:
     class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketTypeEntityFilter
     arguments:
@@ -35,14 +43,13 @@ services:
       - [add, [@jimdo.ticket_type_entity_filter, 'type' ]]
       - [add, [@jimdo.ticket_date_filter, 'created' ]]
       - [add, [@jimdo.ticket_id_filter, 'id' ]]
-      - [add, [@jimdo.printer_filter, 'printer' ]]
 
   jimdo.template_data_view:
     class: Jimdo\JimkanbanBundle\Lib\TemplateDataView
     arguments:
       - @request
       - @jimdo.template_ticket_filter_chain
-      - @jimdo.printer_entity_repository
+      - @jimdo.gcp.client
     scope: request
 
 
@@ -52,12 +59,18 @@ services:
      - @mailer
      - %mailer_user%
 
-  jimdo.email_printing:
+
+  jimdo.gcp_printer:
+      class: Jimdo\JimkanbanBundle\Lib\Printer\GcpPrinter
+      arguments:
+       - @jimdo.gcp.client
+
+
+  jimdo.gcp_printing:
     class: Jimdo\JimkanbanBundle\Lib\Printer\PrinterService
     arguments:
-      - @jimdo.email_printer
-      - @jimdo.image_generator
-
+      - @jimdo.gcp_printer
+      - @jimdo.pdf_generator
 
 
   jimdo.image_generator:
@@ -66,17 +79,14 @@ services:
       - @knp_snappy.image
       - {format: 'png', width: 0, quality: 100}
 
+  jimdo.pdf_generator:
+    class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
+    arguments:
+      - @knp_snappy.pdf
+      - {page-size: 'A6', orientation: 'Landscape'}
+
   jimdo.listener.ticket_type.fallback:
     class: Jimdo\JimkanbanBundle\Lib\Listener\TicketTypeFallbackListener
     tags:
       - { name: doctrine.event_listener, event: postPersist}
       - { name: doctrine.event_listener, event: postUpdate }
-
-
-
-  jimdo.gcp.client:
-    class: Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient
-    arguments:
-      - @buzz
-      - drexler.robin@gmail.com
-      - svzfvzelituofhwn
