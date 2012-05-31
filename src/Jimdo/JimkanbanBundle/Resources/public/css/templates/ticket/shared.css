@@ -9,8 +9,8 @@ p {
 }
 
 #card {
-    width:139.7mm;
-    height:92.5mm;
+    width:138mm;
+    height:95mm;
     border: 0.5mm solid #5A5A59;
     border-right:  none;
     position:relative;
@@ -22,7 +22,9 @@ p {
     float:left;
     width:46mm;
     background-color:#f8f8f8;
-    /*height:95mm;*/
+    height:100%;
+    border-left: 0.5mm dotted #5A5A59;
+    border-right: 0.5mm dotted #5A5A59;
 
 }
 #meta_area #ticket_type {
@@ -38,9 +40,6 @@ p {
     height:11mm;
     border-bottom:0.5mm dotted #5a5a59;
     font-size:4.1mm;
-    border-left: 0.5mm dotted #5A5A59;
-    border-right: 0.5mm dotted #5A5A59;
-
 }
 
 #meta_area .meta-text:last-of-type {

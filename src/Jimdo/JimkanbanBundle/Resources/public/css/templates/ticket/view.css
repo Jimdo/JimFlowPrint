@@ -1,17 +1,24 @@
 html, body {
     width: 148mm;
+    margin: 0;
+    padding:  0;
 }
 
+#card {
+    width: 139.7mm;
+    height: 92.5mm;
+}
 
 #card textarea.description {
-    width:102mm;
-    height:98mm;
+    width:93.5mm;
+    height:92mm;
+    max-height: 95mm;
     float:left;
-    padding:2mm 0 0 4mm;
     margin:0;
-    font-size: 46px;
-    resize: none;
     border:none;
+    font-size: 46px;
+    padding-left: 1mm;
+    padding-right: 1mm;
 }
 
 .meta-text input[type="text"] {
@@ -22,7 +29,7 @@ html, body {
 }
 
 #ticket_id input[type="text"] {
-    font-size:9mm;
+    font-size:8mm;
     font-weight: bold;
 }
 

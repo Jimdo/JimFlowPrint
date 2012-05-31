@@ -84,13 +84,13 @@ services:
     class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
     arguments:
       - @knp_snappy.image
-      - {format: 'png', width: 0, quality: 100}
+      - {format: 'png', quality: 100, margin-bottom: 0, margin-top: 60}
 
   jimdo.pdf_generator:
     class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
     arguments:
       - @knp_snappy.pdf
-      - {page-size: 'A6', orientation: 'Landscape', lowquality: false}
+      - {page-size: 'A6', orientation: 'Landscape', lowquality: false, margin-bottom: 0, margin-top: 0, margin-left: 0, margin-right: 0}
 
   jimdo.listener.ticket_type.fallback:
     class: Jimdo\JimkanbanBundle\Lib\Listener\TicketTypeFallbackListener
