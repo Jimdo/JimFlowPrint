@@ -1,7 +1,11 @@
-body, html {
-    width: 145mm;
+html {
+    padding:  0;
+    margin:  0;
+}
+body {
+    width: 138mm;
     height: 95mm;
-    padding: 0;
+    padding: 5mm;
     margin:  0;
 }
 .meta-text span.meta-value {
@@ -13,7 +17,7 @@ body, html {
 }
 
 #card div.description {
-    width:92.5mm;
+    width:90mm;
     height:95mm;
     max-height: 95mm;
     float:left;
@@ -22,6 +26,9 @@ body, html {
     font-size: 46px;
     padding-left: 1mm;
     padding-right: 1mm;
+}
+#card {
+    margin: 0;
 }
 
 form {
