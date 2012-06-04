@@ -36,3 +36,25 @@ html, body {
 input[type="text"], textarea {
     background-color: #FDFFDE;
 }
+
+
+/* Loading */
+#print-headline span.status {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+
+#print-headline span.loading {
+    display: inline-block;
+    background: url('../../../images/ajax.gif');
+}
+#print-headline span.ok {
+    display: inline-block;
+    background: url('../../../images/ok.png');
+}
+
+#print-headline span.fail {
+    display: inline-block;
+    background: url('../../../images/fail.png');
+}

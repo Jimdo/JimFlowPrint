@@ -10,22 +10,24 @@ class PrintController extends Controller
 {
     public function printticketAction(Request $request)
     {
-        $data = array();
-        parse_str($request->getQueryString(), $data);
-        $queryString = http_build_query($data);
+        $data = $request->request->all();
 
         $templateDataService = $this->container->get('jimdo.template_data_view');
         $templateData = $templateDataService->getTemplateData();
 
         $printingService = $this->get('jimdo.gcp_printing');
-        $printingService->doPrint($templateData['printer'], $this->generateUrl('template_print_view', $data, true));
+        $response = new Response();
+        $response->setStatusCode(200);
 
-        $pdf = $this->container->get('jimdo.pdf_generator');
-        //$f = $pdf->generateFromUrl($this->generateUrl('template_print_view', $data, true));
+        try {
+            $printingService->doPrint($templateData['printer'], $this->generateUrl('template_print_view', $data, true));
 
-        //return new Response($f, 200, array('Content-Type' => 'application/pdf'));
+        } catch(\InvalidArgumentException $e) {
+            $response->setStatusCode(500);
+            $response->setContent($e->getMessage());
+        }
 
-        return new Response('{"message": "ok"}' , 200);
+        return $response;
     }
 
 }

@@ -1,17 +1,25 @@
 <html>
     <head>
-        {% stylesheets
+        {% stylesheets filter='cssrewrite'
             'bundles/jimdojimkanban/css/templates/ticket/shared.css'
             'bundles/jimdojimkanban/css/templates/ticket/view.css'
             'bundles/jimdojimkanban/css/backend/buttons.css'
-            'bundles/jimdojimkanban/css/templates/printer-buttons.css'
         %}
         <link rel="stylesheet" href="{{ asset_url }}" />
         {% endstylesheets %}
 
+        {% javascripts
+            '@JimdoJimkanbanBundle/Resources/public/js/jquery.js'
+            '@JimdoJimkanbanBundle/Resources/public/js/template/form.js'
+
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+
+        {% endjavascripts %}
+
     </head>
     <body>
-        <form id="kanban_form"  action="" method="GET">
+        <form id="kanban_form"  action="{{ url('template_print') }}" method="POST">
             <div id="card">
                 <textarea class="description" name="title">{{ title }}</textarea>
 
@@ -37,7 +45,7 @@
                     <img id="ticket_qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
                 </div>
             </div>
-            <h1>Print</h1>
+            <h1 id="print-headline">Print <span class="status"></span></h1>
             {% include 'JimdoJimkanbanBundle:Template:printer-buttons.html.twig' %}
         </form>
     </body>

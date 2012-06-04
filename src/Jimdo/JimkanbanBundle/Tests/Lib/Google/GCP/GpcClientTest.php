@@ -24,11 +24,12 @@ class GpcClientTest extends \PHPUnit_Framework_TestCase
         $printers = array('id' => 1);
         $data = array(
             'unimportantStuff' => 1,
-            'printers' => $printers
+            'printers' => $printers,
+            'success' => true
         );
 
         $response = $this->getMock('\Buzz\Message\Response', array(), array(), '', false);
-        $response->expects($this->once())->method('getContent')->will($this->returnValue(json_encode($data)));
+        $response->expects($this->any())->method('getContent')->will($this->returnValue(json_encode($data)));
         $response->expects($this->once())->method('isSuccessful')->will($this->returnValue(true));
 
         $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
@@ -47,6 +48,22 @@ class GpcClientTest extends \PHPUnit_Framework_TestCase
 
         $response = $this->getMock('\Buzz\Message\Response', array(), array(), '', false);
         $response->expects($this->once())->method('isSuccessful')->will($this->returnValue(false));
+
+        $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
+
+        $gcpClient = new GCPClient($this->client);
+        $gcpClient->getPrinterList();
+    }
+
+    /**
+     * @test
+     * @expectedException \InvalidArgumentException
+     */
+    public function itShouldThrowAnExceptionIfRequestIsStatus200ButUnsuccessfulAnyways()
+    {
+        $response = $this->getMock('\Buzz\Message\Response', array(), array(), '', false);
+        $response->expects($this->once())->method('isSuccessful')->will($this->returnValue(true));
+        $response->expects($this->any())->method('getContent')->will($this->returnValue(json_encode(array('success' => "false"))));
 
         $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
 
