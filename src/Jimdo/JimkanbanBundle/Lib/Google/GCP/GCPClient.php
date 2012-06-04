@@ -238,10 +238,13 @@ class GCPClient
 
     private function assertRequestIsSuccessful(\Buzz\Message\Response $response)
     {
-        if (!$response->isSuccessful()) {
+        $data = json_decode($response->getContent(), true);
+
+        if (!$response->isSuccessful() || !isset($data['success']) || $data['success'] == false) {
             //XXX Invent Exception fitting here
-            throw new \InvalidArgumentException('Request to GCP was unsuccessful, because: ' . var_export($response->getContent(), true));
+            throw new \InvalidArgumentException($response->getContent());
         }
     }
+
 
 }
