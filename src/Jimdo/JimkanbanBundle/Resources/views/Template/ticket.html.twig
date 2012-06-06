@@ -11,18 +11,9 @@
             {{ parent() }}
         {% endblock %}
 
-        {% block additional_js %}
-            {% javascripts
-                '@JimdoJimkanbanBundle/Resources/public/js/template/form.js'
-
-            %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-            {% endjavascripts %}
-        {% endblock %}
-
         {% block body %}
-            <form id="kanban_form"  action="{{ url('template_print') }}" method="POST">
-                <div id="card" style="float:left;">
+            <form id="kanban_form"  action="{{ url('template_ticket_print') }}" method="POST">
+                <div id="card">
                     <textarea class="description" name="title">{{ title }}</textarea>
 
                     <div id="meta_area" style="background-color: {{ type.isBackgroundFilled ? type.backgroundColor : 'none' }}">

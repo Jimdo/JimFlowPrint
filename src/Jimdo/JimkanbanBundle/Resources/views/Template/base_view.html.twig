@@ -1,7 +1,7 @@
 {% extends 'JimdoJimkanbanBundle::base_layout.html.twig' %}
 
 {% block additional_css %}
-    {% stylesheets
+    {% stylesheets filter="cssrewrite"
         'bundles/jimdojimkanban/css/templates/view_shared.css'
         'bundles/jimdojimkanban/css/backend/buttons.css'
         'bundles/jimdojimkanban/css/templates/printer-buttons.css'
@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 
+{% endblock %}
+
+{% block additional_js %}
+    {% javascripts
+        '@JimdoJimkanbanBundle/Resources/public/js/template/form.js'
+
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {{ parent() }}
 {% endblock %}
 
 {% block body %}{% endblock %}

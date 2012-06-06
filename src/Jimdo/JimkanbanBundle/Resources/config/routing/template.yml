@@ -1,11 +1,24 @@
-template:
-    pattern:  /view/ticket/
-    defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticket" }
+template_ticket:
+  pattern:  /view/ticket/
+  defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticket" }
 
-template_print_view:
-    pattern:  /printview/ticket/
-    defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticketprint" }
+template_ticket_print_view:
+  pattern:  /printview/ticket/
+  defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticketprint" }
 
-template_print:
-    pattern:  /print/ticket/
-    defaults: { _controller: "JimdoJimkanbanBundle:Print:printticket" }
+template_ticket_print:
+  pattern:  /print/ticket/
+  defaults: { _controller: "JimdoJimkanbanBundle:Print:printticket" }
+
+template_story:
+    pattern:  /view/story/
+    defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:story" }
+
+
+template_story_print_view:
+    pattern:  /printview/story/
+    defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:storyprint" }
+
+template_story_print:
+  pattern:  /print/story/
+  defaults: { _controller: "JimdoJimkanbanBundle:Print:printstory" }
