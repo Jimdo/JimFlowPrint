@@ -1,0 +1,30 @@
+<html>
+    <head>
+        {% stylesheets
+            'bundles/jimdojimkanban/css/templates/story/print.css'
+            'bundles/jimdojimkanban/js/plugins/jquery.fitText/jquery.fittext.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+         {% javascripts
+            'bundles/jimdojimkanban/js/jquery.js'
+            'bundles/jimdojimkanban/js/plugins/jquery.fitText/jquery.fittext.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+    </head>
+    <body>
+            <div id="card">
+                <div class="description">{{ title }}</div>
+            </div>
+            <div style="clear:both;"></div>
+
+        <script type="text/javascript">
+            $(function() {
+                $('div.description').fitText();
+            });
+        </script>
+    </body>
+</html>

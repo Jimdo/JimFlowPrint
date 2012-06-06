@@ -11,7 +11,17 @@ class PrintController extends Controller
     public function printticketAction(Request $request)
     {
         $data = $request->request->all();
+        return $this->doPrint($this->generateUrl('template_ticket_print_view', $data, true));
+    }
 
+    public function printstoryAction(Request $request)
+    {
+        $data = $request->request->all();
+        return $this->doPrint($this->generateUrl('template_story_print_view', $data, true));
+    }
+
+    private function doPrint($url)
+    {
         $templateDataService = $this->container->get('jimdo.template_data_view');
         $templateData = $templateDataService->getTemplateData();
 
@@ -20,9 +30,9 @@ class PrintController extends Controller
         $response->setStatusCode(200);
 
         try {
-            $printingService->doPrint($templateData['printer'], $this->generateUrl('template_print_view', $data, true));
+            $printingService->doPrint($templateData['printer'], $url);
 
-        } catch(\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $e) {
             $response->setStatusCode(500);
             $response->setContent($e->getMessage());
         }

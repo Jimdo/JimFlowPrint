@@ -50,6 +50,16 @@ class TemplateViewController extends Controller
         );
     }
 
+    public function storyprintAction()
+    {
+        $templateData = $this->getTemplateData(false);
+
+        return $this->render(
+            'JimdoJimkanbanBundle:Template:print-story.html.twig',
+            $templateData
+        );
+    }
+
     /**
      * @param bool $includePrinters
      * @return array
