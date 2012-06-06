@@ -209,12 +209,13 @@ class GCPClient
    ]
 }
 ';
+        //XXX Use mime
         $data = array(
             'printerid' => $printerId,
             'content' => base64_encode($configuration['content']),
             'contentType' => 'application/pdf',//$configuration['mime'],
             'capabilities' => $capabilities,
-            'title' => 'Test',
+            'title' => 'Ticket',
             'tag' => 'ticket',
             'contentTransferEncoding' => 'base64'
         );

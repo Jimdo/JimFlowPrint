@@ -21,8 +21,7 @@ class TemplateViewController extends Controller
      */
     public function ticketAction(Request $request)
     {
-        $templateDataService = $this->container->get('jimdo.template_data_view');
-        $templateData = $templateDataService->getTemplateData();
+        $templateData = $this->getTemplateData();
 
         return $this->render(
             'JimdoJimkanbanBundle:Template:ticket.html.twig',
@@ -30,14 +29,40 @@ class TemplateViewController extends Controller
         );
     }
 
+
     public function ticketprintAction()
     {
-        $templateDataService = $this->container->get('jimdo.template_data_view');
-        $templateData = $templateDataService->getTemplateData();
+        $templateData = $this->getTemplateData(false);
 
         return $this->render(
             'JimdoJimkanbanBundle:Template:print-ticket.html.twig',
             $templateData
         );
+    }
+
+    public function storyAction()
+    {
+        $templateData = $this->getTemplateData();
+
+        return $this->render(
+            'JimdoJimkanbanBundle:Template:story.html.twig',
+            $templateData
+        );
+    }
+
+    /**
+     * @param bool $includePrinters
+     * @return array
+     */
+    private function getTemplateData($includePrinters = true)
+    {
+        $templateDataService = $this->container->get('jimdo.template_data_view');
+        $templateData = $templateDataService->getTemplateData();
+
+        if ($includePrinters) {
+            $templateData['printers'] = $templateDataService->getPrinters();
+        }
+
+        return $templateData;
     }
 }
