@@ -1,21 +1,16 @@
-html, body {
-    width: 148mm;
-    margin: 0;
-    padding:  0;
-}
-
 #card {
     width: 139.7mm;
     height: 92.5mm;
+    margin-right: 20px;
 }
 
 #card textarea.description {
-    width:93.5mm;
-    height:92mm;
+    width: 93.5mm;
+    height: 92mm;
     max-height: 95mm;
-    float:left;
-    margin:0;
-    border:none;
+    float: left;
+    margin: 0;
+    border: none;
     font-size: 46px;
     padding-left: 1mm;
     padding-right: 1mm;
@@ -25,18 +20,17 @@ html, body {
     border: 0px;
     text-align: right;
     width: 40mm;
-    font-size:4.1mm;
+    font-size: 4.1mm;
 }
 
 #ticket_id input[type="text"] {
-    font-size:8mm;
+    font-size: 8mm;
     font-weight: bold;
 }
 
 input[type="text"], textarea {
     background-color: #FDFFDE;
 }
-
 
 /* Loading */
 #print-headline span.status {
@@ -49,6 +43,7 @@ input[type="text"], textarea {
     display: inline-block;
     background: url('../../../images/ajax.gif');
 }
+
 #print-headline span.ok {
     display: inline-block;
     background: url('../../../images/ok.png');

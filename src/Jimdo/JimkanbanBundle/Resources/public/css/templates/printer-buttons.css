@@ -1,0 +1,8 @@
+#printer-buttons.inactive {
+    opacity: .5;
+}
+
+#printer-buttons div {
+    margin: 2px;
+}
+

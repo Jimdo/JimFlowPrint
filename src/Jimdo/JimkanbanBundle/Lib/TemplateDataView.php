@@ -19,14 +19,7 @@ class TemplateDataView extends TemplateData
        $this->gcpClient = $gcpClient;
    }
 
-    protected function getData() {
-        return array_merge(
-            parent::getData(),
-            array('printers' => $this->getPrinters() )
-        );
-    }
-
-    private function getPrinters()
+    public function getPrinters()
     {
         return $this->gcpClient->getPrinterList();
     }

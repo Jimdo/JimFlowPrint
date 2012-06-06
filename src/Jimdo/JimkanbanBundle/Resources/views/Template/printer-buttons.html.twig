@@ -1,6 +1,6 @@
-<div class="printer-buttons">
+<div id="printer-buttons">
      {% for printer in printers %}
-            <button class="button gray" data-id="{{ printer.id }}">{{ printer.name }}</button>
+            <div class="button gray" data-id="{{ printer.id }}">{{ printer.name }}</div>
      {% endfor %}
 
 </div>
