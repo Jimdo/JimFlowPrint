@@ -5,14 +5,14 @@
             'bundles/jimdojimkanban/css/templates/ticket/print.css'
             'bundles/jimdojimkanban/js/plugins/jquery.fitText/jquery.fittext.css'
         %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
+        <link rel="stylesheet" href="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset(asset_url) }}" />
         {% endstylesheets %}
 
          {% javascripts
             'bundles/jimdojimkanban/js/jquery.js'
             'bundles/jimdojimkanban/js/plugins/jquery.fitText/jquery.fittext.js'
         %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script type="text/javascript" src="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset(asset_url) }}"></script>
         {% endjavascripts %}
 
     </head>

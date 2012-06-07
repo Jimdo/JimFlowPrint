@@ -11,16 +11,18 @@ class PrintController extends Controller
     public function printticketAction(Request $request)
     {
         $data = $request->request->all();
-        return $this->doPrint($this->generateUrl('template_ticket_print_view', $data, true));
+        $response = $this->forward('JimdoJimkanbanBundle:TemplateView:ticketprint', array($data));
+        return $this->doPrint($response->getContent());
     }
 
     public function printstoryAction(Request $request)
     {
         $data = $request->request->all();
-        return $this->doPrint($this->generateUrl('template_story_print_view', $data, true));
+        $response = $this->forward('JimdoJimkanbanBundle:TemplateView:storyprint', array($data));
+        return $this->doPrint($response->getContent());
     }
 
-    private function doPrint($url)
+    private function doPrint($data)
     {
         $templateDataService = $this->container->get('jimdo.template_data_view');
         $templateData = $templateDataService->getTemplateData();
@@ -30,7 +32,7 @@ class PrintController extends Controller
         $response->setStatusCode(200);
 
         try {
-            $printingService->doPrint($templateData['printer'], $url);
+            $printingService->doPrint($templateData['printer'], $data);
 
         } catch (\InvalidArgumentException $e) {
             $response->setStatusCode(500);

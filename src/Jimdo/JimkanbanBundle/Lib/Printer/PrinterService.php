@@ -21,16 +21,15 @@ class PrinterService
         $this->generator = $generator;
     }
 
-    public function doPrint($printer, $url)
+    public function doPrint($printer, $html)
     {
-        return $this->printer->doPrint($printer, $this->getFile($url));
+        return $this->printer->doPrint($printer, $this->getFile($html));
     }
 
-    private function getFile($url)
+    private function getFile($html)
     {
-        $file = $this->generator->generateFromUrl($url);
+        $file = $this->generator->generateFromHtml($html);
         $fileInfo = new \finfo(FILEINFO_MIME);
-
         return array(
             'content' => $file,
             'mime' => $fileInfo->buffer($file)

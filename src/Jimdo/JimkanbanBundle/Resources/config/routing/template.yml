@@ -1,24 +1,34 @@
 template_ticket:
-  pattern:  /view/ticket/
+  pattern:  /ticket.html
   defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticket" }
+  requirements:
+      _method:  GET
 
 template_ticket_print_view:
-  pattern:  /printview/ticket/
+  pattern:  /ticket.printpreview
   defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticketprint" }
+  requirements:
+      _method:  GET
 
 template_ticket_print:
-  pattern:  /print/ticket/
+  pattern:  /print/ticket.paper
   defaults: { _controller: "JimdoJimkanbanBundle:Print:printticket" }
+  requirements:
+      _method:  POST
 
 template_story:
-    pattern:  /view/story/
+    pattern:  /story.html
     defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:story" }
+    requirements:
+      _method:  GET
 
 
 template_story_print_view:
-    pattern:  /printview/story/
+    pattern:  /story.printpreview
     defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:storyprint" }
 
 template_story_print:
-  pattern:  /print/story/
+  pattern:  /story.paper
   defaults: { _controller: "JimdoJimkanbanBundle:Print:printstory" }
+  requirements:
+    _method:  POST
