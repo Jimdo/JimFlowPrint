@@ -1,28 +1,5 @@
 body, html {
-    margin: 0;
-    padding: 0;
-    background-color: #E1E2E6;
-    width: 100%;
-    font-family:Roboto, Arial, sans-serif;
-}
-
-#content {
-    width: 960px;
-    margin: 0 auto 20;
-    margin: 0 auto 20;
-    background-color: #fff;
-    padding: 15px;
-
-    -webkit-border-bottom-right-radius: 10px;
-    -webkit-border-bottom-left-radius: 10px;
-    -moz-border-radius-bottomright: 10px;
-    -moz-border-radius-bottomleft: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-
-    -webkit-box-shadow: 0px 0px 20px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow: 0px 0px 20px rgba(50, 50, 50, 0.75);
-    box-shadow: 0px 0px 20px rgba(50, 50, 50, 0.75);
+    font-family: Roboto, Arial, sans-serif;
 }
 
 .records_list {
@@ -34,15 +11,16 @@ body, html {
     margin-top: 5px;
     font-size: 14px;
 }
+
 .form_row input[type="text"] {
-    width:150px;
-	height:27px;
-	line-height:27px;
-	text-indent:3px;
-	font-size:1em;
-	color:#333;
-	background: #fff;
-	border:solid 1px #d9d9d9;
+    width: 150px;
+    height: 27px;
+    line-height: 27px;
+    text-indent: 3px;
+    font-size: 1em;
+    color: #333;
+    background: #fff;
+    border: solid 1px #d9d9d9;
 }
 
 .form_row .label {
@@ -63,13 +41,13 @@ body, html {
     width: 150px;
     height: 23px;
     padding: 5px;
-    float:left;
+    float: left;
     text-align: center;
 }
 
 #ticket_list .edit {
     margin-left: 15px;
-    float:left;
+    float: left;
 }
 
 #ticket_list .item {
@@ -84,7 +62,6 @@ body, html {
 label.required:after {
     content: " *"
 }
-
 
 div.ticket, input.ticket {
     color: #fff !important;

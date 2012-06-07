@@ -1,0 +1,24 @@
+{% extends 'JimdoJimkanbanBundle::base_layout.html.twig' %}
+
+{% block additional_css %}
+    {% stylesheets filter='cssrewrite'
+            'bundles/jimdojimkanban/css/backend/*'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    <link href='http://fonts.googleapis.com/css?family=Roboto:100,400,700' rel='stylesheet' type='text/css' />
+{% endblock %}
+
+{% block additional_js %}
+    {% javascripts
+        '@JimdoJimkanbanBundle/Resources/public/js/backend/*'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body%}
+     <navigation>
+        {% include 'JimdoJimkanbanBundle::navigation.html.twig' %}
+    </navigation>
+{% endblock %}

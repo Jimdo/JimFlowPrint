@@ -1,6 +1,7 @@
-{% extends 'JimdoJimkanbanBundle::base.html.twig' %}
+{% extends 'JimdoJimkanbanBundle:backend:backend_layout.html.twig' %}
 {% block body %}
-<h1>TicketType edit</h1>
+{{ parent() }}
+<h1>Create TicketType</h1>
 
 <form action="{{ path('tickettype_create') }}" method="post" {{ form_enctype(form) }}>
 
@@ -16,7 +17,7 @@
 </form>
 
 <div class="record_actions">
-    <a class="button gray" href="{{ path('tickettype') }}">
+    <a class="button gray" href="{{ path('tickettype_list') }}">
         Back to the list
     </a>
 </div>
