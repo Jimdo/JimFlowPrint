@@ -1,36 +1,90 @@
-html {
-    padding:  0;
-    margin:  0;
-}
 body {
-    width: 138mm;
-    height: 95mm;
-    padding: 5mm;
-    margin:  0;
-}
-.meta-text span.meta-value {
-    border: 0px;
-    text-align: right;
-    width: 40mm;
-    font-size:4.1mm;
-    display: inline-block;
+    font: 12px/170% Helvetica, Helvetica Neue, Helvetica-Neue, Arial, sans-serif;
 }
 
-#card div.description {
-    width:90mm;
-    height:95mm;
-    max-height: 95mm;
-    float:left;
-    margin:0;
-    border:none;
-    font-size: 46px;
-    padding-left: 1mm;
-    padding-right: 1mm;
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
 #card {
-    margin: 0;
+    margin-top : 4mm;
+    margin-left: 4mm;
+    position: relative;
+    width: 133mm;
+    height: 95mm;
+    border: 1px solid black;
 }
 
-form {
+#text {
     margin: 0;
+    border: none;
+    width: 98%;
+    height: 98%;
+    padding: 2% 0 0 2%;
+    font-family: inherit;
+    font-size: 46px;
+    line-height: 1;;
+
+}
+
+#description {
+    float: left;
+    width: 68%;
+    height: 100%;
+}
+
+#metaarea {
+    text-align: right;
+    float: right;
+    width: 32%;
+    height: 100%;
+
+}
+
+#metaarea div p {
+
+}
+
+#type {
+    text-align: center;
+    background-color: pink;
+}
+
+#type p {
+    padding: 10px 0 0;
+    font-size: 14px;
+    text-transform: uppercase;
+
+}
+
+#ticketnumber p {
+    font-weight: bold;
+    font-size: 37px;
+    padding: 18px 11px 0;
+
+}
+
+#metaarea div:nth-child(1n+3) p {
+    padding: 0 11px 0;
+    font-size: 22px;
+}
+
+#metaarea div:nth-child(1n+3) p:first-child {
+    padding: 5px 11px 0;
+    font-size: 10px;
+}
+
+.big-meta {
+    height: 15%;
+}
+
+.small-meta {
+    height: 11%;
 }

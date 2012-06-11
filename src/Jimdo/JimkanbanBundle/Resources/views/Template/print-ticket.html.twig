@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         {% stylesheets
             'bundles/jimdojimkanban/css/templates/ticket/shared.css'
             'bundles/jimdojimkanban/css/templates/ticket/print.css'
@@ -17,42 +18,32 @@
 
     </head>
     <body>
-        <form id="kanban_form"  action="" method="GET">
-            <div id="card">
-                <div class="description">{{ title }}</div>
-
-                <div id="meta_area" style="background-color: {{ type.isBackgroundFilled ? type.backgroundColor : 'none' }}">
-                    <p id="ticket_type" style="border-top:1px solid #{{ type.backgroundColor }};background-color:#{{ type.backgroundColor }};">
-                        {{ type.name }}
-                    </p>
-
-                    <p id="ticket_id" class="meta-text">
-                        <span>#{{ id }}</span>
-                    </p>
-
-                    <p id="ticket_created" class="meta-text">
-                        <span class="description">created:</span>
-                        <span class="meta-value">{{ created }}</span>
-                    </p>
-
-                    <p id="ticket_reporter" class="meta-text">
-                        <span class="description">reported by:</span>
-                        <span class="meta-value">{{ reporter }}</span>
-                    </p>
-                    <img id="ticket_qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
-                </div>
+        <div id="card">
+            <div id="description">
+                <div name="title" id="text">{{ title }}</div>
             </div>
-            <div style="clear:both;"></div>
-        </form>
-
+            <div id="metaarea">
+                <div id="type" class="small-meta">
+                    <p>{{ type.name }}</p>
+                </div>
+                <div id="ticketnumber" class="b-l b-b big-meta">
+                    <p>#{{ id }}</p>
+                </div>
+                <div id="created-at" class="second b-l b-b big-meta" >
+                    <p>created:</p>
+                    <p>{{ created }}</p>
+                </div>
+                <div id="reported-by" class="second b-l big-meta">
+                    <p>reported by</p>
+                    <p>{{ reporter }}</p>
+                </div>
+               <img id="qr" class="b-l" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
+            </div>
+            </div>
+        </div>
         <script type="text/javascript">
-
-
-
-
-
             $(function() {
-                $('div.description').fitText();
+                $('#text').fitText();
             });
         </script>
     </body>

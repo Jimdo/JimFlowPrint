@@ -13,29 +13,34 @@
 
         {% block body %}
             <form id="kanban_form"  action="{{ url('template_ticket_print') }}" method="POST">
-                <div id="card">
-                    <textarea class="description" name="title">{{ title }}</textarea>
+                <div id="card-container">
+                    <div id="card">
+                        <div id="description">
+                            <textarea name="title" id="text">{{ title }}</textarea>
+                        </div>
+                        <div id="metaarea">
+                            <div id="type" class="small-meta">
+                                <p>{{ type.name }}</p>
+                                <input type="hidden" name="type" value="{{ type.name }}"/>
+                            </div>
+                            <div id="ticketnumber" class="b-l b-b big-meta">
+                                <p>#{{ id }}</p>
+                                <input type="hidden" name="id" value="{{ id }}"/>
 
-                    <div id="meta_area" style="background-color: {{ type.isBackgroundFilled ? type.backgroundColor : 'none' }}">
-                        <p id="ticket_type" style="border-top:1px solid #{{ type.backgroundColor }};background-color:#{{ type.backgroundColor }};">
-                            {{ type.name }}
-                        </p>
-                        <input type="hidden" name="type" value="{{ type.name }}"/>
-
-                        <p id="ticket_id" class="meta-text">
-                            <input type="text" name="id" value="#{{ id }}" />
-                        </p>
-
-                        <p id="ticket_created" class="meta-text">
-                            <span class="description">created:</span>
-                            <input type="text" name="created" value="{{ created }}" />
-                        </p>
-
-                        <p id="ticket_reporter" class="meta-text">
-                            <span class="description">reported by:</span>
-                            <input type="text" name="reporter" value="{{ reporter }}" />
-                        </p>
-                        <img id="ticket_qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
+                            </div>
+                            <div id="created-at" class="second b-l b-b big-meta" >
+                                <p>created:</p>
+                                <p>{{ created }}</p>
+                                <input type="hidden" name="created" value="{{ created }}"/>
+                            </div>
+                            <div id="reported-by" class="second b-l big-meta">
+                                <p>reported by</p>
+                                <p>{{ reporter }}</p>
+                                <input type="hidden" name="reporter" value="{{ reporter }}"/>
+                            </div>
+                           <img id="qr" class="b-l" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl=T{{ id }}" />
+                        </div>
+                        </div>
                     </div>
                 </div>
                 <div id="print-block">

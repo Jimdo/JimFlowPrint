@@ -7,7 +7,7 @@ class GoogleClient
 {
     const CLIENT_LOGIN_URL = 'https://www.google.com/accounts/ClientLogin';
 
-     /**
+    /**
      * @var \Buzz\Browser
      */
     private $httpClient;
@@ -46,7 +46,7 @@ class GoogleClient
      * @param $content
      * @return \Buzz\Message\Response
      */
-    public  function post($url, $headers = array(), $content)
+    public function post($url, $headers = array(), $content)
     {
         return $this->doRequest('POST', $url, $headers, $content);
     }
@@ -74,8 +74,8 @@ class GoogleClient
         $this->authorize();
         $headers = array_merge($headers, array('Authorization: GoogleLogin ' . $this->authToken));
         switch ($type) {
-        case 'GET':
-            return $this->httpClient->get($url, $headers);
+            case 'GET':
+                return $this->httpClient->get($url, $headers);
             case 'POST':
                 return $this->httpClient->post($url, $headers, $content);
             default:
