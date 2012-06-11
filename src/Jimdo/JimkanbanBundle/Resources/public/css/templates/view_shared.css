@@ -1,11 +1,3 @@
-#card {
-    margin-right: 20px;
-    float:left;
-}
-
-#card textarea.description {
-    float:left;
-}
 
 /* Loading */
 #print-headline span.status {

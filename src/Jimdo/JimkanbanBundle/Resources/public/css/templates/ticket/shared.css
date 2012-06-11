@@ -1,64 +1,17 @@
-* {
-    font-family:"HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial,'Liberation Sans',FreeSans,sans-serif;
+.b-b {
+    border-bottom: 1px dotted black;
 }
 
-
-p {
-    margin:0;
-    padding:0;
+.b-l {
+    border-left: 1px dotted black;
 }
 
-#card {
-    width:138mm;
-    height:95mm;
-    border: 0.5mm solid #5A5A59;
-    border-right:  none;
-    position:relative;
-    margin: 1mm;
+.b-r {
+    border-right: 1px dotted black;
 }
 
-#meta_area {
-    text-align:right;
-    float:left;
-    width:46mm;
-    background-color:#f8f8f8;
-    height:100%;
-    border-left: 0.5mm dotted #5A5A59;
-    border-right: 0.5mm dotted #5A5A59;
-
-}
-#meta_area #ticket_type {
-    text-transform:uppercase;
-    color:white;
-    text-align:center;
-    height:7.6mm;
-    padding:2mm 0 0 0;
-}
-#meta_area .meta-text {
-    padding-right:3mm;
-    padding-top:2.5mm;
-    height:11mm;
-    border-bottom:0.5mm dotted #5a5a59;
-    font-size:4.1mm;
-}
-
-#meta_area .meta-text:last-of-type {
-    border-bottom: none;
-}
-
-#meta_area .meta-text span.description {
-    font-size:3.14mm;
-    color:#808080;
-}
-#meta_area #ticket_id {
-    padding-top:1.3mm;
-    font-size:9mm;
-    font-weight:bold;
-
-}
-#ticket_qr {
-    width:175px;
-    position:absolute;
-    right: -0.4mm;
-    bottom: -0.7mm;
+#qr {
+    padding-left: 1px;
+    display: block;
+    height: 44%;
 }
