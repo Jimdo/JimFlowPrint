@@ -22,8 +22,13 @@
         init: function(element) {
             var self = this;
 
-            self.assertPxIsPositiveNumber();
             self.$element = $(element);
+
+            if (!self.isMinCharCountSatisfied()) {
+                return;
+            }
+
+            self.assertPxIsPositiveNumber();
             self.run();
         },
 
@@ -66,6 +71,12 @@
             if (!px || px <= 0 || typeof px !== 'number') {
                 throw Error("px needs to be a positive number");
             }
+        },
+
+        isMinCharCountSatisfied: function() {
+            var self = this;
+
+            return (self.$element.text().length >= self.options.minimumCharCount)
         },
 
         /**
@@ -125,6 +136,7 @@
 
     $.fn.fitText.defaults = {
         px: 1, //pixel the font size get in/decreaed per iteration. More is less accurate but faster
-        cssClassName: 'fit-text' //class used to set overflow to auto
+        cssClassName: 'fit-text', //class used to set overflow to auto
+        minimumCharCount: 1 //Chars the text should have at least
     };
 }(jQuery));
