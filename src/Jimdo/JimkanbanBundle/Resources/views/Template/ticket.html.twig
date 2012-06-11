@@ -1,6 +1,7 @@
 {% extends 'JimdoJimkanbanBundle:Template:base_view.html.twig' %}
 
         {% block additional_css %}
+            {{ parent() }}
             {% stylesheets filter='cssrewrite'
                 '@JimdoJimkanbanBundle/Resources/public/css/templates/ticket/shared.css'
                 '@JimdoJimkanbanBundle/Resources/public/css/templates/ticket/view.css'
@@ -8,7 +9,6 @@
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
 
-            {{ parent() }}
         {% endblock %}
 
         {% block body %}
@@ -19,7 +19,7 @@
                             <textarea name="title" id="text">{{ title }}</textarea>
                         </div>
                         <div id="metaarea">
-                            <div id="type" class="small-meta">
+                            <div id="type" class="small-meta" style="background-color: #{{ type.backgroundColor }}">
                                 <p>{{ type.name }}</p>
                                 <input type="hidden" name="type" value="{{ type.name }}"/>
                             </div>
