@@ -18,7 +18,7 @@
                         <div id="description">
                             <textarea name="title" id="text">{{ title }}</textarea>
                         </div>
-                        <div id="metaarea">
+                        <div id="metaarea" style="{{ type.isBackgroundFilled ? 'background-color:' ~ type.backgroundColor : ''}}">
                             <div id="type" class="small-meta" style="background-color: #{{ type.backgroundColor }}">
                                 <p>{{ type.name }}</p>
                                 <input type="hidden" name="type" value="{{ type.name }}"/>
