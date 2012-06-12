@@ -11,13 +11,12 @@
         "sensio/distribution-bundle":     "2.0.*",
         "jms/security-extra-bundle":      "1.0.*",
         "knplabs/knp-snappy-bundle":      "*",
-        "sensio/buzz-bundle":             "0.1"
+        "sensio/buzz-bundle":             "dev-master"
     },
 
     "autoload": {
         "psr-0": {
-            "Acme": "src/",
-	    "Jimdo": "src/"
+            "Jimdo": "src/"
         }
     }
 }
