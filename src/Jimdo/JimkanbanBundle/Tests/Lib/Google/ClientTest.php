@@ -89,4 +89,16 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $client->post($url, $headers, $content);
     }
 
+    /**
+     * @test
+     */
+    public function itShouldAllowToSetTheAuthToken()
+    {
+        $someToken = 'ABCLOLOL';
+        $client = new GoogleClient($this->httpClient, '', '', '');
+        $client->setAuthToken($someToken);
+
+        $this->assertEquals($someToken, $client->getAuthToken());
+    }
+
 }

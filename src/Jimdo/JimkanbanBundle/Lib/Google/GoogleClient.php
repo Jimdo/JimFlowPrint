@@ -3,7 +3,7 @@
 namespace Jimdo\JimkanbanBundle\Lib\Google;
 use \Buzz\Browser;
 
-class GoogleClient
+class GoogleClient implements GoogleClientInterface
 {
     const CLIENT_LOGIN_URL = 'https://www.google.com/accounts/ClientLogin';
 
@@ -31,6 +31,9 @@ class GoogleClient
      * @param \Buzz\Browser $httpClient
      * @param $email
      * @param $password
+     * @param $serviceName
+     * @return \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient
+     *
      */
     public function __construct(Browser $httpClient, $email, $password, $serviceName)
     {
@@ -72,7 +75,8 @@ class GoogleClient
     private function doRequest($type, $url, $headers = array(), $content = null)
     {
         $this->authorize();
-        $headers = array_merge($headers, array('Authorization: GoogleLogin ' . $this->authToken));
+        $headers = array_merge($headers, array('Authorization: GoogleLogin Auth=' . $this->authToken));
+
         switch ($type) {
             case 'GET':
                 return $this->httpClient->get($url, $headers);
@@ -90,7 +94,40 @@ class GoogleClient
      */
     public function isAuthorized()
     {
-        return null !== $this->authToken;
+        return null != $this->authToken;
+    }
+
+    /**
+     * @param $authToken
+     * @return void
+     */
+    public function setAuthToken($authToken)
+    {
+        $this->authToken = $authToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthToken()
+    {
+        return $this->authToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
     /**
@@ -101,12 +138,13 @@ class GoogleClient
         if (!$this->isAuthorized()) {
             $response = $this->requestAuthToken();
 
-            preg_match('/Auth=\S+/', $response->getContent(), $authToken);
-            if (!isset($authToken[0])) {
+            preg_match('/Auth=(\S+)/', $response->getContent(), $authToken);
+
+            if (!isset($authToken[1])) {
                 throw new \InvalidArgumentException('Google does not want to let you in. Check your Credentials');
             }
 
-            $this->authToken = $authToken[0];
+            $this->authToken = $authToken[1];
         }
     }
 

@@ -2,6 +2,7 @@
 namespace Jimdo\JimkanbanBundle\Lib\Google\GCP;
 
 use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient;
+use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClientInterface;
 
 class GCPClient
 {
@@ -13,7 +14,7 @@ class GCPClient
     /**
      * @param \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient $client
      */
-    public function __construct(GoogleClient $client)
+    public function __construct(GoogleClientInterface $client)
     {
         $this->client = $client;
     }
