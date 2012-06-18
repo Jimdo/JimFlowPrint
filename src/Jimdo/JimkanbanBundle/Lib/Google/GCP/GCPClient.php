@@ -242,7 +242,7 @@ class GCPClient
     {
         $data = json_decode($response->getContent(), true);
 
-        if (!$response->isSuccessful() || !isset($data['success']) || $data['success'] == false) {
+        if (!$response->isSuccessful() || !isset($data['success']) || $data['success'] != "true") {
             //XXX Invent Exception fitting here
             throw new \InvalidArgumentException($response->getContent());
         }

@@ -2,6 +2,7 @@
 namespace Jimdo\JimkanbanBundle\Lib\Printer;
 use \Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService;
 use \Jimdo\JimkanbanBundle\Lib\Printer\PrinterInterface;
+use \finfo;
 
 class PrinterService
 {
@@ -15,10 +16,16 @@ class PrinterService
      */
     private $printer;
 
-    public function __construct(PrinterInterface $printer, GeneratorService $generator)
+    /**
+     * @var \finfo
+     */
+    private $fileInfo;
+
+    public function __construct(PrinterInterface $printer, GeneratorService $generator, finfo $fileInfo)
     {
         $this->printer = $printer;
         $this->generator = $generator;
+        $this->fileInfo = $fileInfo;
     }
 
     public function doPrint($printer, $html)
@@ -29,11 +36,13 @@ class PrinterService
     private function getFile($html)
     {
         $file = $this->generator->generateFromHtml($html);
-        $fileInfo = new \finfo(FILEINFO_MIME);
         return array(
             'content' => $file,
-            'mime' => $fileInfo->buffer($file)
+            'mime' => $this->getMimeType($file)
         );
+    }
 
+    private function getMimeType($file) {
+        return $this->fileInfo->buffer($file);
     }
 }

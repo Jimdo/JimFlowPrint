@@ -1,0 +1,30 @@
+services:
+  jimdo.email_printer:
+    class: Jimdo\JimkanbanBundle\Lib\Printer\EmailPrinter
+    arguments:
+     - @mailer
+     - %mailer_user%
+
+
+  jimdo.gcp_printer:
+      class: Jimdo\JimkanbanBundle\Lib\Printer\GcpPrinter
+      arguments:
+       - @jimdo.gcp.client
+
+  jimdo.mimeinfo:
+    class: finfo
+    arguments:
+      - 1040
+
+  jimdo.gcp_printing:
+    class: Jimdo\JimkanbanBundle\Lib\Printer\PrinterService
+    arguments:
+      - @jimdo.gcp_printer
+      - @jimdo.pdf_generator
+      - @jimdo.mimeinfo
+
+  jimdo.pdf_generator:
+    class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
+    arguments:
+      - @knp_snappy.pdf
+      - {page-size: 'A6', orientation: 'Landscape', lowquality: false, margin-top: 0, margin-bottom: 0, margin-left: 0, margin-right: 0}

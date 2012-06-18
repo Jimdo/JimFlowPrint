@@ -1,42 +1,11 @@
+imports:
+    - { resource: "services/repositories.yml" }
+    - { resource: "services/filters.yml" }
+    - { resource: "services/listener.yml" }
+    - { resource: "services/printing.yml" }
+    - { resource: "services/google.yml" }
+
 services:
-  jimdo.ticket_type_entity_repository:
-    class:            Jimdo\JimkanbanBundle\Entity\TicketTypeRepository
-    factory_service:  doctrine.orm.default_entity_manager
-    factory_method: getRepository
-    arguments:
-      - 'JimdoJimkanbanBundle:TicketType'
-
-  jimdo.printer_entity_repository:
-    class:            Jimdo\JimkanbanBundle\Entity\PrinterRepository
-    factory_service:  doctrine.orm.default_entity_manager
-    factory_method: getRepository
-    arguments:
-      - 'JimdoJimkanbanBundle:Printer'
-
-
-  jimdo.ticket_type_entity_filter:
-    class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketTypeEntityFilter
-    arguments:
-      - @jimdo.ticket_type_entity_repository
-
-  jimdo.printer_filter:
-    class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\PrinterEntityFilter
-    arguments:
-      - @jimdo.printer_entity_repository
-
-  jimdo.ticket_date_filter:
-    class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketDateFilter
-
-  jimdo.ticket_id_filter:
-    class: Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketIdFilter
-
-  jimdo.template_ticket_filter_chain:
-    class: Jimdo\JimkanbanBundle\Lib\Filter\FilterChain
-    calls:
-      - [add, [@jimdo.ticket_type_entity_filter, 'type' ]]
-      - [add, [@jimdo.ticket_date_filter, 'created' ]]
-      - [add, [@jimdo.ticket_id_filter, 'id' ]]
-
   jimdo.template_data_view:
     class: Jimdo\JimkanbanBundle\Lib\TemplateDataView
     arguments:
@@ -44,69 +13,3 @@ services:
       - @jimdo.template_ticket_filter_chain
       - @jimdo.gcp.client
     scope: request
-
-
-  jimdo.email_printer:
-    class: Jimdo\JimkanbanBundle\Lib\Printer\EmailPrinter
-    arguments:
-     - @mailer
-     - %mailer_user%
-
-
-  jimdo.gcp_printer:
-      class: Jimdo\JimkanbanBundle\Lib\Printer\GcpPrinter
-      arguments:
-       - @jimdo.gcp.client
-
-
-  jimdo.gcp_printing:
-    class: Jimdo\JimkanbanBundle\Lib\Printer\PrinterService
-    arguments:
-      - @jimdo.gcp_printer
-      - @jimdo.pdf_generator
-
-
-  jimdo.image_generator:
-    class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
-    arguments:
-      - @knp_snappy.image
-      - {format: 'png', quality: 100, margin-bottom: 0, margin-top: 60}
-
-  jimdo.pdf_generator:
-    class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
-    arguments:
-      - @knp_snappy.pdf
-      - {page-size: 'A6', orientation: 'Landscape', lowquality: false, margin-top: 0, margin-bottom: 0, margin-left: 0, margin-right: 0}
-
-  jimdo.listener.ticket_type.fallback:
-    class: Jimdo\JimkanbanBundle\Lib\Listener\TicketTypeFallbackListener
-    tags:
-      - { name: doctrine.event_listener, event: postPersist}
-      - { name: doctrine.event_listener, event: postUpdate }
-
-  zend.cache.google_auth:
-    class: Zend\Cache\Storage\Adapter\Filesystem
-    factory_class: Zend\Cache\StorageFactory
-    factory_method: factory
-    arguments:
-      - {adapter: {name:'Filesystem', options: {ttl: 180}}}
-
-  jimdo.google.client.gcp:
-    class: Jimdo\JimkanbanBundle\Lib\Google\GoogleClient
-    arguments:
-      - @buzz
-      - %gcp.email%
-      - %gcp.password%
-      - 'cloudprint'
-
-  jimdo.google.authmanagerclient.gcp:
-    class: Jimdo\JimkanbanBundle\Lib\Google\GoogleClientAuthManagerWrapper
-    arguments:
-      - @jimdo.google.client.gcp
-      - @zend.cache.google_auth
-
-  jimdo.gcp.client:
-    class: Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient
-    arguments:
-      - @jimdo.google.authmanagerclient.gcp
-
