@@ -28,9 +28,9 @@ class PrinterService
         $this->fileInfo = $fileInfo;
     }
 
-    public function doPrint($printer, $html)
+    public function doPrint($printerId, $html)
     {
-        return $this->printer->doPrint($printer, $this->getFile($html));
+        return $this->printer->doPrint($printerId, $this->getFile($html));
     }
 
     private function getFile($html)

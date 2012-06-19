@@ -11,6 +11,7 @@ class TicketTypeControllerTest extends WebTestCase
      */
     public function returnsHttpStatusCodeOk()
     {
+        $this->markTestSkipped();
         // Create a new client to browse the application
         $client = static::createClient();
 

@@ -28,6 +28,10 @@ class FilterChain
      */
     public function filter(array $data)
     {
+        if (!$this->registeredFilters) {
+            return $data;
+        }
+
         foreach ($this->registeredFilters as $key => $filters) {
             foreach ($filters as $filter) {
                 $data = $filter->filter($data, $key);

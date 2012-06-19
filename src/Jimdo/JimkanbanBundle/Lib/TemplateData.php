@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterChain;
 use \Doctrine\ORM\EntityManager;
 
-abstract class TemplateData
+class TemplateData
 {
     /**
      * @var \Symfony\Component\HttpFoundation\Request
