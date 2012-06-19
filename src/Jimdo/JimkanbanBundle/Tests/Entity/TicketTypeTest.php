@@ -23,6 +23,7 @@ class TicketTypeTest extends  \PHPUnit_Framework_TestCase
 
     public function testSetValidbackgroundColor() {
         $e = new TicketType();
+        $e->setName(self::SOME_NAME);
         $e->setBackgroundColor("111111");
         $validator = ValidatorFactory::buildDefault()->getValidator();
         $errors = $validator->validate($e);
@@ -31,6 +32,7 @@ class TicketTypeTest extends  \PHPUnit_Framework_TestCase
     
     public function testSetInvalidbackgroundColor() {
         $e = new TicketType();
+        $e->setName(self::SOME_NAME);
         $e->setBackgroundColor("GGGGGG");
         $validator = ValidatorFactory::buildDefault()->getValidator();
         $errors = $validator->validate($e);

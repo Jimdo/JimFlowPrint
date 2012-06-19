@@ -18,8 +18,8 @@ class GcpPrinter implements PrinterInterface {
         $this->gcpClient = $gcpClient;
     }
 
-    public function doPrint($printer, array $file)
+    public function doPrint($printerId, array $file)
     {
-        $this->gcpClient->submitPrintJob($printer, $file);
+        $this->gcpClient->submitPrintJob($printerId, $file);
     }
 }

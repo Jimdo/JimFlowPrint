@@ -1,11 +1,4 @@
 services:
-  jimdo.email_printer:
-    class: Jimdo\JimkanbanBundle\Lib\Printer\EmailPrinter
-    arguments:
-     - @mailer
-     - %mailer_user%
-
-
   jimdo.gcp_printer:
       class: Jimdo\JimkanbanBundle\Lib\Printer\GcpPrinter
       arguments:

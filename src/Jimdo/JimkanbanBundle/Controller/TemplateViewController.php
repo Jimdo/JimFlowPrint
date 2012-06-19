@@ -66,12 +66,14 @@ class TemplateViewController extends Controller
      */
     private function getTemplateData($includePrinters = true)
     {
-        $templateDataService = $this->container->get('jimdo.template_data_view');
-        $templateData = $templateDataService->getTemplateData();
+        $service = 'jimdo.template_data_view';
 
         if ($includePrinters) {
-            $templateData['printers'] = $templateDataService->getPrinters();
+            $service .= '_printers';
         }
+
+        $templateDataService = $this->container->get($service);
+        $templateData = $templateDataService->getTemplateData();
 
         return $templateData;
     }

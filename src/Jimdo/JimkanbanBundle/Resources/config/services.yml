@@ -4,12 +4,5 @@ imports:
     - { resource: "services/listener.yml" }
     - { resource: "services/printing.yml" }
     - { resource: "services/google.yml" }
+    - { resource: "services/templatedata.yml" }
 
-services:
-  jimdo.template_data_view:
-    class: Jimdo\JimkanbanBundle\Lib\TemplateDataView
-    arguments:
-      - @request
-      - @jimdo.template_ticket_filter_chain
-      - @jimdo.gcp.client
-    scope: request
