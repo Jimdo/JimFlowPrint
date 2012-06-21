@@ -1,7 +1,7 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Tests\Lib\Printer;
-use \Jimdo\JimkanbanBundle\Lib\Printer\PrinterService;
-class PrinterServiceTest extends \PHPUnit_Framework_TestCase
+use \Jimdo\JimkanbanBundle\Lib\Printer\PrintingService;
+class PrintingServiceTest extends \PHPUnit_Framework_TestCase
 {
     const SOME_PRINTER_ID = 1;
     const SOME_HTML = '<a></a>';
@@ -32,7 +32,7 @@ class PrinterServiceTest extends \PHPUnit_Framework_TestCase
 
         $printer->expects($this->once())->method('doPrint')->with($somePrinterId, $expectedParam);
 
-        $printService = new PrinterService($printer, $generatorService, $fileInfo);
+        $printService = new PrintingService($printer, $generatorService, $fileInfo);
         $printService->doPrint($somePrinterId, $someHTML);
     }
 

@@ -16,19 +16,22 @@ class GeneratorService
 
 
 
+    /**
+     * @param \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator $generator
+     * @param array $options
+     */
     public function __construct(LoggableGenerator $generator, array $options)
     {
         $this->generator = $generator;
         $this->options = $options;
     }
 
+    /**
+     * @param $html
+     * @return string
+     */
     public function generateFromHtml($html)
     {
         return $this->generator->getOutputFromHtml($html, $this->options);
-    }
-
-    public function generateFromUrl($url)
-    {
-        return $this->generator->getOutput($url, $this->options);
     }
 }

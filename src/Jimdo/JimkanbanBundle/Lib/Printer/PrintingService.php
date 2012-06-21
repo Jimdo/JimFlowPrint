@@ -4,7 +4,7 @@ use \Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService;
 use \Jimdo\JimkanbanBundle\Lib\Printer\PrinterInterface;
 use \finfo;
 
-class PrinterService
+class PrintingService
 {
     /**
      * @var \Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
