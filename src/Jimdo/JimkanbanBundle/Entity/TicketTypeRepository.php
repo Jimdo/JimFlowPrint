@@ -12,4 +12,23 @@ use Doctrine\ORM\EntityRepository;
  */
 class TicketTypeRepository extends EntityRepository
 {
+    /**
+     * @param $id
+     * @return array
+     */
+    public function findBeingFallbackAndNotBeingEntity($id)
+    {
+        $queryBuilder = $this->createQueryBuilder('t');
+
+        $queryBuilder->add('select', 'tt');
+        $queryBuilder->add('from', '\Jimdo\JimkanbanBundle\Entity\TicketType tt');
+        $queryBuilder->andWhere('tt.id != :id');
+        $queryBuilder->andWhere('tt.isFallback = 1');
+        $queryBuilder->setParameter('id', $id);
+
+        $query = $queryBuilder->getQuery();
+
+        return $query->getResult();
+    }
+
 }

@@ -43,17 +43,12 @@ class TicketTypeFallbackListener
 
     private function unsetCurrentFallbackTicketType()
     {
-        $queryBuilder = $this->entityManager->createQueryBuilder();
-        $query = $queryBuilder->add('select', 'tt')
-                ->add('from', '\Jimdo\JimkanbanBundle\Entity\TicketType tt')
-                ->andWhere('tt.id != :id')
-                ->andWhere('tt.isFallback = 1')
-                ->setParameter('id', $this->entity->getId())
-                ->getQuery();
+        /**
+         * @var \Jimdo\JimkanbanBundle\Entity\TicketTypeRepository
+         */
+        $repository = $this->entityManager->getRepository('JimdoJimkanbanBundle:TicketType');
 
-        $entities = $query->getResult();
-
-        foreach ($entities as $entity) {
+        foreach ($repository->findBeingFallbackAndNotBeingEntity($this->entity->getId()) as $entity) {
             $entity->setIsFallback(false);
             $this->entityManager->persist($entity);
             $this->entityManager->flush();
