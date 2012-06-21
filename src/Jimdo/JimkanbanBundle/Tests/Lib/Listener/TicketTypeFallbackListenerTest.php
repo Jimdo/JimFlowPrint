@@ -41,14 +41,6 @@ class TicketTypeFallbackListenerTest extends \PHPUnit_Framework_TestCase
         $listener->postPersist($this->getEventArgs($em, $entity));
     }
 
-    /**
-     * @test
-     */
-    public function itShouldNotUpdateTheNewFallbackTicketType()
-    {
-        $em = $this->getEntityManager();
-    }
-
     private function getEntityManager()
     {
         return $this->getMock('\Doctrine\ORM\EntityManager', array(), array(), '', false);
@@ -67,6 +59,33 @@ class TicketTypeFallbackListenerTest extends \PHPUnit_Framework_TestCase
         $eventArgs->expects($this->any())->method('getEntityManager')->will($this->returnValue($em));
 
         return $eventArgs;
+    }
 
+    /**
+     * @test
+     */
+    public function itShouldSetIsFallbackToFalseForEveryEntityButTheGivenOne()
+    {
+        $someEntity = $this->getMock('\Jimdo\JimkanbanBundle\Entity\TicketType', array(), array(), '', false);
+        $someEntities = array($someEntity);
+        $someId = 1;
+
+        $entity = $this->getMock('\Jimdo\JimkanbanBundle\Entity\TicketType', array(), array(), '', false);
+        $repository = $this->getMock('\Jimdo\JimkanbanBundle\Entity\TicketTypeRepository', array(), array(), '', false);
+        $em = $this->getEntityManager();
+
+        $someEntity->expects($this->once())->method('setIsFallback')->with(false);
+
+        $entity->expects($this->once())->method('getId')->will($this->returnValue($someId));
+        $entity->expects($this->once())->method('getIsFallback')->will($this->returnValue(true));
+
+        $repository->expects($this->once())->method('findBeingFallbackAndNotBeingEntity')->with($someId)->will($this->returnValue($someEntities));
+
+
+        $em->expects($this->once())->method('getRepository')->will($this->returnValue($repository));
+        $em->expects($this->once())->method('persist')->with($someEntity);
+
+        $listener = new TicketTypeFallbackListener();
+        $listener->postPersist($this->getEventArgs($em, $entity));
     }
 }
