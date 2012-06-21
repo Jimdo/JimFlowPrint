@@ -20,17 +20,26 @@ class TicketTypeFallbackListenerTest extends \PHPUnit_Framework_TestCase
 
         $em = $this->getEntityManager();
 
-        $eventArgs = $this->getMock(
-            '\Doctrine\ORM\Event\LifecycleEventArgs',
-            array('getEntity', 'getEntityManager'),
-            array($em, $entity)
-        );
+        $eventArgs = $this->getEventArgs($em, $entity);
 
-        $listener = new TicketTypeFallbackListener($eventArgs);
+        $listener = new TicketTypeFallbackListener();
         $listener->postPersist($eventArgs);
 
     }
 
+    /**
+     * @test
+     */
+    public function itShouldCheckIfEntityIsSupposedToBeFallback()
+    {
+        $entity = $this->getMock('\Jimdo\JimkanbanBundle\Entity\TicketType', array(), array(), '', false);
+        $em = $this->getEntityManager();
+
+        $entity->expects($this->once())->method('getIsFallback');
+
+        $listener = new TicketTypeFallbackListener();
+        $listener->postPersist($this->getEventArgs($em, $entity));
+    }
 
     /**
      * @test
@@ -43,5 +52,21 @@ class TicketTypeFallbackListenerTest extends \PHPUnit_Framework_TestCase
     private function getEntityManager()
     {
         return $this->getMock('\Doctrine\ORM\EntityManager', array(), array(), '', false);
+    }
+
+    private function getEventArgs($em, $entity)
+    {
+        $eventArgs = $this->getMock(
+            '\Doctrine\ORM\Event\LifecycleEventArgs',
+            array(),
+            array(),
+            '',
+            false
+        );
+        $eventArgs->expects($this->any())->method('getEntity')->will($this->returnValue($entity));
+        $eventArgs->expects($this->any())->method('getEntityManager')->will($this->returnValue($em));
+
+        return $eventArgs;
+
     }
 }
