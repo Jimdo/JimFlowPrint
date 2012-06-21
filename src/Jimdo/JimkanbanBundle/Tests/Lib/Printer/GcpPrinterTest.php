@@ -1,7 +1,7 @@
 <?php
 
 namespace Jimdo\JimkanbanBundle\Tests\Lib\Printer;
-use \Jimdo\JimkanbanBundle\Lib\Printer\PrinterService;
+use \Jimdo\JimkanbanBundle\Lib\Printer\PrintingService;
 use \Jimdo\JimkanbanBundle\Lib\Printer\GcpPrinter;
 
 class GcpPrinterTest extends \PHPUnit_Framework_TestCase
