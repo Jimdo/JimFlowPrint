@@ -23,7 +23,7 @@ class TicketTypeFallbackListener
         $em = $this->entityManager = $args->getEntityManager();
 
         if (!$entity instanceof TicketType) {
-            //Do nothing
+            return;
         } else {
             if ($this->isSupposedToBeFallback()) {
                 $this->unsetCurrentFallbackTicketType();
