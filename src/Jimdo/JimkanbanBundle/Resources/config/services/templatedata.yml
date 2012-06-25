@@ -11,5 +11,5 @@ services:
     arguments:
       - @request
       - @jimdo.template_ticket_filter_chain
-      - @jimdo.gcp.client
+      - @jimdo.printing.provider.gcp
     scope: request

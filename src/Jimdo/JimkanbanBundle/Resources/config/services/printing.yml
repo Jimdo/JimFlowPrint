@@ -16,6 +16,11 @@ services:
       - @jimdo.pdf_generator
       - @jimdo.mimeinfo
 
+  jimdo.printing.provider.gcp:
+    class: Jimdo\JimkanbanBundle\Lib\Printer\Provider\Gcp
+    arguments:
+      - @jimdo.gcp.client
+
   jimdo.pdf_generator:
     class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
     arguments:
