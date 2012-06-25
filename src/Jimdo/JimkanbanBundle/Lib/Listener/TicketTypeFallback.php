@@ -17,6 +17,10 @@ class TicketTypeFallback
      */
     private $entity;
 
+    /**
+     * @param LifecycleEventArgs $args
+     * @return mixed
+     */
     public function postPersist(LifecycleEventArgs $args)
     {
         $entity = $this->entity = $args->getEntity();
@@ -31,16 +35,26 @@ class TicketTypeFallback
         }
     }
 
+    /**
+     * @param LifecycleEventArgs $args
+     * @return mixed
+     */
     public function postUpdate(LifecycleEventArgs $args)
     {
         return $this->postPersist($args);
     }
 
+    /**
+     * @return bool
+     */
     private function isSupposedToBeFallback()
     {
         return $this->entity->getIsFallback();
     }
 
+    /**
+     * @return null
+     */
     private function unsetCurrentFallbackTicketType()
     {
         /**

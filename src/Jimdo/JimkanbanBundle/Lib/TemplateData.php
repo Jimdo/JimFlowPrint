@@ -15,17 +15,27 @@ class TemplateData
      */
     private $filterChain;
 
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param FilterChain $filterChain
+     */
     public function __construct(Request $request, FilterChain $filterChain)
     {
         $this->request = $request;
         $this->filterChain = $filterChain;
     }
 
+    /**
+     * @return array
+     */
     public function getTemplateData()
     {
         return $this->filterChain->filter($this->getData());
     }
 
+    /**
+     * @return array
+     */
     protected function getData()
     {
         $request = $this->request;

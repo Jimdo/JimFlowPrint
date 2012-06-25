@@ -28,6 +28,11 @@ class Client implements ClientInterface
     private $authToken;
 
     /**
+     * @var string
+     */
+    private $serviceName;
+
+    /**
      * @param Browser $httpClient
      * @param $email
      * @param $password
@@ -128,6 +133,7 @@ class Client implements ClientInterface
     }
 
     /**
+     * @throws \InvalidArgumentException
      * @return void
      */
     private function authorize()
@@ -161,16 +167,25 @@ class Client implements ClientInterface
         return $this->httpClient->post(self::CLIENT_LOGIN_URL, array(), $postData);
     }
 
+    /**
+     * @return string
+     */
     private function getSource()
     {
         return 'JimKanban';
     }
 
+    /**
+     * @return string
+     */
     private function getServiceName()
     {
         return $this->serviceName;
     }
 
+    /**
+     * @return string
+     */
     private function getAccountType()
     {
         return 'Google';

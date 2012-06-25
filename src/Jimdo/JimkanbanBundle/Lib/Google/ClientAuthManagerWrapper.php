@@ -17,12 +17,43 @@ class ClientAuthManagerWrapper implements ClientInterface
      */
     private $cache;
 
+    /**
+     * @param Client $client
+     * @param AbstractAdapter $cache
+     */
     public function __construct(Client $client, AbstractAdapter $cache)
     {
         $this->client = $client;
         $this->cache = $cache;
 
         $this->setClientAuthToken($this->getTokenFromCache());
+    }
+
+    /**
+     * @param $url
+     * @param  array                  $headers
+     * @return \Buzz\Message\Response
+     */
+    public function get($url, $headers = array())
+    {
+        $response = $this->client->get($url, $headers);
+        $this->handleResponseAuthHeader($response);
+
+        return $response;
+    }
+
+    /**
+     * @param $url
+     * @param array $headers
+     * @param $content
+     * @return \Buzz\Message\Response
+     */
+    public function post($url, $headers = array(), $content)
+    {
+        $response = $this->client->post($url, $headers, $content);
+        $this->handleResponseAuthHeader($response);
+
+        return $response;
     }
 
     /**
@@ -59,6 +90,9 @@ class ClientAuthManagerWrapper implements ClientInterface
         $this->client->setAuthToken($token);
     }
 
+    /**
+     * @param \Buzz\Message\Response $response
+     */
     private function handleResponseAuthHeader(\Buzz\Message\Response $response)
     {
         $token = $response->getHeader('Update-Client-Auth');
@@ -67,32 +101,5 @@ class ClientAuthManagerWrapper implements ClientInterface
             $this->client->setAuthToken($token);
             $this->setTokenToCache($token);
         }
-    }
-
-    /**
-     * @param $url
-     * @param  array                  $headers
-     * @return \Buzz\Message\Response
-     */
-    public function get($url, $headers = array())
-    {
-        $response = $this->client->get($url, $headers);
-        $this->handleResponseAuthHeader($response);
-
-        return $response;
-    }
-
-    /**
-     * @param $url
-     * @param array $headers
-     * @param $content
-     * @return \Buzz\Message\Response
-     */
-    public function post($url, $headers = array(), $content)
-    {
-        $response =  $this->client->post($url, $headers, $content);
-        $this->handleResponseAuthHeader($response);
-
-        return $response;
     }
 }
