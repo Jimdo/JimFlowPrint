@@ -3,20 +3,20 @@ namespace Jimdo\JimkanbanBundle\Lib;
 use Jimdo\JimkanbanBundle\Lib\TemplateData;
 use Symfony\Component\HttpFoundation\Request;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterChain;
-use \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient;
+use \Jimdo\JimkanbanBundle\Lib\Printer\Provider\ProviderInterface;
 
 class TemplateDataView extends TemplateData
 {
 
     /**
-     * @var \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient
+     * @var \Jimdo\JimkanbanBundle\Lib\Printer\Provider\Gcp
      */
-    private $gcpClient;
+    private $printerProvider;
 
-    public function __construct(Request $request, FilterChain $filterChain, GCPClient $gcpClient)
+    public function __construct(Request $request, FilterChain $filterChain, ProviderInterface $printerProvider)
     {
         parent::__construct($request, $filterChain);
-        $this->gcpClient = $gcpClient;
+        $this->printerProvider = $printerProvider;
     }
 
     protected function getData()
@@ -26,7 +26,7 @@ class TemplateDataView extends TemplateData
 
     private function getPrinters()
     {
-        return $this->gcpClient->getPrinterList();
+        return $this->printerProvider->getPrinters();
     }
 
 }
