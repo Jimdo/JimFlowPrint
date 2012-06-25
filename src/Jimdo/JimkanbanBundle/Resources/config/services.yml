@@ -5,3 +5,4 @@ imports:
     - { resource: "services/printing.yml" }
     - { resource: "services/google.yml" }
     - { resource: "services/templatedata.yml" }
+    - { resource: "services/buzz.yml" }

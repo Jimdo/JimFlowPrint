@@ -1,9 +1,13 @@
 <?php
 namespace  Jimdo\JimkanbanBundle\Lib\Printer\Provider;
 use \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client;
+use Jimdo\JimkanbanBundle\Lib\Printer\Config;
 
 class Gcp implements ProviderInterface
 {
+
+    const STATUS_ONLINE = 'ONLINE';
+
     /**
      * @var \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client
      */
@@ -19,6 +23,17 @@ class Gcp implements ProviderInterface
      */
     public function getPrinters()
     {
-        return $this->gcpClient->getPrinterList();
+        $printers = array();
+
+        foreach ($this->gcpClient->getPrinterList() as $printer) {
+            $printers[] = new Config($printer['id'], $printer['name'], $this->isAvailable($printer['connectionStatus']));
+        }
+
+        return $printers;
+    }
+
+    private function isAvailable($printerStatus)
+    {
+        return $printerStatus === self::STATUS_ONLINE;
     }
 }
