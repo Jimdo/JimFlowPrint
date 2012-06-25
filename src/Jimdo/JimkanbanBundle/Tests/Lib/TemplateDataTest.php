@@ -1,7 +1,7 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Tests\Lib;
 use \Jimdo\JimkanbanBundle\Lib\TemplateData;
- 
+
 class TemplateDataTest extends \PHPUnit_Framework_TestCase
 {
     /**

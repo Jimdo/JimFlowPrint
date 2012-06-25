@@ -1,9 +1,7 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Lib;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Request;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterChain;
-use \Doctrine\ORM\EntityManager;
 
 class TemplateData
 {

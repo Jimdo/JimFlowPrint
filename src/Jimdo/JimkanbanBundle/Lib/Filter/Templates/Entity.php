@@ -1,8 +1,6 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Lib\Filter\Templates;
-use \Jimdo\JimkanbanBundle\Lib\Filter\FilterInterface;
 use Doctrine\ORM\EntityRepository;
-
 
 abstract class Entity
 {
@@ -10,7 +8,6 @@ abstract class Entity
      * @var \Doctrine\ORM\EntityRepository
      */
     private $repository;
-
 
     public function __construct(EntityRepository $repository)
     {
@@ -31,6 +28,7 @@ abstract class Entity
         }
 
         $data[$key] = $entity;
+
         return $data;
     }
 
@@ -42,6 +40,6 @@ abstract class Entity
         return $this->repository;
     }
 
-    protected abstract function getFindBy();
-    protected abstract function handleNullResult($data, $key);
+    abstract protected function getFindBy();
+    abstract protected function handleNullResult($data, $key);
 }

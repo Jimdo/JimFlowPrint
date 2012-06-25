@@ -14,11 +14,9 @@ class Service
      */
     private $generator;
 
-
-
     /**
      * @param \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator $generator
-     * @param array $options
+     * @param array                                             $options
      */
     public function __construct(LoggableGenerator $generator, array $options)
     {

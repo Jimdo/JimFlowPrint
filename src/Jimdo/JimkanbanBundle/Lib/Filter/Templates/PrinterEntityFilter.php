@@ -2,7 +2,6 @@
 namespace Jimdo\JimkanbanBundle\Lib\Filter\Templates;
 use Jimdo\JimkanbanBundle\Lib\Filter\Templates\Entity;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterInterface;
-use \Jimdo\JimkanbanBundle\Entity\PrinterRepository;
 
 class PrinterEntityFilter extends Entity implements FilterInterface
 {
@@ -16,6 +15,7 @@ class PrinterEntityFilter extends Entity implements FilterInterface
     protected function handleNullResult($data, $key)
     {
         $data[$key] = null;
+
         return $data;
     }
 }

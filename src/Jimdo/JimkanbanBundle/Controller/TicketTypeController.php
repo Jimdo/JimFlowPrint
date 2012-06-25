@@ -28,7 +28,6 @@ class TicketTypeController extends Controller
         );
     }
 
-
     /**
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
@@ -73,7 +72,6 @@ class TicketTypeController extends Controller
             )
         );
     }
-
 
     /**
      * @throws \Symfony\Bundle\FrameworkBundle\Controller\NotFoundHttpException
@@ -205,6 +203,7 @@ class TicketTypeController extends Controller
     {
         $em = $this->entityManager();
         $repository = $em->getRepository('JimdoJimkanbanBundle:TicketType');
+
         return $repository;
     }
 }

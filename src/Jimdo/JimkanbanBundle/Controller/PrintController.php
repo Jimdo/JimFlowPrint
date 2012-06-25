@@ -1,8 +1,6 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use \Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\HttpFoundation\Request;
 
@@ -12,6 +10,7 @@ class PrintController extends Controller
     {
         $data = $request->request->all();
         $response = $this->forward('JimdoJimkanbanBundle:TemplateView:ticketprint', array($data));
+
         return $this->doPrint($response->getContent());
     }
 
@@ -19,6 +18,7 @@ class PrintController extends Controller
     {
         $data = $request->request->all();
         $response = $this->forward('JimdoJimkanbanBundle:TemplateView:storyprint', array($data));
+
         return $this->doPrint($response->getContent());
     }
 

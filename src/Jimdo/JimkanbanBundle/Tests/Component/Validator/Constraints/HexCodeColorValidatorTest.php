@@ -2,7 +2,6 @@
 namespace Jimdo\JimkanbanBundle\Tests\Component\Validator\Constraints;
 
 use Symfony\Bundle\FrameworkBundle\Test;
-use Symfony\Component\Validator\ValidatorFactory;
 use Jimdo\JimkanbanBundle\Component\Validator\Constraints\HexColorCodeValidator;
 use Jimdo\JimkanbanBundle\Component\Validator\Constraints\HexColorCode;
 

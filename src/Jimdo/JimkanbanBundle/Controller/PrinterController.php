@@ -91,7 +91,7 @@ class PrinterController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('printer_edit', array('id' => $entity->getId())));
-            
+
         }
 
         return array(

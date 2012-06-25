@@ -35,14 +35,14 @@ class TicketType
      * @var string $background_color
      *
      * @CustomAssert\HexColorCode(message="Invalid hexadecimal color code")
-     * 
+     *
      * @ORM\Column(name="background_color", type="string", length=6)
      */
     private $backgroundColor;
 
     /**
      * @var boolean $is_background_filled
-     * 
+     *
      * @ORM\Column(name="is_background_filled", type="boolean", nullable=true)
      */
     private $isBackgroundFilled;
@@ -54,11 +54,10 @@ class TicketType
      */
     private $isFallback;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -78,7 +77,7 @@ class TicketType
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -98,7 +97,7 @@ class TicketType
     /**
      * Get background_color
      *
-     * @return string 
+     * @return string
      */
     public function getBackgroundColor()
     {
@@ -118,7 +117,7 @@ class TicketType
     /**
      * Get is_background_filled
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsBackgroundFilled()
     {

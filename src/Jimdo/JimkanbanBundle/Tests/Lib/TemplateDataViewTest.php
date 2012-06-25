@@ -3,7 +3,7 @@ namespace Jimdo\JimkanbanBundle\Tests\Lib;
 use \Jimdo\JimkanbanBundle\Lib\TemplateDataView;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterChain;
 use \Jimdo\JimkanbanBundle\Lib\Printer\Provider\Gcp;
- 
+
 class TemplateDataViewTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -19,7 +19,6 @@ class TemplateDataViewTest extends \PHPUnit_Framework_TestCase
         $provider = new Gcp($gcpClient);
 
         $request = $this->getMock('\Symfony\Component\HttpFoundation\Request', array(), array(), '', false);
-
 
         $templateData = new TemplateDataView($request, new FilterChain(), $provider);
         $data = $templateData->getTemplateData();

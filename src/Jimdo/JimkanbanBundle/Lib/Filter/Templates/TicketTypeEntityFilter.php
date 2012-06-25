@@ -21,6 +21,7 @@ class TicketTypeEntityFilter extends Entity implements FilterInterface
         $repository = $this->getRepository();
 
         $data[$key] =  $repository->findOneBy(array('isFallback' => true));
+
         return $data;
 
     }

@@ -2,7 +2,6 @@
 use \Jimdo\JimkanbanBundle\Lib\Google\Client;
 use \Jimdo\JimkanbanBundle\Lib\Google\ClientAuthManagerWrapper;
 use \Zend\Cache\Storage\Adapter\Filesystem;
-use \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client as GcpClient;
 
 class ClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
 {
@@ -63,7 +62,6 @@ class ClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->with($someUrl, $someHeader)
                 ->will($this->returnValue($this->response));
 
-
         $clientWrapper = new ClientAuthManagerWrapper($googleClient, $this->cache);
         $clientWrapper->get($someUrl, $someHeader);
     }
@@ -83,7 +81,6 @@ class ClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->method('post')
                 ->with($someUrl, $someHeader, $someContent)
                 ->will($this->returnValue($this->response));
-
 
         $clientWrapper = new ClientAuthManagerWrapper($googleClient, $this->cache);
         $clientWrapper->post($someUrl, $someHeader, $someContent);
@@ -153,7 +150,6 @@ class ClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->expects($this->once())
                 ->method('get')
                 ->will($this->returnValue($response));
-
 
         $cache = $this->cache;
         $cache->expects($this->once())->method('setItem');
