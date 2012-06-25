@@ -9,7 +9,7 @@ services:
   jimdo.google.client.gcp:
     class: Jimdo\JimkanbanBundle\Lib\Google\Client
     arguments:
-      - @buzz
+      - @jimdo.buzz.browser
       - %gcp.email%
       - %gcp.password%
       - 'cloudprint'

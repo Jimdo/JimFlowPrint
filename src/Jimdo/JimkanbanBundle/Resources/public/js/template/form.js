@@ -90,7 +90,7 @@
             var that = self;
 
             that.$printButtonsContainer = $('#printer-buttons');
-            that.$printButtons = that.$printButtonsContainer.find('div');
+            that.$printButtons = that.$printButtonsContainer.find('div:not(.inactive)');
             that.pendingRequest = false;
             that.$statusElm = $('#print-headline span.status');
             that.$form = $('#kanban_form');
