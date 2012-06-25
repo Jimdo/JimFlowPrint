@@ -7,10 +7,10 @@ use Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketDateFilter;
 
 class DateFilterTest extends \PHPUnit_Framework_TestCase {
 
-    const SOME_GERMAN_DATE = '27.06.1990';
+    const SOME_AMERICAN_DATE = '1990-07-27';
 
     /**
-     * @var \TicketDateFilter\JimkanbanBundle\Lib\Filter\Templates\DateFilter
+     * @var \Jimdo\JimkanbanBundle\Lib\Filter\Templates\TicketDateFilter
      */
     private $dateFilter;
 
@@ -29,7 +29,7 @@ class DateFilterTest extends \PHPUnit_Framework_TestCase {
      */
     public function itShouldAllowToFilterADateWhenAStringContainingADateIsProvided()
     {
-        $someDate = self::SOME_GERMAN_DATE;
+        $someDate = self::SOME_AMERICAN_DATE;
         $exampleDateString = $someDate . '(1 year ago)';
 
         $this->assertEquals($this->filter($exampleDateString), array('date' => $someDate));
@@ -38,12 +38,12 @@ class DateFilterTest extends \PHPUnit_Framework_TestCase {
     /**
      * @test
      */
-    public function itShouldReturnTheDateInGermanFormat()
+    public function itShouldReturnTheDateInAmericanFormat()
     {
-        $americanDate = '2003-12-06';
-        $expectedGermanDate = '06.12.2003';
+        $germanDate = '06.12.2003';
+        $expectedAmericanDate = '2003-12-06';
 
-        $this->assertEquals(array('date' => $expectedGermanDate), $this->filter($americanDate));
+        $this->assertEquals(array('date' => $expectedAmericanDate), $this->filter($germanDate));
     }
 
 }
