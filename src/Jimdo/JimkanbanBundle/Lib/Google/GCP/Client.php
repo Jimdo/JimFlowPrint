@@ -55,6 +55,10 @@ class Client
         return $json['printers'];
     }
 
+    /**
+     * @param $printerId
+     * @return mixed
+     */
     public function getPrinterInformation($printerId)
     {
         return $this->client->get('http://www.google.com/cloudprint/printer?printerid=' . $printerId);
@@ -62,8 +66,8 @@ class Client
 
     /**
      * @param $printerId
-     * @param  array                                                   $configuration
-     * @return #M#C\Jimdo\JimkanbanBundle\Lib\Google\GCP\Client.post|?
+     * @param array $configuration
+     * @return array
      */
     public function submitPrintJob($printerId, array $configuration)
     {
@@ -226,6 +230,11 @@ class Client
         return $this->getJson($response);
     }
 
+    /**
+     * @param \Buzz\Message\Response $response
+     * @throws \Exception
+     * @return array
+     */
     private function getJson(\Buzz\Message\Response $response)
     {
         $json = json_decode($response->getContent(), true);
@@ -237,6 +246,10 @@ class Client
         return $json;
     }
 
+    /**
+     * @param \Buzz\Message\Response $response
+     * @throws \InvalidArgumentException
+     */
     private function assertRequestIsSuccessful(\Buzz\Message\Response $response)
     {
         $data = json_decode($response->getContent(), true);

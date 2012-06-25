@@ -9,16 +9,28 @@ abstract class Entity
      */
     private $repository;
 
+    /**
+     * @param EntityRepository $repository
+     */
     public function __construct(EntityRepository $repository)
     {
         $this->repository = $repository;
     }
 
+    /**
+     * @param $value
+     * @return object
+     */
     protected function findOneBy($value)
     {
         return $this->repository->findOneBy(array($this->getFindBy() => $value));
     }
 
+    /**
+     * @param array $data
+     * @param $key
+     * @return array
+     */
     public function filter(array $data, $key)
     {
         $entity = $this->findOneBy($data[$key]);
@@ -40,6 +52,17 @@ abstract class Entity
         return $this->repository;
     }
 
+    /**
+     * @abstract
+     * @return mixed
+     */
     abstract protected function getFindBy();
+
+    /**
+     * @abstract
+     * @param $data
+     * @param $key
+     * @return mixed
+     */
     abstract protected function handleNullResult($data, $key);
 }
