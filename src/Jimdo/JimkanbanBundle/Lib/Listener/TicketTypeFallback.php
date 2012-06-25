@@ -5,7 +5,7 @@ namespace Jimdo\JimkanbanBundle\Lib\Listener;
 use \Doctrine\ORM\Event\LifecycleEventArgs;
 use \Jimdo\JimkanbanBundle\Entity\TicketType;
 
-class TicketTypeFallbackListener
+class TicketTypeFallback
 {
     /**
      * @var \Doctrine\ORM\EntityManager

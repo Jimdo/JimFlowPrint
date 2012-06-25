@@ -1,20 +1,21 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Lib\Google\GCP;
 
-use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient;
-use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClientInterface;
+use \Jimdo\JimkanbanBundle\Lib\Google\ClientInterface;
 
-class GCPClient
+class Client
 {
+
     /**
-     * @var \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient
+     * @var \Jimdo\JimkanbanBundle\Lib\Google\ClientInterface
      */
     private $client;
 
+
     /**
-     * @param \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient $client
+     * @param ClientInterface $client
      */
-    public function __construct(GoogleClientInterface $client)
+    public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
@@ -64,7 +65,7 @@ class GCPClient
     /**
      * @param $printerId
      * @param array $configuration
-     * @return #M#C\Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient.post|?
+     * @return #M#C\Jimdo\JimkanbanBundle\Lib\Google\GCP\Client.post|?
      */
     public function submitPrintJob($printerId, array $configuration)
     {

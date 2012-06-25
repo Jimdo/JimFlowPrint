@@ -22,7 +22,7 @@ services:
       - @jimdo.gcp.client
 
   jimdo.pdf_generator:
-    class: Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
+    class: Jimdo\JimkanbanBundle\Lib\Generator\Service
     arguments:
       - @knp_snappy.pdf
       - {page-size: 'A6', orientation: 'Landscape', lowquality: false, margin-top: 0, margin-bottom: 0, margin-left: 0, margin-right: 0}

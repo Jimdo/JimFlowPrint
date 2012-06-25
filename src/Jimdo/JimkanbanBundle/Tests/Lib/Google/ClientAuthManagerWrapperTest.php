@@ -1,10 +1,10 @@
 <?php
-use \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient;
-use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient;
-use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClientAuthManagerWrapper;
+use \Jimdo\JimkanbanBundle\Lib\Google\Client;
+use \Jimdo\JimkanbanBundle\Lib\Google\ClientAuthManagerWrapper;
 use \Zend\Cache\Storage\Adapter\Filesystem;
+use \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client as GcpClient;
 
-class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
+class ClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
 {
     const SOME_URL = 'http://google.com';
     const SOME_AUTH_TOKEN = 'DDAA__FF';
@@ -21,7 +21,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
     private $someContent = array('a' => 'b');
 
     /**
-     * @var \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient
+     * @var \Jimdo\JimkanbanBundle\Lib\Google\Client
      */
     private $googleClient;
 
@@ -37,7 +37,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->googleClient = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\GoogleClient', array(), array(), '', false);
+        $this->googleClient = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\Client', array(), array(), '', false);
         $this->cache = $this->getMock('\Zend\Cache\Storage\Adapter\Filesystem', array(), array(), '', false);
 
         $this->response = $this->getMock(
@@ -64,7 +64,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue($this->response));
 
 
-        $clientWrapper = new GoogleClientAuthManagerWrapper($googleClient, $this->cache);
+        $clientWrapper = new ClientAuthManagerWrapper($googleClient, $this->cache);
         $clientWrapper->get($someUrl, $someHeader);
     }
 
@@ -85,7 +85,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue($this->response));
 
 
-        $clientWrapper = new GoogleClientAuthManagerWrapper($googleClient, $this->cache);
+        $clientWrapper = new ClientAuthManagerWrapper($googleClient, $this->cache);
         $clientWrapper->post($someUrl, $someHeader, $someContent);
     }
 
@@ -106,7 +106,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue($someToken));
 
         $googleClient = $this->getMock(
-            '\Jimdo\JimkanbanBundle\Lib\Google\GoogleClient',
+            '\Jimdo\JimkanbanBundle\Lib\Google\Client',
             array('get', 'setAuthToken'),
             array(),
             '',
@@ -122,7 +122,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->method('setAuthToken')
                 ->with($someToken);
 
-        $clientWrapper = new GoogleClientAuthManagerWrapper($googleClient, $this->cache);
+        $clientWrapper = new ClientAuthManagerWrapper($googleClient, $this->cache);
         $clientWrapper->get('');
     }
 
@@ -143,7 +143,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue($someToken));
 
         $googleClient = $this->getMock(
-            '\Jimdo\JimkanbanBundle\Lib\Google\GoogleClient',
+            '\Jimdo\JimkanbanBundle\Lib\Google\Client',
             array('get', 'setAuthToken'),
             array(),
             '',
@@ -158,7 +158,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
         $cache = $this->cache;
         $cache->expects($this->once())->method('setItem');
 
-        $clientWrapper = new GoogleClientAuthManagerWrapper($googleClient, $cache);
+        $clientWrapper = new ClientAuthManagerWrapper($googleClient, $cache);
         $clientWrapper->get('');
     }
 
@@ -179,7 +179,7 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->will($this->returnValue(''));
 
         $googleClient = $this->getMock(
-            '\Jimdo\JimkanbanBundle\Lib\Google\GoogleClient',
+            '\Jimdo\JimkanbanBundle\Lib\Google\Client',
             array('get', 'setAuthToken'),
             array(),
             '',
@@ -190,11 +190,10 @@ class GoogleClientAuthManagerWrapperTest extends \PHPUnit_Framework_TestCase
                 ->method('get')
                 ->will($this->returnValue($response));
 
-
         $cache = $this->cache;
         $cache->expects($this->never())->method('setItem');
 
-        $clientWrapper = new GoogleClientAuthManagerWrapper($googleClient, $cache);
+        $clientWrapper = new ClientAuthManagerWrapper($googleClient, $cache);
         $clientWrapper->get('');
     }
 

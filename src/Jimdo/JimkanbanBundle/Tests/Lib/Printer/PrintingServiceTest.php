@@ -24,7 +24,7 @@ class PrintingServiceTest extends \PHPUnit_Framework_TestCase
 
         $fileInfo = $this->getMock('\finfo', array(), array(), '', false);
         $printer = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Printer\GcpPrinter', array(), array(), '', false);
-        $generatorService = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService', array(), array(), '', false);
+        $generatorService = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Generator\Service', array(), array(), '', false);
 
         $fileInfo->expects($this->once())->method('buffer')->will($this->returnValue($someMime));
 

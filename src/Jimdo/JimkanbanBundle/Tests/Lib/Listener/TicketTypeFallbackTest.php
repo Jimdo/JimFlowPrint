@@ -3,10 +3,10 @@
 namespace Jimdo\JimkanbanBundle\Tests\Lib\Filter;
 
 use Symfony\Bundle\FrameworkBundle\Test;
-use Jimdo\JimkanbanBundle\Lib\Listener\TicketTypeFallbackListener;
+use Jimdo\JimkanbanBundle\Lib\Listener\TicketTypeFallback;
 use \Doctrine\ORM\EntityManager;
 
-class TicketTypeFallbackListenerTest extends \PHPUnit_Framework_TestCase
+class TicketTypeFallbackTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -22,7 +22,7 @@ class TicketTypeFallbackListenerTest extends \PHPUnit_Framework_TestCase
 
         $eventArgs = $this->getEventArgs($em, $entity);
 
-        $listener = new TicketTypeFallbackListener();
+        $listener = new TicketTypeFallback();
         $listener->postPersist($eventArgs);
 
     }
@@ -37,7 +37,7 @@ class TicketTypeFallbackListenerTest extends \PHPUnit_Framework_TestCase
 
         $entity->expects($this->once())->method('getIsFallback');
 
-        $listener = new TicketTypeFallbackListener();
+        $listener = new TicketTypeFallback();
         $listener->postPersist($this->getEventArgs($em, $entity));
     }
 
@@ -85,7 +85,7 @@ class TicketTypeFallbackListenerTest extends \PHPUnit_Framework_TestCase
         $em->expects($this->once())->method('getRepository')->will($this->returnValue($repository));
         $em->expects($this->once())->method('persist')->with($someEntity);
 
-        $listener = new TicketTypeFallbackListener();
+        $listener = new TicketTypeFallback();
         $listener->postPersist($this->getEventArgs($em, $entity));
     }
 }

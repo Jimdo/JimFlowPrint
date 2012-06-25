@@ -3,7 +3,7 @@
 namespace Jimdo\JimkanbanBundle\Lib\Google;
 use \Buzz\Browser;
 
-class GoogleClient implements GoogleClientInterface
+class Client implements ClientInterface
 {
     const CLIENT_LOGIN_URL = 'https://www.google.com/accounts/ClientLogin';
 
@@ -27,13 +27,12 @@ class GoogleClient implements GoogleClientInterface
      */
     private $authToken;
 
+
     /**
-     * @param \Buzz\Browser $httpClient
+     * @param Browser $httpClient
      * @param $email
      * @param $password
      * @param $serviceName
-     * @return \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient
-     *
      */
     public function __construct(Browser $httpClient, $email, $password, $serviceName)
     {

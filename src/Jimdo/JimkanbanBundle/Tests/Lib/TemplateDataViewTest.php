@@ -13,7 +13,7 @@ class TemplateDataViewTest extends \PHPUnit_Framework_TestCase
     {
         $somePrinterData = array('foo' => 'bar');
 
-        $gcpClient = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient', array(), array(), '', false);
+        $gcpClient = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\GCP\Client', array(), array(), '', false);
         $gcpClient->expects($this->once())->method('getPrinterList')->will($this->returnValue($somePrinterData));
 
         $provider = new Gcp($gcpClient);

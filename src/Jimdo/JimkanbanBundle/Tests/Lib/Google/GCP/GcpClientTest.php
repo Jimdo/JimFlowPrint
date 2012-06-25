@@ -1,19 +1,19 @@
 <?php
 
-use \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient;
-use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient;
+use \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client as GcpClient;
+use \Jimdo\JimkanbanBundle\Lib\Google\Client;
 
-class GpcClientTest extends \PHPUnit_Framework_TestCase
+class GcpClientTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @var \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient
+     * @var \Jimdo\JimkanbanBundle\Lib\Google\Client
      */
     private $client;
 
     public function setUp()
     {
-        $this->client = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\GoogleClient', array(), array(), '', false);
+        $this->client = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\Client', array(), array(), '', false);
     }
 
     /**
@@ -34,7 +34,7 @@ class GpcClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
 
-        $gcpClient = new GCPClient($this->client);
+        $gcpClient = new GcpClient($this->client);
 
         $this->assertEquals($printers, $gcpClient->getPrinterList());
     }
@@ -51,7 +51,7 @@ class GpcClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
 
-        $gcpClient = new GCPClient($this->client);
+        $gcpClient = new GcpClient($this->client);
         $gcpClient->getPrinterList();
     }
 
@@ -67,7 +67,7 @@ class GpcClientTest extends \PHPUnit_Framework_TestCase
 
         $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
 
-        $gcpClient = new GCPClient($this->client);
+        $gcpClient = new GcpClient($this->client);
         $gcpClient->getPrinterList();
     }
 }
