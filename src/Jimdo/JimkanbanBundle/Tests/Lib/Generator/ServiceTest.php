@@ -1,8 +1,8 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Tests\Lib\Generator;
-use \Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService;
+use \Jimdo\JimkanbanBundle\Lib\Generator\Service;
 
-class GeneratorServiceTest extends \PHPUnit_Framework_TestCase
+class ServiceTest extends \PHPUnit_Framework_TestCase
 {
     const SOME_HTML = '<div></div>';
 
@@ -20,7 +20,7 @@ class GeneratorServiceTest extends \PHPUnit_Framework_TestCase
         $generator = $this->getMock('\Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator', array(), array(), '', false);
         $generator->expects($this->once())->method('getOutputFromHtml')->with($someHTML, $someOptions)->will($this->returnValue($somePdfOutput));
 
-        $generatorService = new GeneratorService($generator, $someOptions);
+        $generatorService = new Service($generator, $someOptions);
 
         $this->assertEquals($somePdfOutput, $generatorService->generateFromHtml($someHTML));
     }

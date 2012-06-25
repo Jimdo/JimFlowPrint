@@ -4,7 +4,7 @@ use \Jimdo\JimkanbanBundle\Lib\Filter\FilterInterface;
 use Doctrine\ORM\EntityRepository;
 
 
-abstract class EntityFilter
+abstract class Entity
 {
     /**
      * @var \Doctrine\ORM\EntityRepository

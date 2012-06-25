@@ -3,22 +3,35 @@
 namespace Jimdo\JimkanbanBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use \Symfony\Bundle\FrameworkBundle\Client;
 
 class TemplateControllerTest extends WebTestCase
 {
     /**
      * @test
      */
-    public function itShouldRenderANotesTemplate()
+    public function itShouldShowButtonsRepresentingGooglePrinters()
     {
-
+        $crawler = $this->request('GET', 'template/ticket.html');
+        $this->assertEquals(1, $crawler->filter('div.button:contains("EPSON WP-4025 Series")')->count());
     }
 
     /**
-     * @test
+     * @param string $method
+     * @param string $url
+     * @return \Symfony\Component\DomCrawler\Crawler
      */
-    public function itShouldRenderADifferentNotesTemplateWhenPrintingIsIntended()
+    private function request($method, $url)
     {
+        $client = $this->httpClient();
+        return $client->request($method, $url);
+    }
 
+    /**
+     * @return \Symfony\Bundle\FrameworkBundle\Client
+     */
+    private function httpClient()
+    {
+        return static::createClient();
     }
 }

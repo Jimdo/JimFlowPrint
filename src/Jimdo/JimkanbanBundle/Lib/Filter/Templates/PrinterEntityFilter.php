@@ -1,10 +1,10 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Lib\Filter\Templates;
-use Jimdo\JimkanbanBundle\Lib\Filter\Templates\EntityFilter;
+use Jimdo\JimkanbanBundle\Lib\Filter\Templates\Entity;
 use \Jimdo\JimkanbanBundle\Lib\Filter\FilterInterface;
 use \Jimdo\JimkanbanBundle\Entity\PrinterRepository;
 
-class PrinterEntityFilter extends EntityFilter implements FilterInterface
+class PrinterEntityFilter extends Entity implements FilterInterface
 {
     const FIND_BY = 'id';
 

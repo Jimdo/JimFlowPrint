@@ -2,7 +2,7 @@
 namespace Jimdo\JimkanbanBundle\Lib\Generator;
 use \Knp\Bundle\SnappyBundle\Snappy\LoggableGenerator;
 
-class GeneratorService
+class Service
 {
     /**
      * @var array

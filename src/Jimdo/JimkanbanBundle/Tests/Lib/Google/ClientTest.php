@@ -1,6 +1,6 @@
 <?php
-use \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient;
-use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient;
+use \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client as GcpClient;
+use \Jimdo\JimkanbanBundle\Lib\Google\Client;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,7 +22,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $response->expects($this->once())->method('getContent')->will($this->returnValue('Auth=dd'));
 
         $this->httpClient->expects($this->once())->method('post')->with('https://www.google.com/accounts/ClientLogin')->will($this->returnValue($response));
-        $client = new GoogleClient($this->httpClient, '', '', '');
+        $client = new Client($this->httpClient, '', '', '');
         $client->get('http://examlple.com');
     }
 
@@ -36,7 +36,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $response->expects($this->once())->method('getContent')->will($this->returnValue('NoAuthForYou'));
 
         $this->httpClient->expects($this->once())->method('post')->with('https://www.google.com/accounts/ClientLogin')->will($this->returnValue($response));
-        $client = new GoogleClient($this->httpClient, '', '', '');
+        $client = new Client($this->httpClient, '', '', '');
         $client->get('http://examlple.com');
     }
 
@@ -54,7 +54,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->httpClient->expects($this->once())->method('post')->with('https://www.google.com/accounts/ClientLogin')->will($this->returnValue($response));
         $this->httpClient->expects($this->once())->method('get')->with($url, array_merge($header, array('Authorization: GoogleLogin Auth=' . $authCode)));
 
-        $client = new GoogleClient($this->httpClient, '', '', '');
+        $client = new Client($this->httpClient, '', '', '');
         $client->get($url, $header);
     }
 
@@ -68,7 +68,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->httpClient->expects($this->once())->method('get')->with($url, $this->contains($headers[0]));
 
-        $client = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\GoogleClient', array('isAuthorized'), array($this->httpClient, '', '', ''));
+        $client = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\Client', array('isAuthorized'), array($this->httpClient, '', '', ''));
         $client->expects($this->once())->method('isAuthorized')->will($this->returnValue(true));
         $client->get($url, $headers);
     }
@@ -84,7 +84,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->httpClient->expects($this->once())->method('post')->with($url, $this->contains($headers[0]), $content);
 
-        $client = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\GoogleClient', array('isAuthorized'), array($this->httpClient, '', '', ''));
+        $client = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\Client', array('isAuthorized'), array($this->httpClient, '', '', ''));
         $client->expects($this->once())->method('isAuthorized')->will($this->returnValue(true));
         $client->post($url, $headers, $content);
     }
@@ -95,7 +95,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function itShouldAllowToSetTheAuthToken()
     {
         $someToken = 'ABCLOLOL';
-        $client = new GoogleClient($this->httpClient, '', '', '');
+        $client = new Client($this->httpClient, '', '', '');
         $client->setAuthToken($someToken);
 
         $this->assertEquals($someToken, $client->getAuthToken());

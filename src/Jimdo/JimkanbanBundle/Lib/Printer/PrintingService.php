@@ -1,13 +1,14 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Lib\Printer;
-use \Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService;
+use \Jimdo\JimkanbanBundle\Lib\Generator\Service;
 use \Jimdo\JimkanbanBundle\Lib\Printer\PrinterInterface;
 use \finfo;
 
 class PrintingService
 {
+
     /**
-     * @var \Jimdo\JimkanbanBundle\Lib\Generator\GeneratorService
+     * @var \Jimdo\JimkanbanBundle\Lib\Generator\Service
      */
     private $generator;
 
@@ -21,7 +22,7 @@ class PrintingService
      */
     private $fileInfo;
 
-    public function __construct(PrinterInterface $printer, GeneratorService $generator, finfo $fileInfo)
+    public function __construct(PrinterInterface $printer, Service $generator, finfo $fileInfo)
     {
         $this->printer = $printer;
         $this->generator = $generator;

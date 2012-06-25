@@ -19,7 +19,7 @@ class GcpPrinterTest extends \PHPUnit_Framework_TestCase
             'mime' => 'aa/bb'
         );
 
-        $client = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient', arraY(), array(), '', false);
+        $client = $this->getMock('\Jimdo\JimkanbanBundle\Lib\Google\GCP\Client', arraY(), array(), '', false);
         $client->expects($this->once())->method('submitPrintJob')->with($somePrinterId, $someFile);
 
         $printer = new GcpPrinter($client);

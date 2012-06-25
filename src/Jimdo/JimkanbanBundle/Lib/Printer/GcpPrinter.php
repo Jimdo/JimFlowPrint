@@ -1,19 +1,19 @@
 <?php
 namespace  Jimdo\JimkanbanBundle\Lib\Printer;
 use \Jimdo\JimkanbanBundle\Lib\Printer\PrinterInterface;
-use \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient;
+use \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client;
 
 class GcpPrinter implements PrinterInterface {
 
     /**
-     * @var \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient
+     * @var \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client
      */
     private $gcpClient;
 
     /**
-     * @param \Jimdo\JimkanbanBundle\Lib\Google\GCP\GCPClient $gcpClient
+     * @param \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client $gcpClient
      */
-    public function __construct(GCPClient $gcpClient)
+    public function __construct(Client $gcpClient)
     {
         $this->gcpClient = $gcpClient;
     }

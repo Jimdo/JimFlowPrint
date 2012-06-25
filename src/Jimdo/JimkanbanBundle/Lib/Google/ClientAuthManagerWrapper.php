@@ -2,14 +2,14 @@
 
 namespace Jimdo\JimkanbanBundle\Lib\Google;
 use \Buzz\Browser;
-use \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient;
+use \Jimdo\JimkanbanBundle\Lib\Google\Client;
 use \Zend\Cache\Storage\Adapter\AbstractAdapter;
 
-class GoogleClientAuthManagerWrapper implements GoogleClientInterface
+class ClientAuthManagerWrapper implements ClientInterface
 {
     const CACHE_PREFIX = 'goog';
     /**
-     * @var \Jimdo\JimkanbanBundle\Lib\Google\GoogleClient
+     * @var \Jimdo\JimkanbanBundle\Lib\Google\Client
      */
     private $client;
 
@@ -18,7 +18,7 @@ class GoogleClientAuthManagerWrapper implements GoogleClientInterface
      */
     private $cache;
 
-    public function __construct(GoogleClient $client, AbstractAdapter $cache)
+    public function __construct(Client $client, AbstractAdapter $cache)
     {
         $this->client = $client;
         $this->cache = $cache;
