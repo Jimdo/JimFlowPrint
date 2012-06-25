@@ -14,18 +14,21 @@ class DateFilterTest extends \PHPUnit_Framework_TestCase {
      */
     private $dateFilter;
 
-    public function setUp() {
+    public function setUp()
+    {
         $this->dateFilter = new TicketDateFilter();
     }
 
-    private function filter($dateString) {
+    private function filter($dateString)
+    {
        return $this->dateFilter->filter(array('date' => $dateString), 'date');
     }
 
     /**
      * @test
      */
-    public function itShouldAllowToFilterADateWhenAStringContainingADateIsProvided() {
+    public function itShouldAllowToFilterADateWhenAStringContainingADateIsProvided()
+    {
         $someDate = self::SOME_GERMAN_DATE;
         $exampleDateString = $someDate . '(1 year ago)';
 

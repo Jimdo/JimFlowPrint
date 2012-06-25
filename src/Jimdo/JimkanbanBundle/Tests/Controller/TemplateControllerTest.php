@@ -17,13 +17,14 @@ class TemplateControllerTest extends WebTestCase
     }
 
     /**
-     * @param string $method
-     * @param string $url
+     * @param  string                                $method
+     * @param  string                                $url
      * @return \Symfony\Component\DomCrawler\Crawler
      */
     private function request($method, $url)
     {
         $client = $this->httpClient();
+
         return $client->request($method, $url);
     }
 

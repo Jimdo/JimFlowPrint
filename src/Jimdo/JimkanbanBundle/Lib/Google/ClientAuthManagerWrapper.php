@@ -1,7 +1,6 @@
 <?php
 
 namespace Jimdo\JimkanbanBundle\Lib\Google;
-use \Buzz\Browser;
 use \Jimdo\JimkanbanBundle\Lib\Google\Client;
 use \Zend\Cache\Storage\Adapter\AbstractAdapter;
 
@@ -72,7 +71,7 @@ class ClientAuthManagerWrapper implements ClientInterface
 
     /**
      * @param $url
-     * @param array $headers
+     * @param  array                  $headers
      * @return \Buzz\Message\Response
      */
     public function get($url, $headers = array())

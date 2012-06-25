@@ -5,7 +5,6 @@ namespace Jimdo\JimkanbanBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * Jimdo\JimkanbanBundle\Entity\Printer
  *
@@ -52,11 +51,10 @@ class Printer
      */
     private $isActive = true;
 
-
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,7 +74,7 @@ class Printer
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -96,7 +94,7 @@ class Printer
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -116,13 +114,12 @@ class Printer
     /**
      * Get notes
      *
-     * @return text 
+     * @return text
      */
     public function getNotes()
     {
         return $this->notes;
     }
-
 
     /**
      * @param $isActive

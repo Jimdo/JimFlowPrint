@@ -5,9 +5,10 @@ namespace Jimdo\JimkanbanBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 
-class TicketType extends AbstractType {
-
-    public function buildForm(FormBuilder $builder, array $options) {
+class TicketType extends AbstractType
+{
+    public function buildForm(FormBuilder $builder, array $options)
+    {
         $data = $options['data'];
 
         $builder
@@ -36,7 +37,8 @@ class TicketType extends AbstractType {
         return $isFallback ? 'hidden' : 'checkbox';
     }
 
-    public function getName() {
+    public function getName()
+    {
         return 'jimdo_jimkanbanbundle_tickettypetype';
     }
 

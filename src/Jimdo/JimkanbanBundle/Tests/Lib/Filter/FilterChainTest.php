@@ -62,6 +62,7 @@ class FilterChainTest extends \PHPUnit_Framework_TestCase
             '',
             false
         );
+
         return $filterMock;
     }
 }

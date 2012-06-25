@@ -11,7 +11,6 @@ class Client
      */
     private $client;
 
-
     /**
      * @param ClientInterface $client
      */
@@ -61,10 +60,9 @@ class Client
         return $this->client->get('http://www.google.com/cloudprint/printer?printerid=' . $printerId);
     }
 
-
     /**
      * @param $printerId
-     * @param array $configuration
+     * @param  array                                                   $configuration
      * @return #M#C\Jimdo\JimkanbanBundle\Lib\Google\GCP\Client.post|?
      */
     public function submitPrintJob($printerId, array $configuration)
@@ -248,6 +246,5 @@ class Client
             throw new \InvalidArgumentException($response->getContent());
         }
     }
-
 
 }

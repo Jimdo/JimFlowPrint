@@ -3,8 +3,8 @@ namespace  Jimdo\JimkanbanBundle\Lib\Printer;
 use \Jimdo\JimkanbanBundle\Lib\Printer\PrinterInterface;
 use \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client;
 
-class GcpPrinter implements PrinterInterface {
-
+class GcpPrinter implements PrinterInterface
+{
     /**
      * @var \Jimdo\JimkanbanBundle\Lib\Google\GCP\Client
      */

@@ -5,9 +5,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Jimdo\JimkanbanBundle\Lib\TemplateData;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use \Jimdo\JimkanbanBundle\Entity\PrinterRepository;
-
-
 
 /**
  * TicketType controller.
@@ -16,7 +13,7 @@ use \Jimdo\JimkanbanBundle\Entity\PrinterRepository;
 class TemplateViewController extends Controller
 {
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param  \Symfony\Component\HttpFoundation\Request           $request
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
      */
     public function ticketAction(Request $request)
@@ -28,7 +25,6 @@ class TemplateViewController extends Controller
             $templateData
         );
     }
-
 
     public function ticketprintAction()
     {
@@ -61,7 +57,7 @@ class TemplateViewController extends Controller
     }
 
     /**
-     * @param bool $includePrinters
+     * @param  bool  $includePrinters
      * @return array
      */
     private function getTemplateData($includePrinters = true)

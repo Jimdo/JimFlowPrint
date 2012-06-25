@@ -1,9 +1,8 @@
 <?php
 namespace Jimdo\JimkanbanBundle\Tests\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Validator\ValidatorFactory;
-use Jimdo\JimkanbanBundle\Entity\TicketType; 
+use Jimdo\JimkanbanBundle\Entity\TicketType;
 
 class TicketTypeTest extends  \PHPUnit_Framework_TestCase
 {
@@ -21,7 +20,8 @@ class TicketTypeTest extends  \PHPUnit_Framework_TestCase
         $this->ticketType = new TicketType();
     }
 
-    public function testSetValidbackgroundColor() {
+    public function testSetValidbackgroundColor()
+    {
         $e = new TicketType();
         $e->setName(self::SOME_NAME);
         $e->setBackgroundColor("111111");
@@ -29,8 +29,9 @@ class TicketTypeTest extends  \PHPUnit_Framework_TestCase
         $errors = $validator->validate($e);
         $this->assertEquals(0, count($errors));
     }
-    
-    public function testSetInvalidbackgroundColor() {
+
+    public function testSetInvalidbackgroundColor()
+    {
         $e = new TicketType();
         $e->setName(self::SOME_NAME);
         $e->setBackgroundColor("GGGGGG");
@@ -69,4 +70,3 @@ class TicketTypeTest extends  \PHPUnit_Framework_TestCase
         $this->assertEquals($isBackgroundFilled, $this->ticketType->getIsBackgroundFilled());
     }
 }
-?>

@@ -10,7 +10,6 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
     const SOME_INVALID_NAME = 'deine mudda';
     const SOME_FILTER_KEY_NAME = 'type';
 
-
     /**
      * @test
      */
@@ -84,7 +83,6 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
             '',
             false
         );
-
 
         return $repository;
     }

@@ -37,13 +37,15 @@ class PrintingService
     private function getFile($html)
     {
         $file = $this->generator->generateFromHtml($html);
+
         return array(
             'content' => $file,
             'mime' => $this->getMimeType($file)
         );
     }
 
-    private function getMimeType($file) {
+    private function getMimeType($file)
+    {
         return $this->fileInfo->buffer($file);
     }
 }

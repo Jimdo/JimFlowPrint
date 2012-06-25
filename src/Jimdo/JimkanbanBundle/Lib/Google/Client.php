@@ -27,7 +27,6 @@ class Client implements ClientInterface
      */
     private $authToken;
 
-
     /**
      * @param Browser $httpClient
      * @param $email
@@ -55,7 +54,7 @@ class Client implements ClientInterface
 
     /**
      * @param $url
-     * @param array $headers
+     * @param  array                  $headers
      * @return \Buzz\Message\Response
      */
     public function get($url, $headers = array())
@@ -67,8 +66,8 @@ class Client implements ClientInterface
      * @throws \InvalidArgumentException
      * @param $type
      * @param $url
-     * @param array $headers
-     * @param null $content
+     * @param  array                  $headers
+     * @param  null                   $content
      * @return \Buzz\Message\Response
      */
     private function doRequest($type, $url, $headers = array(), $content = null)
@@ -86,7 +85,6 @@ class Client implements ClientInterface
         }
 
     }
-
 
     /**
      * @return bool

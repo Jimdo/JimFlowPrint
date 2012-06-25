@@ -8,6 +8,7 @@ class TicketIdFilter implements FilterInterface
     public function filter(array $data, $key)
     {
         $data[$key] = str_replace('#', '', $data[$key]);
+
         return $data;
     }
 }

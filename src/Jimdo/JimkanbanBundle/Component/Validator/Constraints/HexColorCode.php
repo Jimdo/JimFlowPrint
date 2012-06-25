@@ -1,9 +1,9 @@
 <?php
 
 namespace Jimdo\JimkanbanBundle\Component\Validator\Constraints;
- 
+
 use Symfony\Component\Validator\Constraint;
- 
+
 /**
 * @Annotation
 */
