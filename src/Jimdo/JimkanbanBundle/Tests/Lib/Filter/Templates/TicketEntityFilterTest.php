@@ -50,7 +50,7 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function itShould()
+    public function itShouldReturnFallbackEntity()
     {
         $someName = self::SOME_VALID_NAME;
         $someKeyName = self::SOME_FILTER_KEY_NAME;
@@ -72,6 +72,29 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
         $filter = new TicketTypeEntityFilter($repository);
         $data = $filter->filter($data, $someKeyName);
         $testEntity = $data[$someKeyName];
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldReturnFallbackFallbackIfNoFallbackIsFound()
+    {
+        $someName = self::SOME_VALID_NAME;
+        $someKeyName = self::SOME_FILTER_KEY_NAME;
+
+        $repository = $this->getRepository();
+        $repository->expects($this->any())
+            ->method('findOneBy')
+            ->will($this->returnValue(null));
+
+        $data = array($someKeyName => $someName);
+        $filter = new TicketTypeEntityFilter($repository);
+        $data = $filter->filter($data, $someKeyName);
+        $entity = $data[$someKeyName];
+
+
+        $this->assertEquals('ff0000', $entity->getBackgroundColor());
+
     }
 
     private function getRepository()
