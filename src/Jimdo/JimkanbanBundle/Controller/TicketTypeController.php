@@ -163,8 +163,7 @@ class TicketTypeController extends Controller
             $em->remove($entity);
             $em->flush();
         }
-
-        return $this->redirect($this->generateUrl('tickettype'));
+        return $this->redirect($this->generateUrl('tickettype_list'));
     }
 
     /**
