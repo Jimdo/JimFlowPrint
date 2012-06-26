@@ -19,7 +19,7 @@ class Gcp implements ProviderInterface
     }
 
     /**
-     * @return array
+     * @return \Jimdo\JimkanbanBundle\Lib\Printer\Config[]
      */
     public function getPrinters()
     {
@@ -32,6 +32,10 @@ class Gcp implements ProviderInterface
         return $printers;
     }
 
+    /**
+     * @param $printerStatus
+     * @return bool
+     */
     private function isAvailable($printerStatus)
     {
         return $printerStatus === self::STATUS_ONLINE;

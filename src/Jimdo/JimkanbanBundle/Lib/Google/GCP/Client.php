@@ -18,29 +18,6 @@ class Client
     {
         $this->client = $client;
     }
-    /**
-     * @return string
-     */
-    protected function getAccountType()
-    {
-        return self::ACCOUNT_TYPE;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getSource()
-    {
-        return self::SOURCE;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getServiceName()
-    {
-        return self::SERVICE_NAME;
-    }
 
     /**
      * @return \Buzz\Message\Response
@@ -217,7 +194,7 @@ class Client
         $data = array(
             'printerid' => $printerId,
             'content' => base64_encode($configuration['content']),
-            'contentType' => 'application/pdf',//$configuration['mime'],
+            'contentType' => $configuration['mime'],
             'capabilities' => $capabilities,
             'title' => 'Ticket',
             'tag' => 'ticket',
