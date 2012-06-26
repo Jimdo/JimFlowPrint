@@ -66,3 +66,11 @@ label.required:after {
 div.ticket, input.ticket {
     color: #fff !important;
 }
+
+#flash-notice {
+    background-color: #84F094;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 5px;
+}

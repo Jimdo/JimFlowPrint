@@ -21,4 +21,9 @@
      <navigation>
         {% include 'JimdoJimkanbanBundle:backend:navigation.html.twig' %}
     </navigation>
+    {% if app.session.hasFlash('notice') %}
+        <div id="flash-notice">
+            {{ app.session.flash('notice') }}
+    </div>
+    {% endif %}
 {% endblock %}
