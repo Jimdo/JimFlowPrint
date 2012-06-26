@@ -60,6 +60,7 @@ class TicketTypeController extends Controller
             $em->persist($ticketType);
             $em->flush();
 
+            $this->get('session')->setFlash('notice', 'Created your ticket type.');
             return $this->redirect($this->generateUrl('tickettype_edit', array('id' => $ticketType->getId())));
 
         }
@@ -127,6 +128,7 @@ class TicketTypeController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->setFlash('notice', 'Saved your changes.');
             return $this->redirect($this->generateUrl('tickettype_edit', array('id' => $id)));
         }
 
@@ -163,6 +165,8 @@ class TicketTypeController extends Controller
             $em->remove($entity);
             $em->flush();
         }
+
+        $this->get('session')->setFlash('notice', 'Deleted ticket type');
         return $this->redirect($this->generateUrl('tickettype_list'));
     }
 
