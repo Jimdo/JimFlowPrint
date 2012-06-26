@@ -46,6 +46,7 @@ class PrintingService
 
     private function getMimeType($file)
     {
-        return $this->fileInfo->buffer($file);
+        $mime = explode(';', $this->fileInfo->buffer($file));
+        return $mime[0];
     }
 }
