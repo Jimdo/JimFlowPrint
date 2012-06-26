@@ -20,6 +20,11 @@ class TemplateViewController extends Controller
     {
         $templateData = $this->getTemplateData();
 
+        $templateData = array_merge(
+            array('isAdmin' => $this->get('security.context')->isGranted('ROLE_ADMIN')),
+            $templateData
+        );
+
         return $this->render(
             'JimdoJimkanbanBundle:Template:ticket.html.twig',
             $templateData

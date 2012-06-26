@@ -46,8 +46,16 @@
                 <div id="print-block">
                     <h1 id="print-headline">Print <span class="status"></span></h1>
                     {% include 'JimdoJimkanbanBundle:Template:printer-buttons.html.twig' %}
+                    <h1>More</h1>
+                    <div>
+                        <a class="button gray" href="{{ path('template_story') }}">Print a story</a>
+                        {% if isAdmin %}
+                            <a class="button gray" href="{{ path('tickettype_list') }}">Manage ticket types</a>
+                        {% endif %}
+                    </div>
                 </div>
                 <div style="clear:both;"></div>
+
 
             </form>
         {% endblock %}
