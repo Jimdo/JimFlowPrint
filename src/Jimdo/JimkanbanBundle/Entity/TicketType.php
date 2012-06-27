@@ -6,12 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Jimdo\JimkanbanBundle\Component\Validator\Constraints as CustomAssert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Jimdo\JimkanbanBundle\Entity\TicketType
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Jimdo\JimkanbanBundle\Entity\TicketTypeRepository")
+ * @UniqueEntity("name")
  */
 class TicketType
 {
