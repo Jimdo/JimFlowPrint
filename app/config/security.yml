@@ -12,7 +12,7 @@ security:
     providers:
         in_memory:
             users:
-                admin: { password: untenrum, roles: 'ROLE_ADMIN' }
+                %admin.username%: { password: %admin.password%, roles: 'ROLE_ADMIN' }
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
