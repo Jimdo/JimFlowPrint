@@ -4,7 +4,7 @@ namespace Jimdo\JimkanbanBundle\Tests\Entity;
 use Symfony\Component\Validator\ValidatorFactory;
 use Jimdo\JimkanbanBundle\Entity\TicketType;
 
-class TicketTypeTest extends  \PHPUnit_Framework_TestCase
+class TicketTypeTest extends  \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 {
     const SOME_COLOR = 'some_color';
     const SOME_BOOL = true;
@@ -20,24 +20,35 @@ class TicketTypeTest extends  \PHPUnit_Framework_TestCase
         $this->ticketType = new TicketType();
     }
 
+    private function getKernel()
+    {
+        $kernel = $this->createKernel();
+        $kernel->boot();
+
+        return $kernel;
+    }
+
     public function testSetValidbackgroundColor()
     {
+        $kernel = $this->getKernel();
+
         $e = new TicketType();
         $e->setName(self::SOME_NAME);
         $e->setBackgroundColor("111111");
-        $validator = ValidatorFactory::buildDefault()->getValidator();
+        $validator = $kernel->getContainer()->get('validator');
         $errors = $validator->validate($e);
-        $this->assertEquals(0, count($errors));
+        $this->assertEquals(0, $errors->count());
     }
 
     public function testSetInvalidbackgroundColor()
     {
+        $kernel = $this->getKernel();
         $e = new TicketType();
         $e->setName(self::SOME_NAME);
         $e->setBackgroundColor("GGGGGG");
-        $validator = ValidatorFactory::buildDefault()->getValidator();
+        $validator = $kernel->getContainer()->get('validator');
         $errors = $validator->validate($e);
-        $this->assertEquals(1, count($errors));
+        $this->assertEquals(1, $errors->count());
     }
 
     /**
