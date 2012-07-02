@@ -4,12 +4,6 @@ template_ticket:
   requirements:
       _method:  GET
 
-template_ticket_print_view:
-  pattern:  /ticket.printpreview
-  defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticketprint" }
-  requirements:
-      _method:  GET
-
 template_ticket_print:
   pattern:  /print/ticket.paper
   defaults: { _controller: "JimdoJimkanbanBundle:Print:printticket" }
@@ -21,11 +15,6 @@ template_story:
     defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:story" }
     requirements:
       _method:  GET
-
-
-template_story_print_view:
-    pattern:  /story.printpreview
-    defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:storyprint" }
 
 template_story_print:
   pattern:  /story.paper
