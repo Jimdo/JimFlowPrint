@@ -16,10 +16,16 @@ services:
       - @jimdo.pdf_generator
       - @jimdo.mimeinfo
 
-  jimdo.printing.provider.gcp:
-    class: Jimdo\JimkanbanBundle\Lib\Printer\Provider\Gcp
+  jimdo.printing.provider.gcp.factory:
+    class: Jimdo\JimkanbanBundle\Lib\Printer\Provider\GcpProviderFactory
     arguments:
       - @jimdo.gcp.client
+  jimdo.printing.provider.gcp:
+    class: Jimdo\JimkanbanBundle\Lib\Printer\Provider\ProviderInterface
+    factory_service: jimdo.printing.provider.gcp.factory
+    factory_method: get
+    arguments:
+      - %kernel.environment%
 
   jimdo.pdf_generator:
     class: Jimdo\JimkanbanBundle\Lib\Generator\Service
