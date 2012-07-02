@@ -11,7 +11,7 @@ class PrintController extends Controller
         $data = $request->request->all();
         $response = $this->forward('JimdoJimkanbanBundle:TemplateView:ticketprint', array($data));
 
-        return $this->doPrint($response->getContent());
+        return $this->doPrint($response->getContent(), $request);
     }
 
     public function printstoryAction(Request $request)
@@ -19,11 +19,14 @@ class PrintController extends Controller
         $data = $request->request->all();
         $response = $this->forward('JimdoJimkanbanBundle:TemplateView:storyprint', array($data));
 
-        return $this->doPrint($response->getContent());
+        return $this->doPrint($response->getContent(), $request);
     }
 
-    private function doPrint($data)
+    private function doPrint($data, Request $request)
     {
+
+        $this->assertFormValid($request);
+
         $templateDataService = $this->container->get('jimdo.template_data_view');
         $templateData = $templateDataService->getTemplateData();
 
@@ -42,4 +45,18 @@ class PrintController extends Controller
         return $response;
     }
 
+    /**
+     * @param Request $request
+     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
+     * @return void
+     */
+    private function assertFormValid(Request $request)
+    {
+        $form = $this->createFormBuilder()->getForm();
+        $form->bindRequest($request);
+
+        if (!$form->isValid()) {
+            throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
+        }
+    }
 }

@@ -20,8 +20,10 @@ class TemplateViewController extends Controller
     {
         $templateData = $this->getTemplateData();
 
+
         $templateData = array_merge(
             array('isAdmin' => $this->get('security.context')->isGranted('ROLE_ADMIN')),
+            array('form' => $this->getFormView()),
             $templateData
         );
 
@@ -43,7 +45,12 @@ class TemplateViewController extends Controller
 
     public function storyAction()
     {
-        $templateData = $this->getTemplateData();
+        $templateData = array_merge(
+            $this->getTemplateData(),
+            array(
+                'form' => $this->getFormView()
+            )
+        );
 
         return $this->render(
             'JimdoJimkanbanBundle:Template:story.html.twig',
@@ -77,5 +84,14 @@ class TemplateViewController extends Controller
         $templateData = $templateDataService->getTemplateData();
 
         return $templateData;
+    }
+
+    /**
+     * Empty form used to render csrf token
+     * @return \Symfony\Component\Form\FormView
+     */
+    private function getFormView()
+    {
+        return $this->createFormBuilder()->getForm()->createView();
     }
 }
