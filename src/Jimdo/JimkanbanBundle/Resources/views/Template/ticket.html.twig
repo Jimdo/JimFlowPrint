@@ -49,9 +49,7 @@
                     <h1>More</h1>
                     <div>
                         <a class="button gray" href="{{ path('template_story') }}">Print a story</a>
-                        {% if isAdmin %}
-                            <a class="button gray" href="{{ path('tickettype_list') }}">Manage ticket types</a>
-                        {% endif %}
+                        <a class="button gray {{ isAdmin ? '' : 'inactive' }}" href="{{ path('tickettype_list') }}">Manage ticket types</a>
                     </div>
                 </div>
                 <div style="clear:both;"></div>
