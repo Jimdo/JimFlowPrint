@@ -12,7 +12,7 @@ body, html {
     font-size: 14px;
 }
 
-.form_row input[type="text"] {
+.form_row input[type="text"],input[type="color"] {
     width: 150px;
     height: 27px;
     line-height: 27px;

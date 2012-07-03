@@ -29,27 +29,27 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function itShouldNotAllowValuesWithLessThanThreeCharacters()
+    public function itShouldNotAllowValuesWithHashAndLessThanThreeCharacters()
     {
-        $codeWithLessThanThreeCharacters = 'aa';
+        $codeWithLessThanThreeCharacters = '#aa';
         $this->assertFalse($this->validator->isValid($codeWithLessThanThreeCharacters, $this->hexCodeConstraint));
     }
 
     /**
      * @test
      */
-    public function itShouldNotAllowValuesWithMoreThanSixCharacters()
+    public function itShouldNotAllowValuesWithHashAndMoreThanSixCharacters()
     {
-        $codeWithMoreThanSixChars = 'aaaaaaa';
+        $codeWithMoreThanSixChars = '#aaaaaaa';
         $this->assertFalse($this->validator->isValid($codeWithMoreThanSixChars, $this->hexCodeConstraint));
     }
 
     /**
      * @test
      */
-    public function itShouldNotAllowValuesWithMoreThanThreeAndLessThanSixCharacters()
+    public function itShouldNotAllowValuesWithHashAndMoreThanThreeAndLessThanSixCharacters()
     {
-        $codeWithFourChars = 'aaaa';
+        $codeWithFourChars = '#aaaa';
         $this->assertFalse($this->validator->isValid($codeWithFourChars, $this->hexCodeConstraint));
     }
 
@@ -58,7 +58,7 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldNotAllowValuesContainingAlphanumericCharactersGreaterThanF()
     {
-        $code = 'GGG';
+        $code = '#GGG';
         $this->assertFalse($this->validator->isValid($code, $this->hexCodeConstraint));
     }
 
@@ -67,16 +67,16 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldAllowValuesContainingAlphanumericValuesFromZeroToNineAndFromAtoFWithLengthOfSix()
     {
-        $validCode = 'aa123b';
+        $validCode = '#aa123b';
         $this->assertTrue($this->validator->isValid($validCode, $this->hexCodeConstraint));
     }
 
     /**
      * @test
      */
-    public function itShouldAllowValuesContainingAlphanumericValuesFromZeroToNineAndFromAtoFWithLengthOfThree()
+    public function itShouldAllowValuesContainingAlphanumericValuesFromZeroToNineAndFromAtoFWithLengthOfThreePlusHash()
     {
-        $validCode = 'ff0';
+        $validCode = '#ff0';
         $this->assertTrue($this->validator->isValid($validCode, $this->hexCodeConstraint));
     }
 
@@ -85,7 +85,7 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldBeCaseInsensitive()
     {
-        $validCode = 'FfFf2A';
+        $validCode = '#FfFf2A';
         $this->assertTrue($this->validator->isValid($validCode, $this->hexCodeConstraint));
     }
 
@@ -107,7 +107,7 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldNotSetValidatorMessageWhenValidValuesAreProvided()
     {
-        $someValidCode = '000';
+        $someValidCode = '#000';
         $someMessage = self::SOME_MESSAGE;
 
         $this->hexCodeConstraint->message = $someMessage;

@@ -4,6 +4,7 @@ namespace Jimdo\JimkanbanBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Jimdo\JimkanbanBundle\Form\ColorType;
 
 class TicketType extends AbstractType
 {
@@ -15,7 +16,7 @@ class TicketType extends AbstractType
                 ->add('name', 'text', array(
                     'label' => 'Name'
                 ))
-                ->add('backgroundColor', 'text', array(
+                ->add('backgroundColor', new ColorType(), array(
                     'label' => 'Background Color',
                     'attr' => array(
                         'class' => 'jk-color-picker ticket'
