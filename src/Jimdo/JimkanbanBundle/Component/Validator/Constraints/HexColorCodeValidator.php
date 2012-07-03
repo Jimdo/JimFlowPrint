@@ -13,7 +13,7 @@ class HexColorCodeValidator extends ConstraintValidator
      */
     private function isValidHexColorCode($value)
     {
-        return 0 < preg_match('/^([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value);
+        return 0 < preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $value);
     }
 
     /**

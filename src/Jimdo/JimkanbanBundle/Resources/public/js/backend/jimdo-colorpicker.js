@@ -1,4 +1,16 @@
 $(function() {
+
+    function supportsColorInput() {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'color');
+
+        return input.type === 'color';
+    }
+
+    if (supportsColorInput()) {
+        return;
+    }
+
     $('input.jk-color-picker').each(function() {
 
         var $this = $(this),
@@ -7,16 +19,10 @@ $(function() {
         $this.ColorPicker({
             color: color,
             eventName: 'click focus',
-            onSubmit: function(hsb, hex, rgb, el) {
-                $(el).val(hex)
-                    .css({
-                        'backgroundColor': '#' + hex
-                    });
-            },
             onChange: function(hsb, hex) {
                 $this.css({
                     'backgroundColor': '#' + hex
-                }).val(hex)
+                }).val('#' + hex)
             }
         })
             .css({backgroundColor: color});

@@ -14,3 +14,12 @@
     </div>
 {% endspaceless %}
 {% endblock field_row %}
+
+
+{% block color_widget %}
+    {% spaceless %}
+        {% set type = 'color' %}
+        {{ block('field_widget') }}
+    {% endspaceless %}
+
+{% endblock color_widget %}

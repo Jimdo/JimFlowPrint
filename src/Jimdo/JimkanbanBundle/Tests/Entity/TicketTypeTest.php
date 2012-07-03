@@ -34,7 +34,7 @@ class TicketTypeTest extends  \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 
         $e = new TicketType();
         $e->setName(self::SOME_NAME);
-        $e->setBackgroundColor("111111");
+        $e->setBackgroundColor("#111111");
         $validator = $kernel->getContainer()->get('validator');
         $errors = $validator->validate($e);
         $this->assertEquals(0, $errors->count());
