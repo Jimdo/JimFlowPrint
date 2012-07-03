@@ -1,0 +1,30 @@
+<html>
+    <head>
+        {% stylesheets
+                'bundles/jimdojimkanban/css/backend/buttons.css'
+                'bundles/jimdojimkanban/css/templates/printer-buttons.css'
+            %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {% javascripts
+                '@JimdoJimkanbanBundle/Resources/public/js/jquery.js'
+                '@JimdoJimkanbanBundle/Resources/public/js/print-form/form.js'
+                '@JimdoJimkanbanBundle/Resources/public/js/print-form/buttons-iframe.js'
+            %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+    </head>
+    <body>
+        <form id="kanban_form"  action="{{ url('template_ticket_print') }}" method="POST">
+            <input type="hidden" name="title" value="{{ title }}"/>
+            <input type="hidden" name="type" value="{{ type.name }}"/>
+            <input type="hidden" name="id" value="{{ id }}"/>
+            <input type="hidden" name="created" value="{{ created }}"/>
+            <input type="hidden" name="reporter" value="{{ reporter }}"/>
+            {{ form_widget(form._token) }}
+            {% include 'JimdoJimkanbanBundle:Template:printer-buttons.html.twig' %}
+        </form>
+    </body>
+</html>

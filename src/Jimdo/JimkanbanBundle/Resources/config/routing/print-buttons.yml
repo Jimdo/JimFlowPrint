@@ -1,0 +1,3 @@
+print_buttons:
+    pattern:  /
+    defaults: { _controller: "JimdoJimkanbanBundle:PrintButtons:show" }
