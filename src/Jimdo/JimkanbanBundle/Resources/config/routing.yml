@@ -13,3 +13,8 @@ JimdoJimkanbanBundle_template:
 JimdoJimkanbanBundle_print:
   resource: "@JimdoJimkanbanBundle/Resources/config/routing/print.yml"
   prefix:   /print
+
+JimdoJimkanbanBundle_print_buttons:
+  resource: "@JimdoJimkanbanBundle/Resources/config/routing/print-buttons.yml"
+  prefix:   /buttons
+
