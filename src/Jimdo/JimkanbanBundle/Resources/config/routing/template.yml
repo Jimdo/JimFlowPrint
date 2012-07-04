@@ -4,6 +4,12 @@ template_ticket:
   requirements:
       _method:  GET
 
+template_ticket:
+  pattern:  /ticket.preview
+  defaults: { _controller: "JimdoJimkanbanBundle:TemplateView:ticketprint" }
+  requirements:
+      _method:  GET
+
 template_ticket_print:
   pattern:  /print/ticket.paper
   defaults: { _controller: "JimdoJimkanbanBundle:Print:printticket" }
