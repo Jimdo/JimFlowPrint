@@ -17,5 +17,15 @@ class PrintButtonsController extends Controller
         );
     }
 
+    public function jsAction(Request $request) {
+        $response = new Response();
+
+        $response->setContent($this->renderView('JimdoJimkanbanBundle:External:loader.js.html.twig'));
+        $response->setStatusCode(200);
+        $response->headers->set('Content-Type', 'application/javascript');
+
+        return $response;
+    }
+
 
 }
