@@ -10,5 +10,5 @@ $(function () {
             alert('Something went wrong while trying to print your ticket. Sorry for that :(');
         }
 
-    })
-})
+    });
+});
