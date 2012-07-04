@@ -6,9 +6,9 @@ use Jimdo\JimkanbanBundle\Lib\Printer\Config;
 class GcpWithoutDocsTest extends \PHPUnit_Framework_TestCase
 {
     private $response = array(
-        array('id' => '1', 'name' => 'horst', 'connectionStatus' => 'ONLINE'),
-        array('id' => '2', 'name' => 'peter', 'connectionStatus' => 'ONLINE'),
-        array('id' => '__google__docs', 'name' => 'walter', 'connectionStatus' => 'OFFLINE'),
+        array('id' => '1', 'displayName' => 'horst', 'connectionStatus' => 'ONLINE'),
+        array('id' => '2', 'displayName' => 'peter', 'connectionStatus' => 'ONLINE'),
+        array('id' => '__google__docs', 'displayName' => 'walter', 'connectionStatus' => 'OFFLINE'),
     );
 
     private $gcpClient;

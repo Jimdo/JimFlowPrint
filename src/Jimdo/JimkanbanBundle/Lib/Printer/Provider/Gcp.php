@@ -26,7 +26,7 @@ class Gcp implements ProviderInterface
         $printers = array();
 
         foreach ($this->gcpClient->getPrinterList() as $printer) {
-            $printers[] = new Config($printer['id'], $printer['name'], $this->isAvailable($printer['connectionStatus']));
+            $printers[] = new Config($printer['id'], $printer['displayName'], $this->isAvailable($printer['connectionStatus']));
         }
 
         return $printers;
