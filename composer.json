@@ -41,5 +41,7 @@
         "psr-0": {
             "Jimdo": "src/"
         }
-    }
+    },
+
+    "minimum-stability": "dev"
 }
