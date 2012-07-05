@@ -65,4 +65,4 @@ jms_security_extra:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     /usr/bin/wkhtmltopdf-old
+        binary:     %wkhtmltopdf.path%
