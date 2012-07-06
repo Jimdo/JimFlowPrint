@@ -17,7 +17,7 @@
 
     </head>
     <body>
-        <form id="kanban_form"  action="{{ url('template_ticket_print') }}" method="POST">
+        <form id="kanban_form"  action="{{ path('template_ticket_print') }}" method="POST">
             <input type="hidden" name="title" value="{{ title }}"/>
             <input type="hidden" name="type" value="{{ type.name }}"/>
             <input type="hidden" name="id" value="{{ id }}"/>
