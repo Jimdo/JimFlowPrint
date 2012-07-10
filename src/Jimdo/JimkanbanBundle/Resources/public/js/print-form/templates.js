@@ -9,16 +9,19 @@ $(function () {
         error:function () {
             $statusElm.removeClass('loading').addClass('fail');
         },
-        before:function ($container) {
+        before:function ($container, $button) {
             var self = this;
 
+            console.log($button);
             $container.addClass('inactive');
+            $button.addClass('chosen');
             $statusElm.removeClass('fail ok').addClass('loading');
         },
-        complete:function ($container) {
+        complete:function ($container, $button) {
             var self = this;
             $statusElm.removeClass('loading');
             $container.removeClass('inactive');
+            $button.removeClass('chosen');
         }
     });
 })

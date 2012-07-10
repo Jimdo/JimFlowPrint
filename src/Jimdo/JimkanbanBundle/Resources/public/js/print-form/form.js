@@ -53,6 +53,7 @@
             var self = this;
 
             self.$printButtons.bind('click', function () {
+                self.$currentButton = $(this);
                 self.submitForm($(this).attr('data-id'));
             });
         },
@@ -151,7 +152,7 @@
                 cb = $.noop;
             }
 
-            cb.call(scope, self.$printButtonsContainer);
+            cb.call(scope, self.$printButtonsContainer, self.$currentButton);
         }
     }
 
