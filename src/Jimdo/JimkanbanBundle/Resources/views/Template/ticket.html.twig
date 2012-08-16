@@ -24,7 +24,7 @@
                                 <input type="hidden" name="type" value="{{ type.name }}"/>
                             </div>
                             <div id="ticketnumber" class="b-l b-b big-meta">
-                                <p>#{{ id }}</p>
+                                <p>#{{ id|slice(1,id|length) }}</p>
                                 <input type="hidden" name="id" value="{{ id }}"/>
 
                             </div>
