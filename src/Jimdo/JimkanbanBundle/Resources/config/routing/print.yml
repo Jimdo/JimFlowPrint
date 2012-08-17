@@ -1,7 +1,0 @@
-printer:
-    pattern:  /ticket
-    defaults: { _controller: "JimdoJimkanbanBundle:Print:printticket" }
-
-print_story:
-    pattern:  /story
-    defaults: { _controller: "JimdoJimkanbanBundle:Print:printstory" }
