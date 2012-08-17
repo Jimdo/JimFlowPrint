@@ -3,10 +3,11 @@ app/logs/*
 app/*.cache
 web/bundles/*
 web/uploads/*
+web/js/*
+web/css/*
 vendor
 composer.phar
 composer.lock
 app/config/parameters.ini
 nbproject/*
 .idea/*
-app/config/parameters.ini
