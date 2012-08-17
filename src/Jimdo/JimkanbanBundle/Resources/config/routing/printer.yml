@@ -1,0 +1,26 @@
+printer_list:
+    pattern:  /
+    defaults: { _controller: "JimdoJimkanbanBundle:Printer:index" }
+
+printer_new:
+    pattern:  /new
+    defaults: { _controller: "JimdoJimkanbanBundle:Printer:new" }
+
+printer_create:
+    pattern:  /create
+    defaults: { _controller: "JimdoJimkanbanBundle:Printer:create" }
+    requirements: { _method: post }
+
+printer_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "JimdoJimkanbanBundle:Printer:edit" }
+
+printer_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "JimdoJimkanbanBundle:Printer:update" }
+    requirements: { _method: post }
+
+printer_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "JimdoJimkanbanBundle:Printer:delete" }
+    requirements: { _method: post }

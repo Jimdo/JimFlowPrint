@@ -1,0 +1,34 @@
+<html>
+    <head>
+        {% stylesheets
+            '@JimdoJimkanbanBundle/Resources/public/css/layout.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {% block additional_css %}{% endblock %}
+
+        {% javascripts
+            '@JimdoJimkanbanBundle/Resources/public/js/jquery.js'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% block additional_js %}{% endblock %}
+
+    </head>
+    <body>
+        <div id="header">
+        </div>
+        <div id="content">
+            {% image
+                '@JimdoJimkanbanBundle/Resources/public/images/jimkanban-logo.png'
+            %}
+            <img src="{{ asset_url }}"></img>
+            {% endimage %}
+
+            <div>
+                 {% block body %} {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

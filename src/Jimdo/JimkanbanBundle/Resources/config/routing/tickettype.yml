@@ -1,0 +1,26 @@
+tickettype_list:
+    pattern:  /
+    defaults: { _controller: "JimdoJimkanbanBundle:TicketType:index" }
+
+tickettype_new:
+    pattern:  /new
+    defaults: { _controller: "JimdoJimkanbanBundle:TicketType:new" }
+
+tickettype_create:
+    pattern:  /create
+    defaults: { _controller: "JimdoJimkanbanBundle:TicketType:create" }
+    requirements: { _method: post }
+
+tickettype_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "JimdoJimkanbanBundle:TicketType:edit" }
+
+tickettype_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "JimdoJimkanbanBundle:TicketType:update" }
+    requirements: { _method: post }
+
+tickettype_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "JimdoJimkanbanBundle:TicketType:delete" }
+    requirements: { _method: post }

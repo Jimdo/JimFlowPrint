@@ -1,0 +1,12 @@
+services:
+
+  # 10 sec timeout, 'cause gcp is slow atm: https://groups.google.com/forum/?fromgroups#!topic/gcp-developers/od8HkegjYG0
+  jimdo.buzz.client.curl:
+    class:  Buzz\Client\Curl
+    public: false
+    calls:
+      - [setTimeout, [1000]]
+
+  jimdo.buzz.browser:
+    class:     Buzz\Browser
+    arguments: [@jimdo.buzz.client.curl]

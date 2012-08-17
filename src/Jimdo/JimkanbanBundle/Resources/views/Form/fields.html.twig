@@ -1,0 +1,25 @@
+{% block field_row %}
+{% spaceless %}
+    <div class="form_row">
+        <div class="label">
+            {{ form_label(form) }}
+        </div>
+        <div class="field">
+            {{ form_widget(form) }}
+            <div class="error">
+                {{ form_errors(form) }}
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+{% endspaceless %}
+{% endblock field_row %}
+
+
+{% block color_widget %}
+    {% spaceless %}
+        {% set type = 'color' %}
+        {{ block('field_widget') }}
+    {% endspaceless %}
+
+{% endblock color_widget %}

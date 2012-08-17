@@ -1,0 +1,45 @@
+(function (d) {
+
+    function getDataAttr(element, key) {
+        return element.getAttribute('data-' + key);
+    }
+
+    function buildQuery(element) {
+        var query = '',
+            data = {
+                'reporter':getDataAttr(element, 'reporter'),
+                'id':getDataAttr(element, 'id'),
+                'title':getDataAttr(element, 'title'),
+                'created':getDataAttr(element, 'created'),
+                'type':getDataAttr(element, 'type')
+            },
+            value;
+
+        for (var key in data) {
+            value = data[key] || '';
+            query += '&' + key + '=' + value;
+        }
+
+        return '?' + query.substr(1, query.length - 1);
+    }
+
+    function createIFrame(element) {
+        var iFrame = d.createElement('iframe'),
+            query = buildQuery(element);
+
+        iFrame.setAttribute('allowtransparency', true);
+        iFrame.setAttribute('style', getDataAttr(element, 'style'));
+        iFrame.setAttribute('src', window.location.protocol + '//{{app.request.host ~ path('print_buttons') }}' + query);
+
+        element.parentNode.insertBefore(iFrame, element);
+
+    }
+
+    var toTransform = d.getElementsByClassName('jim-print-buttons');
+
+    for (var i = 0; i < toTransform.length; i++) {
+        createIFrame(toTransform[i]);
+    }
+
+
+})(document)

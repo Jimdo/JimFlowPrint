@@ -1,0 +1,8 @@
+imports:
+    - { resource: "services/repositories.yml" }
+    - { resource: "services/filters.yml" }
+    - { resource: "services/listener.yml" }
+    - { resource: "services/printing.yml" }
+    - { resource: "services/google.yml" }
+    - { resource: "services/templatedata.yml" }
+    - { resource: "services/buzz.yml" }

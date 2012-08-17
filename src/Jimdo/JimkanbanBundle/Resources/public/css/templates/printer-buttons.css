@@ -1,0 +1,101 @@
+@-webkit-keyframes pulsate {
+	0% {-webkit-box-shadow:0px 0px 0px 0px #918E90;}
+    10% {-webkit-box-shadow:0px 0px 3px 0px #918E90;}
+    20% {-webkit-box-shadow:0px 0px 6px 0px #918E90;}
+    30% {-webkit-box-shadow:0px 0px 9px 0px #918E90;}
+    40% {-webkit-box-shadow:0px 0px 12px 0px #918E90;}
+    50% {-webkit-box-shadow:0px 0px 15px 0px #918E90;}
+    60% {-webkit-box-shadow:0px 0px 12px 0px #918E90;}
+    70% {-webkit-box-shadow:0px 0px 9px 0px #918E90;}
+    80% {-webkit-box-shadow:0px 0px 6px 0px #918E90;}
+    90% {-webkit-box-shadow:0px 0px 3px 0px #918E90;}
+    100% {-webkit-box-shadow:0px 0px 0px 0px #918E90;}
+}
+
+@-moz-keyframes pulsate {
+	0% {box-shadow:0px 0px 0px 0px #918E90;}
+    10% {box-shadow:0px 0px 2px 0px #918E90;}
+    20% {box-shadow:0px 0px 4px 0px #918E90;}
+    30% {box-shadow:0px 0px 6px 0px #918E90;}
+    40% {box-shadow:0px 0px 8px 0px #918E90;}
+    50% {box-shadow:0px 0px 10px 0px #918E90;}
+    60% {box-shadow:0px 0px 8px 0px #918E90;}
+    70% {box-shadow:0px 0px 6px 0px #918E90;}
+    80% {box-shadow:0px 0px 4px 0px #918E90;}
+    90% {box-shadow:0px 0px 2px 0px #918E90;}
+    100% {box-shadow:0px 0px 0px 0px #918E90;}
+}
+
+@-ms-keyframes pulsate {
+	0% {-ms-box-shadow:0px 0px 0px 0px #918E90;}
+    10% {-ms-box-shadow:0px 0px 2px 0px #918E90;}
+    20% {-ms-box-shadow:0px 0px 4px 0px #918E90;}
+    30% {-ms-box-shadow:0px 0px 6px 0px #918E90;}
+    40% {-ms-box-shadow:0px 0px 8px 0px #918E90;}
+    50% {-ms-box-shadow:0px 0px 10px 0px #918E90;}
+    60% {-ms-box-shadow:0px 0px 8px 0px #918E90;}
+    70% {-ms-box-shadow:0px 0px 6px 0px #918E90;}
+    80% {-ms-box-shadow:0px 0px 4px 0px #918E90;}
+    90% {-ms-box-shadow:0px 0px 2px 0px #918E90;}
+    100% {-ms-box-shadow:0px 0px 0px 0px #918E90;}
+}
+@-o-keyframes pulsate {
+	0% {box-shadow:0px 0px 0px 0px #918E90;}
+    10% {box-shadow:0px 0px 2px 0px #918E90;}
+    20% {box-shadow:0px 0px 4px 0px #918E90;}
+    30% {box-shadow:0px 0px 6px 0px #918E90;}
+    40% {box-shadow:0px 0px 8px 0px #918E90;}
+    50% {box-shadow:0px 0px 10px 0px #918E90;}
+    60% {box-shadow:0px 0px 8px 0px #918E90;}
+    70% {box-shadow:0px 0px 6px 0px #918E90;}
+    80% {box-shadow:0px 0px 4px 0px #918E90;}
+    90% {box-shadow:0px 0px 2px 0px #918E90;}
+    100% {box-shadow:0px 0px 0px 0px #918E90;}
+}
+
+@keyframes pulsate {
+	0% {box-shadow:0px 0px 0px 0px #918E90;}
+    10% {box-shadow:0px 0px 2px 0px #918E90;}
+    20% {box-shadow:0px 0px 4px 0px #918E90;}
+    30% {box-shadow:0px 0px 6px 0px #918E90;}
+    40% {box-shadow:0px 0px 8px 0px #918E90;}
+    50% {box-shadow:0px 0px 10px 0px #918E90;}
+    60% {box-shadow:0px 0px 8px 0px #918E90;}
+    70% {box-shadow:0px 0px 6px 0px #918E90;}
+    80% {box-shadow:0px 0px 4px 0px #918E90;}
+    90% {box-shadow:0px 0px 2px 0px #918E90;}
+    100% {box-shadow:0px 0px 0px 0px #918E90;}
+}
+
+#printer-buttons .chosen {
+    opacity: 1;
+    -webkit-animation-name: pulsate;
+    -moz-animation-name: pulsate;
+    -ms-animation-name: pulsate;
+    -o-animation-name: pulsate;
+    animation-name: pulsate;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    -ms-animation-duration: 1s;
+    -o-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+    -o-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+#printer-buttons.inactive, #printer-buttons .inactive {
+    opacity: .7;
+}
+
+
+#printer-buttons div {
+    margin: 2px;
+}

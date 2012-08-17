@@ -1,0 +1,60 @@
+/* Loading */
+#print-headline span.status {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+
+#print-headline span.loading {
+    display: inline-block;
+    background: url('../../images/ajax.gif');
+}
+
+#print-headline span.ok {
+    display: inline-block;
+    background: url('../../images/ok.png');
+}
+
+#print-headline span.fail {
+    display: inline-block;
+    background: url('../../images/fail.png');
+}
+
+body {
+    font:13px/170% Helvetica, Helvetica Neue, Helvetica-Neue, Arial,sans-serif;
+
+}
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+p {
+    padding:0;
+	margin:0;
+}
+
+#card-container {
+    float: left;
+    margin-right: 20px;
+}
+
+#card {
+	position: relative;
+	width: 559px;
+	height: 393px;
+	border: 1px solid black;
+}
+
+#text {
+    margin: 0;
+    border: none;
+    width: 98%;
+    height: 98%;
+    padding: 2% 0 0 2%;
+    font-family: inherit;
+    font-size: 46px;
+    line-height: 1;
+    resize: none;
+    outline:  none;
+}

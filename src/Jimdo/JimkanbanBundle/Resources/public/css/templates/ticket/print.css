@@ -1,0 +1,23 @@
+body {
+    font: 12px/170% Helvetica, Helvetica Neue, Helvetica-Neue, Arial, sans-serif;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+#card {
+    margin-top : 4mm;
+    margin-left: 4mm;
+    position: relative;
+    width: 133mm;
+    height: 95mm;
+    border: 1px solid black;
+}

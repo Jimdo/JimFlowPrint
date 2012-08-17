@@ -34,19 +34,7 @@
                     }
                 }
             }
-        },
-      {
-          "type": "vcs",
-          "url":  "https://github.com/edorian/phpunit-composer-try"
-      },
-      {
-          "type": "pear",
-          "url":  "pear.phpunit.de"
-      },
-      {
-          "type": "pear",
-          "url":  "pear.symfony-project.com"
-      }
+        }
     ],
 
     "autoload": {
@@ -55,8 +43,12 @@
         }
     },
 
+<<<<<<< HEAD
+    "minimum-stability": "dev"
+=======
     "minimum-stability": "dev",
     "require-dev": {
       "phpunit-testing/phpunit": "dev-master"
   }
+>>>>>>> 639de200f5a8245e62ea5691340df3f3bcc94c45
 }

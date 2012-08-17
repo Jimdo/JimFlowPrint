@@ -1,0 +1,76 @@
+body, html {
+    font-family: Roboto, Arial, sans-serif;
+}
+
+.records_list {
+    width: 90%;
+
+}
+
+.form_row {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.form_row input[type="text"],input[type="color"] {
+    width: 150px;
+    height: 27px;
+    line-height: 27px;
+    text-indent: 3px;
+    font-size: 1em;
+    color: #333;
+    background: #fff;
+    border: solid 1px #d9d9d9;
+}
+
+.form_row .label {
+    width: 200px;
+    float: left;
+}
+
+.form_row .field {
+    width: 200px;
+    float: left;
+}
+
+.form_row .error ul {
+    color: red;
+}
+
+#ticket_list .ticket {
+    width: 150px;
+    height: 23px;
+    padding: 5px;
+    float: left;
+    text-align: center;
+}
+
+#ticket_list .edit {
+    margin-left: 15px;
+    float: left;
+}
+
+#ticket_list .item {
+    border-bottom: 1px solid #555;
+    padding: 10px;
+}
+
+.list_new_button {
+    margin-top: 25px;
+}
+
+label.required:after {
+    content: " *"
+}
+
+div.ticket, input.ticket {
+    color: #fff !important;
+}
+
+#flash-notice {
+    background-color: #84F094;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 5px;
+}
