@@ -1,0 +1,7 @@
+print_buttons:
+    pattern:  /iframe.html
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:PrintButtons:show" }
+
+print_buttons_loader_js:
+    pattern:  /loader.js
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:PrintButtons:js" }

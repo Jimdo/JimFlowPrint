@@ -1,0 +1,24 @@
+{% extends 'JimdoJimFlowPrintTicketBundle:backend:backend_layout.html.twig' %}
+{% block body %}
+{{ parent() }}
+<h1>Create TicketType</h1>
+
+<form action="{{ path('tickettype_create') }}" method="post" {{ form_enctype(form) }}>
+
+    {% form_theme form 'JimdoJimFlowPrintTicketBundle:Form:fields.html.twig' %}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.backgroundColor) }}
+    {{ form_row(form.isBackgroundFilled) }}
+    {{ form_rest(form) }}
+    <p>
+        <button class="button orange" type="submit">Save</button>
+    </p>
+</form>
+
+<div class="record_actions">
+    <a class="button gray" href="{{ path('tickettype_list') }}">
+        Back to the list
+    </a>
+</div>
+{% endblock %}

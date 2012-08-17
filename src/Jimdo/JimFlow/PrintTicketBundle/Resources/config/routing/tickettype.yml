@@ -1,0 +1,26 @@
+tickettype_list:
+    pattern:  /
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TicketType:index" }
+
+tickettype_new:
+    pattern:  /new
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TicketType:new" }
+
+tickettype_create:
+    pattern:  /create
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TicketType:create" }
+    requirements: { _method: post }
+
+tickettype_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TicketType:edit" }
+
+tickettype_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TicketType:update" }
+    requirements: { _method: post }
+
+tickettype_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TicketType:delete" }
+    requirements: { _method: post }

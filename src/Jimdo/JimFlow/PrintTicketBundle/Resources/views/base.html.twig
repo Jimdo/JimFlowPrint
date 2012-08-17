@@ -1,0 +1,30 @@
+<html>
+    <head>
+        {% stylesheets filter='cssrewrite'
+            'bundles/jimdojimflowprintticket/css/backend/*'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+
+        {% javascripts
+            '@JimdoJimFlowPrintTicketBundle/Resources/public/js/jquery.js'
+            '@JimdoJimFlowPrintTicketBundle/Resources/public/js/backend/*'
+        %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto:100,400,700' rel='stylesheet' type='text/css' />
+
+    </head>
+    <body>
+
+        <div id="content">
+            <navigation>
+               {% include 'JimdoJimFlow\PrintTicketBundle:backend:navigation.html.twig' %}
+            </navigation>
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+
+</html>

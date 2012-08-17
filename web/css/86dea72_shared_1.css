@@ -1,0 +1,85 @@
+#description {
+    float: left;
+    height: 100%;
+    width: 68%;
+}
+
+#text {
+    margin: 0;
+    border: none;
+    width: 98%;
+    height: 98%;
+    padding: 2% 0 0 2%;
+    font-family: inherit;
+    font-size: 46px;
+    line-height: 1;
+    resize: none;
+    outline:  none;
+}
+
+
+#metaarea {
+    float: right;
+    height: 100%;
+    text-align: right;
+    width: 32%;
+}
+
+#metaarea div p {
+}
+
+#type p {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 0 0;
+    text-transform: uppercase;
+}
+
+#type {
+    text-align: center;
+}
+
+
+#ticketnumber p {
+    font-size: 37px;
+    font-weight: bold;
+    padding: 18px 11px 0;
+}
+
+#metaarea div:nth-child(1n+3) p {
+    font-size: 22px;
+    padding: 0 11px 0;
+}
+
+#metaarea div:nth-child(1n+3) p:first-child {
+    font-size: 10px;
+    padding: 5px 11px 0;
+}
+
+.big-meta {
+    height: 15%;
+}
+
+.small-meta {
+    height: 11%;
+}
+
+#qr {
+    display: block;
+    height: 44%;
+    padding-left: 1px;
+}
+
+.b-b {
+    border-bottom: 1px dotted black;
+}
+
+.b-l {
+    border-left: 1px dotted black;
+}
+
+.b-r {
+    border-right: 1px dotted black;
+}
+

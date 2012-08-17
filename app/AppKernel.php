@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
- 	        new Jimdo\JimkanbanBundle\JimdoJimkanbanBundle(),
+ 	        new Jimdo\JimFlow\PrintTicketBundle\JimdoJimFlowPrintTicketBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
             new \Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),

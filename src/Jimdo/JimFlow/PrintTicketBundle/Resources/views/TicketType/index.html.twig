@@ -1,0 +1,31 @@
+{% extends 'JimdoJimFlowPrintTicketBundle:backend:backend_layout.html.twig' %}
+{% block body %}
+{{ parent() }}
+<h1>TicketType list</h1>
+
+
+<div id="ticket_list">
+    {% for entity in entities %}
+        <div class="item">
+            <div class="ticket" style="background-color: {{ entity.backgroundColor }}">
+               {{ entity.name }}
+            </div>
+            <div class="edit">
+                <a class="button gray" href="{{ path('tickettype_edit', { 'id': entity.id }) }}">edit</a>
+                <span>{{entity.isFallback ? '(default type)' : ''}}</span>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<p>
+    <a class="button orange" href="{{ path('tickettype_new') }}">
+        Add ticket type
+    </a>
+</p>
+
+
+{% endblock %}

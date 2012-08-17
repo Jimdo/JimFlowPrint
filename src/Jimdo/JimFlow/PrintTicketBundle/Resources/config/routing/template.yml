@@ -1,0 +1,29 @@
+template_ticket:
+  pattern:  /ticket.html
+  defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TemplateView:ticket" }
+  requirements:
+      _method:  GET
+
+template_ticket_preview:
+  pattern:  /ticket.preview
+  defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TemplateView:ticketprint" }
+  requirements:
+      _method:  GET
+
+template_ticket_print:
+  pattern:  /print/ticket.paper
+  defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printticket" }
+  requirements:
+      _method:  POST
+
+template_story:
+    pattern:  /story.html
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TemplateView:story" }
+    requirements:
+      _method:  GET
+
+template_story_print:
+  pattern:  /story.paper
+  defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printstory" }
+  requirements:
+    _method:  POST

@@ -10,7 +10,7 @@ framework:
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
     csrf_protection: true
-    validation:      
+    validation:
       enable_annotations: true
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     session:
@@ -23,7 +23,7 @@ twig:
     strict_variables: %kernel.debug%
     form:
       resources:
-        - 'JimdoJimkanbanBundle:Form:fields.html.twig'
+        - 'JimdoJimFlowPrintTicketBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:

@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        {% stylesheets
+            'bundles/jimdojimflowprintticket/css/templates/story/print.css'
+            'bundles/jimdojimflowprintticket/js/plugins/jquery.fitText/jquery.fittext.css'
+        %}
+        <link rel="stylesheet" href="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset(asset_url) }}" />
+        {% endstylesheets %}
+
+         {% javascripts
+            'bundles/jimdojimflowprintticket/js/jquery.js'
+            'bundles/jimdojimflowprintticket/js/plugins/jquery.fitText/jquery.fittext.js'
+        %}
+        <script type="text/javascript" src="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset(asset_url) }}"></script>
+        {% endjavascripts %}
+
+    </head>
+    <body>
+        <div id="card">
+            <div id="text">
+                {{ title }}
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function() {
+                $('#text').fitText();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+services:
+  jimdo.template_data_view:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\TemplateData
+    arguments:
+      - @request
+      - @jimdo.template_ticket_filter_chain
+    scope: request
+
+  jimdo.template_data_view_printers:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\TemplateDataView
+    arguments:
+      - @request
+      - @jimdo.template_ticket_filter_chain
+      - @jimdo.printing.provider.gcp.sorted
+    scope: request

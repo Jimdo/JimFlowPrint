@@ -1,0 +1,40 @@
+services:
+  jimdo.gcp_printer:
+      class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\GcpPrinter
+      arguments:
+       - @jimdo.gcp.client
+
+  jimdo.mimeinfo:
+    class: finfo
+    arguments:
+      - 1040
+
+  jimdo.gcp_printing:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\PrintingService
+    arguments:
+      - @jimdo.gcp_printer
+      - @jimdo.pdf_generator
+      - @jimdo.mimeinfo
+
+  jimdo.printing.provider.gcp.factory:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Provider\GcpProviderFactory
+    arguments:
+      - @jimdo.gcp.client
+
+  jimdo.printing.provider.gcp:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Provider\ProviderInterface
+    factory_service: jimdo.printing.provider.gcp.factory
+    factory_method: get
+    arguments:
+      - %kernel.environment%
+
+  jimdo.printing.provider.gcp.sorted:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Provider\Util\NameSortAscending
+    arguments:
+      - @jimdo.printing.provider.gcp
+
+  jimdo.pdf_generator:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Generator\Service
+    arguments:
+      - @knp_snappy.pdf
+      - {page-size: 'A6', orientation: 'Landscape', lowquality: false, margin-top: 0, margin-bottom: 0, margin-left: 0, margin-right: 0}
