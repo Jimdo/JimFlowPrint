@@ -8,6 +8,5 @@ web/css/*
 vendor
 composer.phar
 composer.lock
-app/config/parameters.ini
 nbproject/*
 .idea/*
