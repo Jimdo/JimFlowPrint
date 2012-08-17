@@ -1,0 +1,24 @@
+{% extends 'JimdoJimFlowPrintTicketBundle::base_layout.html.twig' %}
+
+{% block additional_css %}
+    {% stylesheets filter="cssrewrite"
+        'bundles/jimdojimflowprintticket/css/templates/view_shared.css'
+        'bundles/jimdojimflowprintticket/css/backend/buttons.css'
+        'bundles/jimdojimflowprintticket/css/templates/printer-buttons.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+{% endblock %}
+
+{% block additional_js %}
+    {% javascripts
+        '@JimdoJimFlowPrintTicketBundle/Resources/public/js/print-form/form.js'
+        '@JimdoJimFlowPrintTicketBundle/Resources/public/js/print-form/templates.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}{% endblock %}

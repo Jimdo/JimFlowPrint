@@ -1,0 +1,6 @@
+services:
+  jimdo.listener.ticket_type.fallback:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Listener\TicketTypeFallback
+    tags:
+      - { name: doctrine.event_listener, event: postPersist}
+      - { name: doctrine.event_listener, event: postUpdate }

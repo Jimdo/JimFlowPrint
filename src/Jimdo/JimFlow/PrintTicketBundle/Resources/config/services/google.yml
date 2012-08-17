@@ -1,0 +1,26 @@
+services:
+  zend.cache.google_auth:
+    class: Zend\Cache\Storage\Adapter\Filesystem
+    factory_class: Zend\Cache\StorageFactory
+    factory_method: factory
+    arguments:
+      - {adapter: {name:'Filesystem', options: {ttl: 600}}}
+
+  jimdo.google.client.gcp:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Google\Client
+    arguments:
+      - @jimdo.buzz.browser
+      - %gcp.email%
+      - %gcp.password%
+      - 'cloudprint'
+
+  jimdo.google.authmanagerclient.gcp:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Google\ClientAuthManagerWrapper
+    arguments:
+      - @jimdo.google.client.gcp
+      - @zend.cache.google_auth
+
+  jimdo.gcp.client:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Google\GCP\Client
+    arguments:
+      - @jimdo.google.authmanagerclient.gcp

@@ -1,0 +1,26 @@
+printer_list:
+    pattern:  /
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Printer:index" }
+
+printer_new:
+    pattern:  /new
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Printer:new" }
+
+printer_create:
+    pattern:  /create
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Printer:create" }
+    requirements: { _method: post }
+
+printer_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Printer:edit" }
+
+printer_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Printer:update" }
+    requirements: { _method: post }
+
+printer_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Printer:delete" }
+    requirements: { _method: post }

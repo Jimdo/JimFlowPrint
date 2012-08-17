@@ -1,0 +1,20 @@
+services:
+  jimdo.ticket_type_entity_repository:
+    class:            Jimdo\JimFlow\PrintTicketBundle\Entity\TicketTypeRepository
+    factory_service:  doctrine.orm.default_entity_manager
+    factory_method: getRepository
+    arguments:
+      - 'JimdoJimFlowPrintTicketBundle:TicketType'
+
+  jimdo.printer_entity_repository:
+    class:            Jimdo\JimFlow\PrintTicketBundle\Entity\PrinterRepository
+    factory_service:  doctrine.orm.default_entity_manager
+    factory_method: getRepository
+    arguments:
+      - 'JimdoJimFlowPrintTicketBundle:Printer'
+
+
+  jimdo.ticket_type_entity_filter:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\TicketTypeEntityFilter
+    arguments:
+      - @jimdo.ticket_type_entity_repository

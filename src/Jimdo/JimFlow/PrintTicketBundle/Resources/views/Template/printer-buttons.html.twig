@@ -1,0 +1,8 @@
+<div id="printer-buttons">
+     {% for printer in printers %}
+            <div class="button gray {{printer.isAvailable ? '' : 'inactive' }}" data-id="{{ printer.id }}">
+                {{ printer.name }}
+            </div>
+     {% endfor %}
+
+</div>

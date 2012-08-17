@@ -1,0 +1,59 @@
+{% extends 'JimdoJimFlowPrintTicketBundle:Template:base_view.html.twig' %}
+
+        {% block additional_css %}
+            {{ parent() }}
+            {% stylesheets filter='cssrewrite'
+                '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/ticket/shared.css'
+                '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/ticket/view.css'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+
+        {% endblock %}
+
+        {% block body %}
+            <form id="kanban_form"  action="{{ path('template_ticket_print') }}" method="POST">
+                <div id="card-container">
+                    <div id="card">
+                        <div id="description">
+                            <textarea name="title" id="text">{{ title }}</textarea>
+                        </div>
+                        <div id="metaarea" style="{{ type.isBackgroundFilled ? 'background-color:' ~ type.backgroundColor : ''}}">
+                            <div id="type" class="small-meta" style="background-color: {{ type.backgroundColor }}">
+                                <p>{{ type.name }}</p>
+                                <input type="hidden" name="type" value="{{ type.name }}"/>
+                            </div>
+                            <div id="ticketnumber" class="b-l b-b big-meta">
+                                <p>#{{ id|slice(1,id|length) }}</p>
+                                <input type="hidden" name="id" value="{{ id }}"/>
+
+                            </div>
+                            <div id="created-at" class="second b-l b-b big-meta" >
+                                <p>created:</p>
+                                <p>{{ created }}</p>
+                                <input type="hidden" name="created" value="{{ created }}"/>
+                            </div>
+                            <div id="reported-by" class="second b-l big-meta">
+                                <p>reported by</p>
+                                <p>{{ reporter }}</p>
+                                <input type="hidden" name="reporter" value="{{ reporter }}"/>
+                            </div>
+                           <img id="qr" class="b-l" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl={{ id }}" />
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="print-block">
+                    <h1 id="print-headline">Print <span class="status"></span></h1>
+                    {% include 'JimdoJimFlowPrintTicketBundle:Template:printer-buttons.html.twig' %}
+                    <h1>More</h1>
+                    <div>
+                        <a class="button gray" href="{{ path('template_story') }}">Print a story</a>
+                        <a class="button gray {{ isAdmin ? '' : 'inactive' }}" href="{{ path('tickettype_list') }}">Manage ticket types</a>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+
+                {{ form_widget(form._token) }}
+            </form>
+        {% endblock %}

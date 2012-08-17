@@ -1,0 +1,29 @@
+{% extends 'JimdoJimFlowPrintTicketBundle:Template:base_view.html.twig' %}
+
+        {% block additional_css %}
+            {% stylesheets filter='cssrewrite'
+                '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/story/view.css'
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+
+            {{ parent() }}
+        {% endblock %}
+
+        {% block body %}
+            <form id="kanban_form"  action="{{ path('template_story_print') }}" method="POST">
+                <div id="card-container">
+                    <div id="card">
+                        <div id="description">
+                            <textarea name="title" id="text">{{ title }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div id="print-block">
+                    <h1 id="print-headline">Print <span class="status"></span></h1>
+                    {% include 'JimdoJimFlowPrintTicketBundle:Template:printer-buttons.html.twig' %}
+                </div>
+                <div style="clear:both;"></div>
+                {{ form_widget(form._token) }}
+            </form>
+        {% endblock %}

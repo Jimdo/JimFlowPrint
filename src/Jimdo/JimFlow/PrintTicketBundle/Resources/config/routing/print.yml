@@ -1,0 +1,7 @@
+printer:
+    pattern:  /ticket
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printticket" }
+
+print_story:
+    pattern:  /story
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printstory" }

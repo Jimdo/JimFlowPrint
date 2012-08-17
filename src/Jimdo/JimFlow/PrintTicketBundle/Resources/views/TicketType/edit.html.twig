@@ -1,0 +1,29 @@
+{% extends 'JimdoJimFlow\PrintTicketBundle:backend:backend_layout.html.twig' %}
+{% block body %}
+{{ parent() }}
+<h1>{{entity.name}} {{entity.isFallback ? '(default type)' : ''}}</h1>
+
+<form action="{{ path('tickettype_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+
+    {% form_theme edit_form 'JimdoJimFlow\PrintTicketBundle:Form:fields.html.twig' %}
+
+    {{ form_row(edit_form.name) }}
+    {{ form_row(edit_form.backgroundColor) }}
+    {{ form_row(edit_form.isBackgroundFilled) }}
+    {{ form_row(edit_form.isFallback) }}
+    {{ form_rest(edit_form) }}
+    <p>
+        <button class="button orange" type="submit">Save</button>
+    </p>
+</form>
+
+<div class="record_actions">
+    <form action="{{ path('tickettype_delete', { 'id': entity.id }) }}" method="post">
+        {{ form_widget(delete_form) }}
+        <a class="button gray" href="{{ path('tickettype_list') }}">
+            Back to list
+        </a>
+        <button class="button gray" type="submit">Delete</button>
+    </form>
+</div>
+{% endblock %}
