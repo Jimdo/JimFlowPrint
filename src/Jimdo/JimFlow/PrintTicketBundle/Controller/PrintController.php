@@ -9,7 +9,7 @@ class PrintController extends Controller
     public function printticketAction(Request $request)
     {
         $data = $request->request->all();
-        $response = $this->forward('JimdoJimFlow\PrintTicketBundle:TemplateView:ticketprint', array($data));
+        $response = $this->forward('JimdoJimFlowPrintTicketBundle:TemplateView:ticketprint', array($data));
 
         return $this->doPrint($response->getContent(), $request);
     }
@@ -17,7 +17,7 @@ class PrintController extends Controller
     public function printstoryAction(Request $request)
     {
         $data = $request->request->all();
-        $response = $this->forward('JimdoJimFlow\PrintTicketBundle:TemplateView:storyprint', array($data));
+        $response = $this->forward('JimdoJimFlowPrintTicketBundle:TemplateView:storyprint', array($data));
 
         return $this->doPrint($response->getContent(), $request);
     }
