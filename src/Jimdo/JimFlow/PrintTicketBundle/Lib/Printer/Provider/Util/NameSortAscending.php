@@ -14,7 +14,7 @@ class NameSortAscending implements ProviderInterface
     /**
      * @param \Jimdo\PrintTicketBundle\Lib\Printer\Provider\ProviderInterface $provider
      */
-    public function __construct(ProviderInterface $provider) {
+    public function __construct($provider) {
         $this->provider = $provider;
     }
 

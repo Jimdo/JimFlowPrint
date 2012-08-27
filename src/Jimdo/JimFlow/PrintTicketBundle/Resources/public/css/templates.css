@@ -95,11 +95,6 @@ p {
 
 }
 
-#header{
-    height:10mm;
-    border-bottom:0.3mm dashed #000;
-}
-
 label{
     font-size:11px;
     color:#665;

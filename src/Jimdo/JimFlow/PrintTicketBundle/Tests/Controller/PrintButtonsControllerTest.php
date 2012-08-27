@@ -21,7 +21,7 @@ class PrintButtonsControllerTest extends WebTestCase
             new Config(2, 'awesome-printer', true),
         );
 
-        $printerProvider = $this->getMock('Jimdo\PrintTicketBundle\Lib\Printer\Provider\Gcp', array(), array(), '', false);
+        $printerProvider = $this->getMock('Jimdo\Jimflow\PrintTicketBundle\Lib\Printer\Provider\Gcp', array(), array(), '', false);
         $printerProvider->expects($this->any())->method('getPrinters')->will($this->returnValue($printers));
 
         $this->client = static::createClient();
@@ -35,6 +35,7 @@ class PrintButtonsControllerTest extends WebTestCase
     {
 
         $crawler = $this->client->request('GET', 'buttons/iframe.html');
+
         $this->assertEquals(1, $crawler->filter('div.button:contains("awesome-printer")')->count());
     }
 

@@ -54,14 +54,16 @@ class TemplateControllerTest extends WebTestCase
     {
         $data = array(
             'reporter' => 'hans',
-            'id' => 2445,
+            'id' => 'T2445',
             'created' => '2012-06-24',
         );
 
         $crawler = $this->client->request('GET', 'template/ticket.html?' . http_build_query($data) . '&title=foo');
 
+	$data['id'] = substr($data['id'], 1);
+
         foreach ($data as $key => $value) {
-            $this->assertEquals(1, $crawler->filter('div.big-meta p:contains("' . $value . '")')->count());
+            $this->assertEquals(1, $crawler->filter('div.big-meta p:contains("' . $value . '")')->count(), $value);
         }
 
         $this->assertEquals(1, $crawler->filter('#text:contains("foo")')->count());

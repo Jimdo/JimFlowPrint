@@ -16,3 +16,26 @@ body, html {
     margin: 0 auto;
     width: 960px;
 }
+
+#footer {
+    background-color: #BBB;
+    margin: 20px 0 0 0;
+    border-top: 1px solid #999;
+    padding: 10px 10px 7px 0;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+#footer a {
+    display: block;
+    float: right;
+    margin-right: 15px;
+    opacity: 0.65;
+    outline: none;
+}
+
+#footer a:hover {
+    opacity: 1;
+}
