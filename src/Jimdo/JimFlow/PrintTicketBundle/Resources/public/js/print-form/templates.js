@@ -11,8 +11,6 @@ $(function () {
         },
         before:function ($container, $button) {
             var self = this;
-
-            console.log($button);
             $container.addClass('inactive');
             $button.addClass('chosen');
             $statusElm.removeClass('fail ok').addClass('loading');
