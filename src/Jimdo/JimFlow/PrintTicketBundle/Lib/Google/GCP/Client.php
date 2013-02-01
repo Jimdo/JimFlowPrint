@@ -24,7 +24,7 @@ class Client
      */
     public function getPrinterList()
     {
-        $response = $this->client->get('http://www.google.com/cloudprint/search');
+        $response = $this->client->get('https://www.google.com/cloudprint/search');
         $this->assertRequestIsSuccessful($response);
 
         $json = $this->getJson($response);
@@ -38,7 +38,7 @@ class Client
      */
     public function getPrinterInformation($printerId)
     {
-        return $this->client->get('http://www.google.com/cloudprint/printer?printerid=' . $printerId);
+        return $this->client->get('https://www.google.com/cloudprint/printer?printerid=' . $printerId);
     }
 
     /**
@@ -201,7 +201,7 @@ class Client
             'contentTransferEncoding' => 'base64'
         );
 
-        $response = $this->client->post('http://www.google.com/cloudprint/submit', array(), $data);
+        $response = $this->client->post('https://www.google.com/cloudprint/submit', array(), $data);
         $this->assertRequestIsSuccessful($response);
 
         return $this->getJson($response);
