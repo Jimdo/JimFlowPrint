@@ -110,9 +110,8 @@ class Client
      "psk:DisplayName": "Paper Source",
      "options": [
       {
-       "name": "psk:AutoSelect",
-       "default": true,
-       "psk:DisplayName": "Auto"
+       "name": "epns200:Back",
+       "psk:DisplayName": "Rear MP tray"
       }
      ]
     },
@@ -123,12 +122,10 @@ class Client
      "psk:DisplayName": "Paper Size",
      "options": [
       {
-       "name": "epns200:Fullsize4x6",
-       "psk:DisplayName": "A6",
-       "scoredProperties": {
-        "psk:MediaSizeWidth": "101600",
-        "psk:MediaSizeHeight": "152400"
-       }
+       "psk:MediaSizeWidth": "101600",
+       "name": "psk:NorthAmerica4x6",
+       "psk:MediaSizeHeight": "152400",
+       "psk:DisplayName": "4 x 6 in"
       }
      ]
     },
