@@ -1,0 +1,145 @@
+{
+    "hash": "9611db7acc47f9ba73957ee58d6d9f02",
+    "packages": [
+        {
+            "package": "doctrine/common",
+            "version": "2.1.x-dev",
+            "source-reference": "41794945e795e108060eddb3342c9e13524b9b3e",
+            "commit-date": "1331851788"
+        },
+        {
+            "package": "doctrine/dbal",
+            "version": "2.1.x-dev",
+            "source-reference": "76799960a54af583e82bedcf246e8c9c18006e94",
+            "commit-date": "1338146238"
+        },
+        {
+            "package": "doctrine/doctrine-migrations-bundle",
+            "version": "2.0.x-dev",
+            "source-reference": "bd69825665bf3cb4c36b608fa79f364cece371c5",
+            "commit-date": "1338459525"
+        },
+        {
+            "package": "doctrine/migrations",
+            "version": "dev-master",
+            "source-reference": "fe98141b1e460baf5ab52f9139e1ae238101b28b",
+            "commit-date": "1336330359"
+        },
+        {
+            "package": "doctrine/orm",
+            "version": "2.1.x-dev",
+            "source-reference": "ab851ab91464596b8b3f2d25644764e360d704b7",
+            "commit-date": "1341323303"
+        },
+        {
+            "package": "jms/metadata",
+            "version": "1.1.1"
+        },
+        {
+            "package": "jms/security-extra-bundle",
+            "version": "1.0.x-dev",
+            "source-reference": "e752f888c51425f71382c056961f10f2be642102",
+            "commit-date": "1334940270"
+        },
+        {
+            "package": "knplabs/knp-snappy",
+            "version": "dev-master",
+            "source-reference": "4f62cf5512e231a0e6f925598a3bc428c8343702",
+            "commit-date": "1337254381"
+        },
+        {
+            "package": "knplabs/knp-snappy-bundle",
+            "version": "dev-master",
+            "source-reference": "b8be04614133ad7fca994c5a61b18996ec6e723a",
+            "commit-date": "1328185959"
+        },
+        {
+            "package": "kriswallsmith/assetic",
+            "version": "1.0.x-dev",
+            "source-reference": "ed9bf0fcc710e26051ac656b4d6b1a53381da160",
+            "commit-date": "1340139242"
+        },
+        {
+            "package": "kriswallsmith/buzz",
+            "version": "dev-master",
+            "source-reference": "2ba5da13b1b03590f0164b3fb61578078d671fcc",
+            "commit-date": "1341070218"
+        },
+        {
+            "package": "monolog/monolog",
+            "version": "1.1.0"
+        },
+        {
+            "package": "sensio/buzz-bundle",
+            "version": "dev-master",
+            "source-reference": "0754d7dd155efc4f85de60993571b0b6a5aaccb9",
+            "commit-date": "1338188924"
+        },
+        {
+            "package": "sensio/distribution-bundle",
+            "version": "2.0.x-dev",
+            "source-reference": "41a6c5caed65f02bb09c95a90579f047616471fd",
+            "commit-date": "1337272950"
+        },
+        {
+            "package": "sensio/framework-extra-bundle",
+            "version": "2.0.x-dev",
+            "source-reference": "891359252711c424d5da8cac9fa1e757450a6db2",
+            "commit-date": "1339741629"
+        },
+        {
+            "package": "sensio/generator-bundle",
+            "version": "2.0.x-dev",
+            "source-reference": "c0118ce370f8da20e43051f2dd1ae331a202ab9c",
+            "commit-date": "1339741720"
+        },
+        {
+            "package": "swiftmailer/swiftmailer",
+            "version": "v4.1.8"
+        },
+        {
+            "package": "symfony/assetic-bundle",
+            "version": "2.0.x-dev",
+            "source-reference": "fbcbaf46df2aa143759319de205e1babcf7dd87d",
+            "commit-date": "1339681364"
+        },
+        {
+            "package": "symfony/symfony",
+            "version": "2.0.x-dev",
+            "source-reference": "c1fea1d8c8cf684c31c10847fcdc7557402fd992",
+            "commit-date": "1341138901"
+        },
+        {
+            "package": "twig/extensions",
+            "version": "dev-master",
+            "source-reference": "feb6d3f10c411e2631997c0a905aa581c80305c1",
+            "commit-date": "1337599699"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "alias-pretty-version": "1.9.x-dev",
+            "alias-version": "1.9.9999999.9999999-dev"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "26eb0a2653eade50dffdd31b11ca454232dea8cf",
+            "commit-date": "1341423205"
+        },
+        {
+            "package": "zf2",
+            "version": "master",
+            "source-reference": "master",
+            "commit-date": "1341446586"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "sensio/buzz-bundle": 20
+    }
+}
