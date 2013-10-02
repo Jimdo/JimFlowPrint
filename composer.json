@@ -45,6 +45,6 @@
 
     "minimum-stability": "dev",
     "require-dev": {
-      "phpunit-testing/phpunit": "dev-master"
+      "phpunit/phpunit": "dev-master"
   }
 }
