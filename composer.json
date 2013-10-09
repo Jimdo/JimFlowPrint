@@ -12,7 +12,7 @@
         "sensio/distribution-bundle":      "2.0.*",
         "jms/security-extra-bundle":       "1.0.*",
         "knplabs/knp-snappy-bundle":       "*",
-        "sensio/buzz-bundle":              "dev-master",
+        "sensio/buzz-bundle":              "0.1",
         "zf2":                             "master"
     },
 
@@ -45,6 +45,6 @@
 
     "minimum-stability": "dev",
     "require-dev": {
-      "phpunit-testing/phpunit": "dev-master"
+      "phpunit/phpunit": "dev-master"
   }
 }
