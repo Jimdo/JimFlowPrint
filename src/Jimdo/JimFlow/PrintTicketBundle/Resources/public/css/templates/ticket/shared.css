@@ -54,7 +54,7 @@
 #ticketnumber p {
     font-size: 54px;
     font-weight: bold;
-    padding-left: 1em;
+    margin-left: 1em;
 }
 
 #metaarea div:nth-child(1n+3) p {
