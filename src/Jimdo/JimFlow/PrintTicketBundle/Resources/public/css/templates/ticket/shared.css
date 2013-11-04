@@ -39,7 +39,6 @@
     color: #fff;
     font-size: 27px;
     font-weight: bold;
-    padding: 10px 0 0;
     text-transform: uppercase;
 }
 
@@ -74,6 +73,7 @@
 
 .small-meta {
     height: 4em;
+    line-height: 4em;
 }
 
 #qr {
