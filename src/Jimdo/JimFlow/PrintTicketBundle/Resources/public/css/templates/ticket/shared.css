@@ -8,13 +8,20 @@
     margin: 0;
     border: none;
     width: 98%;
-    height: 98%;
     padding: 2% 0 0 2%;
     font-family: inherit;
     font-size: 46px;
     line-height: 1;
     resize: none;
     outline:  none;
+}
+
+.story-card #text {
+    height: 98%;
+}
+
+.ticket-card #text {
+    height: 86%;
 }
 
 
@@ -30,7 +37,7 @@
 
 #type p {
     color: #fff;
-    font-size: 14px;
+    font-size: 27px;
     font-weight: bold;
     padding: 10px 0 0;
     text-transform: uppercase;
@@ -40,6 +47,9 @@
     text-align: center;
 }
 
+#ticketnumber {
+    height: 4em;
+}
 
 #ticketnumber p {
     font-size: 37px;
@@ -62,7 +72,7 @@
 }
 
 .small-meta {
-    height: 11%;
+    height: 4em;
 }
 
 #qr {
@@ -82,4 +92,3 @@
 .b-r {
     border-right: 1px dotted black;
 }
-
