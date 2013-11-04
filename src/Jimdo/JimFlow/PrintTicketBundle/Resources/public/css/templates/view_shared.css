@@ -50,11 +50,18 @@ p {
     margin: 0;
     border: none;
     width: 98%;
-    height: 98%;
     padding: 2% 0 0 2%;
     font-family: inherit;
     font-size: 46px;
     line-height: 1;
     resize: none;
     outline:  none;
+}
+
+.story-card #text {
+    height: 98%;	
+}
+
+.ticket-card #text {
+    height: 86%;	
 }
