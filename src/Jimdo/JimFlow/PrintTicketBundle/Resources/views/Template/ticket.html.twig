@@ -14,7 +14,7 @@
         {% block body %}
             <form id="kanban_form"  action="{{ path('template_ticket_print') }}" method="POST">
                 <div id="card-container">
-                    <div id="card" class="ticket-template">
+                    <div id="card" class="ticket-card">
                         <div id="description">
                             <div id="ticketnumber" class="b-b">
                                 <p>#{{ id|slice(1,id|length) }}</p>
