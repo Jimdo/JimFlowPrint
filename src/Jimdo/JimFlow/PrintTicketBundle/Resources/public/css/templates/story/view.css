@@ -2,3 +2,79 @@
     width: 100%;
     height: 100%;
 }
+
+@media all and (max-width: 640px) {
+  #header {
+  	display: none;
+  }
+  #content {
+    width: 95%;
+  }
+  #content img {
+  	display: block;
+    margin: 20px 0 20px 5px;
+    width: 55%!important;
+    height: auto!important;
+  }
+  #content #card {
+	border-color: rgb(68,68,68);
+    border-radius: 2px;
+    height: 40%;
+    min-height: 200px;
+    width:100%;
+  }
+  #content #text {
+  	padding: 5px;
+  }
+  #card-container {
+    float: none;
+    margin: 0;
+  }
+  #content #print-headline {
+  	color: rgb(80,80,80);
+    font-size: 36px;
+	font-weight: 400;
+    margin: 20px 0;
+  }
+  #printer-buttons {
+  	display: -webkit-box;
+  	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-flow: row wrap;
+  }
+  #printer-buttons .button {
+	background: rgb(8,130,188);
+    border: 0;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 100;
+    font-family: "Helvetica Neue", "Roboto Light", Helvetica, Arial, sans-serif;
+	margin: 5px 10px 5px 0;
+    padding: 20px;
+    text-shadow: none;
+     -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+  }
+  #printer-buttons .button:hover,
+  #printer-buttons .button:active,
+  #printer-buttons .button:focus {
+	background: rgb(7,111,160);
+    box-shadow: none;
+  }
+  #content #printer-buttons .inactive {
+  	display: none;
+  }
+  #footer {
+  	display: none;
+  }
+}
