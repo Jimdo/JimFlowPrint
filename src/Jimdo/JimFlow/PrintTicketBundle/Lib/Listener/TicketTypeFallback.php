@@ -60,7 +60,7 @@ class TicketTypeFallback
         /**
          * @var \Jimdo\PrintTicketBundle\Entity\TicketTypeRepository
          */
-        $repository = $this->entityManager->getRepository('JimdoJimFlow\PrintTicketBundle:TicketType');
+        $repository = $this->entityManager->getRepository('JimdoJimFlowPrintTicketBundle:TicketType');
 
         foreach ($repository->findBeingFallbackAndNotBeingEntity($this->entity->getId()) as $entity) {
             $entity->setIsFallback(false);
