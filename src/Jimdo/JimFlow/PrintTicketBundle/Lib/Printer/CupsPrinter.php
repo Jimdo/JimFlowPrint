@@ -13,7 +13,8 @@ class CupsPrinter implements PrinterInterface
         $filename = '/tmp/' . uniqid('jimflowprint') . '.pdf';
         file_put_contents($filename, $file['content']);
 
-        $process = new Process('lp -o media=A6,MultiTray -o landscape -o ColorModel=Grayscale -d ' . escapeshellarg($printerId) . ' ' . escapeshellarg($filename));
+        // TODO Make color output configurable? (-o ColorModel=Grayscale)
+        $process = new Process('lp -o media=A6,MultiTray -o landscape -d ' . escapeshellarg($printerId) . ' ' . escapeshellarg($filename));
         $process->run();
 
         if (!$process->isSuccessful()) {

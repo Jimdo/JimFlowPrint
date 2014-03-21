@@ -21,9 +21,8 @@
 }
 
 .ticket-card #text {
-    height: 86%;
+    height: 78%;
 }
-
 
 #metaarea {
     float: right;
@@ -38,9 +37,10 @@
 
 #type p {
     color: #fff;
-    font-size: 27px;
+    font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 #type {
@@ -58,18 +58,31 @@
     margin-left: 10px;
 }
 
-#metaarea div:nth-child(1n+3) p {
-    font-size: 22px;
-    padding: 0 11px 0;
+#project {
+    height: 2em;
+    line-height: 2em;
+    white-space: nowrap;
 }
 
-#metaarea div:nth-child(1n+3) p:first-child {
+#project p {
+    font-size: 24px;
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+#metaarea .big-meta p {
+    font-size: 22px;
+    padding: 0 11px 0 0;
+}
+
+#metaarea .big-meta p:first-child {
     font-size: 10px;
     padding: 5px 11px 0;
 }
 
 .big-meta {
-    height: 15%;
+    /* height: 15%; */
+    padding-bottom: 8px;
 }
 
 .small-meta {

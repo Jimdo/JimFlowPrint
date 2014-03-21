@@ -44,6 +44,7 @@ class TemplateData
             'created' => $request->get('created'),
             'id' => $request->get('id'),
             'title' => $request->get('title'),
+            'project' => $request->get('project'),
             'reporter' => $request->get('reporter'),
             'type' => $request->get('type'),
             'printer' => $request->get('printer')
