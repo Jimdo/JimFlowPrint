@@ -12,3 +12,4 @@ composer.lock
 nbproject/*
 app/config/parameters.ini
 .idea/*
+bin/phpunit

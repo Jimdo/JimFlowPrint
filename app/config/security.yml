@@ -11,8 +11,9 @@ security:
 
     providers:
         in_memory:
-            users:
-                %admin.username%: { password: %admin.password%, roles: 'ROLE_ADMIN' }
+            memory:
+                users:
+                    %admin.username%: { password: %admin.password%, roles: 'ROLE_ADMIN' }
 
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
