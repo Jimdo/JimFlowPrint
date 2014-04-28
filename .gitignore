@@ -12,4 +12,5 @@ composer.lock
 nbproject/*
 app/config/parameters.ini
 .idea/*
+.vagrant
 bin/phpunit
