@@ -22,7 +22,7 @@ class PrintingServiceTest extends \PHPUnit_Framework_TestCase
             'mime' => $someMime
         );
 
-        $fileInfo = $this->getMock('\finfo', array(), array(), '', false);
+        $fileInfo = $this->getMock('\finfo', array(), array(), '');
         $printer = $this->getMock('\Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\GcpPrinter', array(), array(), '', false);
         $generatorService = $this->getMock('\Jimdo\JimFlow\PrintTicketBundle\Lib\Generator\Service', array(), array(), '', false);
 
