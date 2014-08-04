@@ -32,7 +32,7 @@ class GcpClientTest extends \PHPUnit_Framework_TestCase
         $response->expects($this->any())->method('getContent')->will($this->returnValue(json_encode($data)));
         $response->expects($this->once())->method('isSuccessful')->will($this->returnValue(true));
 
-        $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
+        $this->client->expects($this->once())->method('get')->with('https://www.google.com/cloudprint/search')->will($this->returnValue($response));
 
         $gcpClient = new GcpClient($this->client);
 
@@ -49,7 +49,7 @@ class GcpClientTest extends \PHPUnit_Framework_TestCase
         $response = $this->getMock('\Buzz\Message\Response', array(), array(), '', false);
         $response->expects($this->once())->method('isSuccessful')->will($this->returnValue(false));
 
-        $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
+        $this->client->expects($this->once())->method('get')->with('https://www.google.com/cloudprint/search')->will($this->returnValue($response));
 
         $gcpClient = new GcpClient($this->client);
         $gcpClient->getPrinterList();
@@ -65,7 +65,7 @@ class GcpClientTest extends \PHPUnit_Framework_TestCase
         $response->expects($this->once())->method('isSuccessful')->will($this->returnValue(true));
         $response->expects($this->any())->method('getContent')->will($this->returnValue(json_encode(array('success' => "false"))));
 
-        $this->client->expects($this->once())->method('get')->with('http://www.google.com/cloudprint/search')->will($this->returnValue($response));
+        $this->client->expects($this->once())->method('get')->with('https://www.google.com/cloudprint/search')->will($this->returnValue($response));
 
         $gcpClient = new GcpClient($this->client);
         $gcpClient->getPrinterList();
