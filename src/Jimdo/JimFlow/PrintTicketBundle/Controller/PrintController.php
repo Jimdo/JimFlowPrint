@@ -53,7 +53,7 @@ class PrintController extends Controller
     private function assertFormValid(Request $request)
     {
         $form = $this->createFormBuilder()->getForm();
-        $form->bindRequest($request);
+        $form->handleRequest($request);
 
         if (!$form->isValid()) {
             throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
