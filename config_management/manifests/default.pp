@@ -112,7 +112,9 @@ exec { bootstrap:
   user    => $deploy_user,
 } ->
 exec { 'fix permissions':
+  noop => true,
   command => "chown -R www-data:www-data app/cache app/logs && touch .permissions_fixed",
   cwd     => "/var/www/svn/jimflow_print/",
   creates =>  "/var/www/svn/jimflow_print/.permissions_fixed",
+  user => 'root',
 }
