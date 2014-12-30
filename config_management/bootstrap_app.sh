@@ -1,5 +1,4 @@
 #!/bin/sh
-cd /var/www
 ./bin/build_bootstrap
 mkdir -p app/cache app/logs
 php app/console doctrine:database:create
