@@ -22,6 +22,21 @@ class PrintController extends Controller
         return $this->doPrint($response->getContent(), $request);
     }
 
+    public function oauthAction()
+    {
+        $googleConfig = new \Google_Config();
+        $googleConfig->setClientId('');
+        $googleConfig->setClientSecret('');
+
+        $googleClient = new \Google_Client($googleConfig);
+        $service = new \Google_Service_Books($googleClient);
+
+
+        $response = new Response();
+        $response->setContent('<h1>lol');
+        return $response;
+    }
+
     private function doPrint($data, Request $request)
     {
 
