@@ -18,7 +18,8 @@
     "jms/aop-bundle": "1.1.*",
     "knplabs/knp-snappy-bundle": "1.*",
     "sensio/buzz-bundle": "1.*",
-    "zf2": "master"
+    "zf2": "master",
+    "google/apiclient": "1.0.*@beta"
   },
 
 
