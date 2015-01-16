@@ -50,6 +50,6 @@
 
   "minimum-stability": "dev",
   "require-dev": {
-    "phpunit/phpunit": "dev-master"
+    "phpunit/phpunit": "4.6.*@dev"
   }
 }
