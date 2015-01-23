@@ -13,6 +13,13 @@ services:
     arguments:
       - 'JimdoJimFlowPrintTicketBundle:Printer'
 
+  jimdo.google_auth_token_entity_repository:
+      class:            Jimdo\JimFlow\PrintTicketBundle\Entity\GoogleAuthTokenRepository
+      factory_service:  doctrine.orm.default_entity_manager
+      factory_method: getRepository
+      arguments:
+        - 'JimdoJimFlowPrintTicketBundle:GoogleAuthToken'
+
 
   jimdo.ticket_type_entity_filter:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\TicketTypeEntityFilter

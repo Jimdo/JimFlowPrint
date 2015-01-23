@@ -1,5 +1,7 @@
 <?php
 namespace Jimdo\JimFlow\PrintTicketBundle\Controller;
+use Jimdo\JimFlow\PrintTicketBundle\Entity\GoogleAuthToken;
+use Jimdo\JimFlow\PrintTicketBundle\Entity\GoogleAuthTokenRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\HttpFoundation\Request;
@@ -24,16 +26,40 @@ class PrintController extends Controller
 
     public function oauthAction()
     {
-        $googleConfig = new \Google_Config();
-        $googleConfig->setClientId('');
-        $googleConfig->setClientSecret('');
-
-        $googleClient = new \Google_Client($googleConfig);
-        $service = new \Google_Service_Books($googleClient);
+        $googleClient = $this->getGoogleClient();
 
 
         $response = new Response();
-        $response->setContent('<h1>lol');
+        //$response->setContent($googleClient->createAuthUrl());
+        return $this->redirect($googleClient->createAuthUrl());
+    }
+
+    public function oauthcallbackAction(Request $request)
+    {
+        $googleClient = $this->getGoogleClient();
+
+        $response = new Response();
+
+        if ($request->get('error')) {
+            $response->setContent('bzzzz');
+            return $response;
+        }
+
+        $code = $request->get('code');
+        $res = $googleClient->authenticate($code);
+
+        $googleAuthToken = new GoogleAuthToken();
+
+        //XXX check for token to be actually present
+        $googleAuthToken->setRefreshToken($res->refresh_token);
+
+
+        $repository = $this->container->get('jimdo.google_auth_token_entity_repository');
+        //XXX NEXT
+        //$repository->store($googleAuthToken);
+
+
+        $response->setContent(var_export($res, true));
         return $response;
     }
 
@@ -73,5 +99,22 @@ class PrintController extends Controller
         if (!$form->isValid()) {
             throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
         }
+    }
+
+    /**
+     * @return \Google_Client
+     */
+    private function getGoogleClient()
+    {
+        $googleConfig = new \Google_Config();
+        $googleConfig->setClientId();
+        $googleConfig->setClientSecret();
+        $googleConfig->setAccessType('offline');
+
+        $googleClient = new \Google_Client($googleConfig);
+        $googleClient->addScope('https://www.googleapis.com/auth/cloudprint');
+
+        $googleClient->setRedirectUri('http://localhost:8080/web/app_dev.php/print/oauth2callback');
+        return $googleClient;
     }
 }

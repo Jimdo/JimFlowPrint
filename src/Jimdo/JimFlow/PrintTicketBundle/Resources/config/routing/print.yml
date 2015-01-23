@@ -7,7 +7,11 @@ print_story:
     defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printstory" }
 
 
-oauth_test:
+oauth_start:
     pattern:  /oauthtest
     defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:oauth" }
 
+
+oauth_callback:
+    pattern:  /oauth2callback
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:oauthcallback" }
