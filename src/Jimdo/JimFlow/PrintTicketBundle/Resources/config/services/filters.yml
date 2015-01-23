@@ -1,9 +1,4 @@
 services:
-  jimdo.printer_filter:
-    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\PrinterEntityFilter
-    arguments:
-      - @jimdo.printer_entity_repository
-
   jimdo.ticket_date_filter:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\TicketDateFilter
 

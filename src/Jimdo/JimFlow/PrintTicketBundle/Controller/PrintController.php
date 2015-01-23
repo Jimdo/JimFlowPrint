@@ -46,18 +46,17 @@ class PrintController extends Controller
         }
 
         $code = $request->get('code');
-        $res = $googleClient->authenticate($code);
+        $res = json_decode($googleClient->authenticate($code));
 
         $googleAuthToken = new GoogleAuthToken();
 
         //XXX check for token to be actually present
         $googleAuthToken->setRefreshToken($res->refresh_token);
 
-
-        $repository = $this->container->get('jimdo.google_auth_token_entity_repository');
-        //XXX NEXT
-        //$repository->store($googleAuthToken);
-
+        //XXX only save token once, e.g. remove the existing entry
+        $entityManager = $this->getDoctrine()->getEntityManager();
+        $entityManager->persist($googleAuthToken);
+        $entityManager->flush();
 
         $response->setContent(var_export($res, true));
         return $response;
@@ -110,11 +109,12 @@ class PrintController extends Controller
         $googleConfig->setClientId();
         $googleConfig->setClientSecret();
         $googleConfig->setAccessType('offline');
+        $googleConfig->setRedirectUri('http://localhost:8080/web/app_dev.php/print/oauth2callback');
+        $googleConfig->setApprovalPrompt('force');
 
         $googleClient = new \Google_Client($googleConfig);
         $googleClient->addScope('https://www.googleapis.com/auth/cloudprint');
 
-        $googleClient->setRedirectUri('http://localhost:8080/web/app_dev.php/print/oauth2callback');
         return $googleClient;
     }
 }
