@@ -51,6 +51,7 @@
 
   "minimum-stability": "dev",
   "require-dev": {
-    "phpunit/phpunit": "4.6.*@dev"
+    "phpunit/phpunit": "4.6.*@dev",
+    "mockery/mockery": "0.9.3"
   }
 }
