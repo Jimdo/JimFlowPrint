@@ -2,6 +2,10 @@ services:
 
   jimdo.google.client.factory:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Google\GoogleClientFactory
+    arguments:
+      - %google.client_id%
+      - %google.client_secret%
+      - @router
 
   google.google_client:
     class: Google_Client

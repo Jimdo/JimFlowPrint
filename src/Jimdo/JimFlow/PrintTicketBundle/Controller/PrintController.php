@@ -75,11 +75,6 @@ class PrintController extends Controller
 
         $accessTokenData = $googleClient->getAccessToken();
 
-        if ($googleClient->isAccessTokenExpired()) {
-            $googleClient->refreshToken($refreshToken);
-            $accessTokenData = $googleClient->getAccessToken();
-        }
-
         $accessToken = json_decode($accessTokenData);
         $accessToken = $accessToken->access_token;
 
