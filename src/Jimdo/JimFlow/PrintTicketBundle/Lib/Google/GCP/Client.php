@@ -7,7 +7,7 @@ class Client
 {
 
     /**
-     * @var \Jimdo\PrintTicketBundle\Lib\Google\ClientInterface
+     * @var ClientInterface
      */
     private $client;
 

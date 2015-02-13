@@ -15,3 +15,7 @@ oauth_start:
 oauth_callback:
     pattern:  /oauth2callback
     defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:oauthcallback" }
+
+oauth_use:
+    pattern:  /useoauth
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:useoauth" }

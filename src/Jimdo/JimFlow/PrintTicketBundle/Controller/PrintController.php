@@ -62,6 +62,48 @@ class PrintController extends Controller
         return $response;
     }
 
+    public function useoauthAction()
+    {
+        $repository = $this->container->get('jimdo.google_auth_token_entity_repository');
+
+        $googleAuthToken = $repository->findOneBy(array());
+        $refreshToken = $googleAuthToken->getRefreshToken();
+
+
+        $googleClient = $this->getGoogleClient();
+        $googleClient->refreshToken($refreshToken);
+
+        $accessTokenData = $googleClient->getAccessToken();
+
+        if ($googleClient->isAccessTokenExpired()) {
+            $googleClient->refreshToken($refreshToken);
+            $accessTokenData = $googleClient->getAccessToken();
+        }
+
+        $accessToken = json_decode($accessTokenData);
+        $accessToken = $accessToken->access_token;
+
+
+        $httpClient = $this->container->get('jimdo.buzz.browser');
+        $headers = array(
+            'Authorization' => 'Bearer ' . $accessToken
+        );
+
+        $httpResponse = $httpClient->get('https://www.google.com/cloudprint/search', $headers);
+
+        $response = new Response();
+        $response->setContent(
+            var_export(
+                array(
+                    'token' => $accessToken,
+                ),true
+            )
+        );
+
+        return $response;
+
+    }
+
     private function doPrint($data, Request $request)
     {
 
