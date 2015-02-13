@@ -28,14 +28,6 @@ class GoogleAuthToken
      */
     private $refreshToken;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="accessToken", type="string", length=255)
-     */
-    private $accessToken;
-
-
 
     /**
      * Get id
@@ -68,13 +60,5 @@ class GoogleAuthToken
     public function getRefreshToken()
     {
         return $this->refreshToken;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAccessToken()
-    {
-        return $this->accessToken;
     }
 }
