@@ -5,17 +5,3 @@ printer:
 print_story:
     pattern:  /story
     defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printstory" }
-
-
-oauth_start:
-    pattern:  /oauthtest
-    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:oauth" }
-
-
-oauth_callback:
-    pattern:  /oauth2callback
-    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:oauthcallback" }
-
-oauth_use:
-    pattern:  /useoauth
-    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:useoauth" }

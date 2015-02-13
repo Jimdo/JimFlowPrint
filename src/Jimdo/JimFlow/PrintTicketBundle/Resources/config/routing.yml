@@ -2,6 +2,10 @@ JimdoJimFlow\PrintTicketBundle_tickettype:
   resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/tickettype.yml"
   prefix:   /admin/tickettype
 
+JimdoJimFlow\PrintTicketBundle_oauth:
+  resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/oauth.yml"
+  prefix:   /admin/oauth
+
 JimdoJimFlow\PrintTicketBundle_printer_config:
   resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/printer.yml"
   prefix:   /admin/printer
@@ -17,4 +21,3 @@ JimdoJimFlow\PrintTicketBundle_print:
 JimdoJimFlow\PrintTicketBundle_print_buttons:
   resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/print-buttons.yml"
   prefix:   /buttons
-
