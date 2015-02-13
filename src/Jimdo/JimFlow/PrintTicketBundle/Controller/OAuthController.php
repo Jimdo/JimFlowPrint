@@ -27,14 +27,23 @@ class OAuthController extends Controller
         $response = new Response();
 
         if ($request->get('error')) {
-            $response->setContent('bzzzz');
-            return $response;
+            // xxx this should be type error, but those won't currently be displayed on the page
+            $this->get('session')->getFlashBag()->add('notice', 'It seems like you have decided not to connect with Google. If not, you might have found a bug. :(');
+            return $this->redirect($this->generateUrl('tickettype_list'));
         }
 
         $code = $request->get('code');
         $res = json_decode($googleClient->authenticate($code));
 
-        $googleAuthToken = new GoogleAuthToken();
+        $googleAuthTokenRepository = $this->get('jimdo.google_auth_token_entity_repository');
+
+        // make sure there exist only one auth token entry
+        $googleAuthToken = $googleAuthTokenRepository->findOneBy(array());
+
+        if (!$googleAuthToken) {
+            $googleAuthToken = new GoogleAuthToken();
+        }
+
 
         //XXX check for token to be actually present
         $googleAuthToken->setRefreshToken($res->refresh_token);
@@ -44,7 +53,8 @@ class OAuthController extends Controller
         $entityManager->persist($googleAuthToken);
         $entityManager->flush();
 
-        $response->setContent(var_export($res, true));
+        $this->get('session')->getFlashBag()->add('notice', 'You are now connected to Google. Happy printing. :)');
+        return $this->redirect($this->generateUrl('tickettype_list'));
         return $response;
     }
 
