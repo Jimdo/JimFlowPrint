@@ -30,22 +30,23 @@ class NewClient implements ClientInterface
         $this->accessTokenHandler = $accessTokenHandler;
     }
 
-    private function getWithAccessToken($url)
-    {
-        return $this->requestWithAccessToken('get', $url);
-    }
-    private function postWithAccessToken($url)
-    {
-        return $this->requestWithAccessToken('post', $url);
-    }
-    private function requestWithAccessToken($method, $url)
+
+    private function requestWithAccessToken($method, $url, $content = null)
     {
         $accessToken = $this->accessTokenHandler->retrieveAccessToken();
 
         $headers = array(
             'Authorization' => 'Bearer ' . $accessToken
         );
-        return $this->httpClient->{$method}($url, $headers);
+
+        switch ($method) {
+            case 'GET':
+                return $this->httpClient->get($url, $headers);
+            case 'POST':
+                return $this->httpClient->post($url, $headers, $content);
+            default:
+                throw new \InvalidArgumentException($method . ' is no valid request type');
+        }
     }
 
     /**
@@ -55,7 +56,8 @@ class NewClient implements ClientInterface
      */
     public function get($url, $headers = array())
     {
-        $response = $this->getWithAccessToken($url);
+
+        $response = $this->requestWithAccessToken('GET' , $url);
 
         if ($response->getStatusCode() != 403) {
             return $response;
@@ -64,7 +66,7 @@ class NewClient implements ClientInterface
         // access token probably expired
         // refresh and try again once
         $this->accessTokenHandler->refreshAccessToken();
-        return $this->getWithAccessToken($url);
+        return $this->requestWithAccessToken('GET' , $url);
     }
 
     /**
@@ -75,6 +77,15 @@ class NewClient implements ClientInterface
      */
     public function post($url, $headers = array(), $content)
     {
-        // TODO: Implement post() method.
+        $response = $this->requestWithAccessToken('POST', $url, $content);
+
+        if ($response->getStatusCode() != 403) {
+            return $response;
+        }
+
+        // access token probably expired
+        // refresh and try again once
+        $this->accessTokenHandler->refreshAccessToken();
+        return $this->requestWithAccessToken('POST', $url, $content);
     }
 }

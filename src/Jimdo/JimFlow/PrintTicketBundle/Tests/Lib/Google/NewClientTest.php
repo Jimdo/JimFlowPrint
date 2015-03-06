@@ -106,6 +106,35 @@ class NewClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @test
+     */
+    public function itShouldPostUsingHttpClient()
+    {
+
+        $someUrl = 'http://example.org';
+        $somePostBody = 'sdjklewjklfds';
+
+        $aSuccessfulResponse = $this->aSuccessfulResponse();
+
+
+        $anAccessTokenHandler = $this->anAccessTokenHandler();
+        $anAccessTokenHandler->shouldIgnoreMissing();
+
+        $aHttpClient = $this->aHttpClient();
+        $aHttpClient->shouldReceive('post')
+            ->andReturn($aSuccessfulResponse);
+
+        $client = new NewClient($aHttpClient, $anAccessTokenHandler);
+
+        $client->post($someUrl, array(), $somePostBody);
+
+        // assertion
+        $aHttpClient->shouldHaveReceived('post')
+            ->once()
+            ->with($someUrl, m::any() ,$somePostBody);
+    }
+
+    /**
      * @return m\MockInterface
      */
     private function aSuccessfulResponse()
