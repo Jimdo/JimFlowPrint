@@ -27,7 +27,7 @@ services:
       - {adapter: {name:'Filesystem', options: {ttl: 86400}}}
 
   jimdo.google.client.gcp:
-    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Google\NewClient
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Google\Client
     arguments:
       - @jimdo.buzz.browser
       - @jimdo.google.accesstoken
