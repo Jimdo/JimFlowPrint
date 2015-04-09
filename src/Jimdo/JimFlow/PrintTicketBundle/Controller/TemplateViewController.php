@@ -13,24 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 class TemplateViewController extends Controller
 {
     /**
-     * @param  \Symfony\Component\HttpFoundation\Request           $request
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function ticketAction(Request $request)
+    public function ticketAction()
     {
-        $templateData = $this->getTemplateData();
-
-
-        $templateData = array_merge(
-            array('isAdmin' => $this->get('security.context')->isGranted('ROLE_ADMIN')),
-            array('form' => $this->getFormView()),
-            $templateData
-        );
-
-        return $this->render(
-            'JimdoJimFlowPrintTicketBundle:Template:ticket.html.twig',
-            $templateData
-        );
+        return $this->renderViewWithGoogleAccountCheck('JimdoJimFlowPrintTicketBundle:Template:ticket.html.twig');
     }
 
     public function ticketprintAction()
@@ -45,17 +32,7 @@ class TemplateViewController extends Controller
 
     public function storyAction()
     {
-        $templateData = array_merge(
-            $this->getTemplateData(),
-            array(
-                'form' => $this->getFormView()
-            )
-        );
-
-        return $this->render(
-            'JimdoJimFlowPrintTicketBundle:Template:story.html.twig',
-            $templateData
-        );
+        return $this->renderViewWithGoogleAccountCheck('JimdoJimFlowPrintTicketBundle:Template:story.html.twig');
     }
 
     public function storyprintAction()
@@ -66,6 +43,28 @@ class TemplateViewController extends Controller
             'JimdoJimFlowPrintTicketBundle:Template:print-story.html.twig',
             $templateData
         );
+    }
+
+    private function renderViewWithGoogleAccountCheck($view)
+    {
+        try {
+            $templateData = $this->getTemplateData();
+
+            $templateData = array_merge(
+                array('isAdmin' => $this->get('security.context')->isGranted('ROLE_ADMIN')),
+                array('form' => $this->getFormView()),
+                $templateData
+            );
+
+            return $this->render(
+                $view,
+                $templateData
+            );
+
+        } catch(\Exception $e) {
+            $this->get('session')->getFlashBag()->add('notice', 'There was a problem connecting to Google. Have you connected your account?');
+            return $this->redirect($this->generateUrl('tickettype_list'));
+        }
     }
 
     /**

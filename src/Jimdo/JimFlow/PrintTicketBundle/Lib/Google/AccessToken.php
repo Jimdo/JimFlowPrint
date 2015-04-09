@@ -36,13 +36,27 @@ class AccessToken
 
     public function refreshAccessToken()
     {
-        $googleAuthToken = $this->googleAuthTokenRepository->findOneBy(array());
-        $this->googleClient->refreshToken($googleAuthToken->getRefreshToken());
+        $this->googleClient->refreshToken($this->getRefreshToken());
         $accessTokenData = $this->googleClient->getAccessToken();
         $accessToken = json_decode($accessTokenData);
         $accessToken = $accessToken->access_token;
 
         $this->cache->setItem(self::CACHE_KEY, $accessToken);
+    }
+
+    /**
+     * @return mixed
+     * @throws \Exception
+     */
+    private function getRefreshToken()
+    {
+        $googleAuthToken = $this->googleAuthTokenRepository->findOneBy(array());
+
+        if (!$googleAuthToken) {
+            throw new \Exception('No Google refresh token found');
+        }
+
+        return $googleAuthToken->getRefreshToken();
     }
 
 }
