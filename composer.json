@@ -18,7 +18,9 @@
     "jms/aop-bundle": "1.1.*",
     "knplabs/knp-snappy-bundle": "1.*",
     "sensio/buzz-bundle": "1.*",
-    "zf2": "master"
+    "zf2": "master",
+    "google/apiclient": "1.0.*@beta",
+    "doctrine/doctrine-fixtures-bundle": "2.2.*"
   },
 
 
@@ -50,6 +52,7 @@
 
   "minimum-stability": "dev",
   "require-dev": {
-    "phpunit/phpunit": "4.6.*@dev"
+    "phpunit/phpunit": "4.6.*@dev",
+    "mockery/mockery": "0.9.3"
   }
 }

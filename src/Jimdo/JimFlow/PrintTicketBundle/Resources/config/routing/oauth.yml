@@ -1,0 +1,8 @@
+oauth_start:
+    pattern:  /start
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:OAuth:oauth" }
+
+
+oauth_callback:
+    pattern:  /oauth2callback
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:OAuth:oauthcallback" }

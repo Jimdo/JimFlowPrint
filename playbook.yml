@@ -6,8 +6,9 @@
     database_user: "symfony"
     database_password: "symfony23"
     wkthmltopdf_install_path: "/usr/local/bin/wkhtmltopdf"
-    google_user: "{{ lookup('env','GOOGLE_USER') }}"
-    google_password: "{{ lookup('env','GOOGLE_PASSWORD') }}"
+
+  vars_files:
+    - config_management/private/private-vars.yml
 
   tasks:
   - 

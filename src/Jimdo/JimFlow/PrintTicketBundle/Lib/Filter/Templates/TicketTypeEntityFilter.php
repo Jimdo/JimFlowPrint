@@ -45,8 +45,8 @@ class TicketTypeEntityFilter extends Entity implements FilterInterface
     private function getNoneTicketType()
     {
         $entity = new TicketType();
-        $entity->setName('NONE CONFIGURED!');
-        $entity->setBackgroundColor('ff0000');
+        $entity->setName('NONE');
+        $entity->setBackgroundColor('#ff0000');
 
         return $entity;
     }

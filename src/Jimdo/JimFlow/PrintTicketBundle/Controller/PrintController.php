@@ -1,5 +1,7 @@
 <?php
 namespace Jimdo\JimFlow\PrintTicketBundle\Controller;
+use Jimdo\JimFlow\PrintTicketBundle\Entity\GoogleAuthToken;
+use Jimdo\JimFlow\PrintTicketBundle\Entity\GoogleAuthTokenRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\HttpFoundation\Request;
