@@ -31,6 +31,11 @@
       - unzip
       - python-mysqldb
 
+
+  -
+    name: install composer
+    shell: sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
+
   - 
     name: copy wkthtmltopdf package
     action: copy src=config_management/packages/wkhtmltox-0.12.1_linux-precise-amd64.deb dest=/opt/wkhtmltox-0.12.1_linux-precise-amd64.deb
