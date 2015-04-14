@@ -30,6 +30,22 @@ class TemplateViewController extends Controller
         );
     }
 
+    public function ticketpdfAction(Request $request)
+    {
+        $data =  $this->getTemplateData(false);
+
+        $ticketPreviewResponse = $this->render('JimdoJimFlowPrintTicketBundle:Template:print-ticket.html.twig', $data);
+
+        $generator = $this->get('jimdo.pdf_generator');
+        $pdf = $generator->generateFromHtml($ticketPreviewResponse->getContent());
+
+        $response = new Response();
+        $response->setContent($pdf);
+        $response->headers->set('Content-Type', 'application/pdf');
+
+        return $response;
+    }
+
     public function storyAction()
     {
         return $this->renderViewWithGoogleAccountCheck('JimdoJimFlowPrintTicketBundle:Template:story.html.twig');
