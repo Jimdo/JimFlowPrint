@@ -79,8 +79,12 @@
 
 
   -
-    name: copy symfony config
+    name: copy symfony parameters
     action: template src=config_management/templates/var/www/app/config/parameters.ini.j2 dest=/var/www/app/config/parameters.ini
+
+  -
+    name: copy symfony prod config
+    action: template src=config_management/templates/var/www/app/config/config_prod.yml.j2 dest=/var/www/app/config/config_prod.yml
 
   -
     composer: command=install working_dir=/var/www prefer_dist=true
