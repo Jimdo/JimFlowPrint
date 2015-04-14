@@ -7,7 +7,6 @@ web/js/*
 web/css/*
 vendor
 composer.phar
-composer.lock
 nbproject/*
 app/config/parameters.ini
 app/config/config_prod.yml
