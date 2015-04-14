@@ -1,5 +1,5 @@
 ---
-- 
+-
   hosts: all
   sudo: true
   vars:
@@ -11,9 +11,13 @@
     - config_management/private/private-vars.yml
 
   tasks:
-  - 
+  -
+    name: update apt cache
+    apt: update_cache=true
+
+  -
     name: Install packages
-    action: apt name={{ item }} state=present update_cache=true
+    action: apt name={{ item }} state=present
     with_items:
       - curl
       - apache2
@@ -30,22 +34,23 @@
       - sendmail
       - unzip
       - python-mysqldb
+      - git
 
 
   -
     name: install composer
     shell: sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
 
-  - 
+  -
     name: copy wkthtmltopdf package
     action: copy src=config_management/packages/wkhtmltox-0.12.1_linux-precise-amd64.deb dest=/opt/wkhtmltox-0.12.1_linux-precise-amd64.deb
 
-  - 
+  -
     name: install wkthtmltopdf package
     action: apt deb=/opt/wkhtmltox-0.12.1_linux-precise-amd64.deb state=installed
 
 
-  - 
+  -
     name: apache php ini
     action: template src=config_management/templates/etc/php5/conf.d/jimflow.ini.j2 dest=/etc/php5/{{item}}/conf.d/jimflow.ini
     with_items:
@@ -67,7 +72,7 @@
     notify: restart apache2
 
 
-  - 
+  -
     name: add mysql user
     action: mysql_user name={{database_user}} password={{database_password}} priv=*.*:ALL state=present
     notify: restart mysql
@@ -77,6 +82,8 @@
     name: copy symfony config
     action: template src=config_management/templates/var/www/app/config/parameters.ini.j2 dest=/var/www/app/config/parameters.ini
 
+  -
+    composer: command=install working_dir=/var/www prefer_dist=true
   -
     name: bootstrap application
     action: command chdir=/var/www config_management/bootstrap_app.sh
