@@ -11,4 +11,4 @@ nbproject/*
 app/config/parameters.ini
 app/config/config_prod.yml
 .idea/*
-config_management/private/*
+config_management/private/*.yml
