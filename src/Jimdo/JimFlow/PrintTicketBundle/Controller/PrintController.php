@@ -2,6 +2,7 @@
 namespace Jimdo\JimFlow\PrintTicketBundle\Controller;
 use Jimdo\JimFlow\PrintTicketBundle\Entity\GoogleAuthToken;
 use Jimdo\JimFlow\PrintTicketBundle\Entity\GoogleAuthTokenRepository;
+use Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Config;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use \Symfony\Component\HttpFoundation\Response;
 use \Symfony\Component\HttpFoundation\Request;
@@ -13,7 +14,7 @@ class PrintController extends Controller
         $data = $request->request->all();
         $response = $this->forward('JimdoJimFlowPrintTicketBundle:TemplateView:ticketprint', array($data));
 
-        return $this->doPrint($response->getContent(), $request);
+        return $this->doPrint($response->getContent(), $request, $data['printer']);
     }
 
     public function printstoryAction(Request $request)
@@ -21,10 +22,32 @@ class PrintController extends Controller
         $data = $request->request->all();
         $response = $this->forward('JimdoJimFlowPrintTicketBundle:TemplateView:storyprint', array($data));
 
-        return $this->doPrint($response->getContent(), $request);
+        return $this->doPrint($response->getContent(), $request, $data['printer']);
     }
 
-    private function doPrint($data, Request $request)
+    public function printersAction()
+    {
+        $printerProvider = $this->get('jimdo.printing.provider.gcp.sorted');
+        $printers = $printerProvider->getPrinters();
+
+        $printers = array_map(function (Config $printer) {
+            return array(
+                'id' => $printer->getId(),
+                'name' => $printer->getName(),
+                'isAvailable' => $printer->isAvailable()
+            );
+        }, $printers);
+
+        $response = new Response();
+
+        $response->setContent(json_encode($printers));
+        $response->setStatusCode(200);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    private function doPrint($data, Request $request, $printer)
     {
 
         $this->assertFormValid($request);
@@ -37,7 +60,7 @@ class PrintController extends Controller
         $response->setStatusCode(200);
 
         try {
-            $printingService->doPrint($templateData['printer'], $data);
+            $printingService->doPrint($printer, $data);
 
         } catch (\InvalidArgumentException $e) {
             $response->setStatusCode(500);
