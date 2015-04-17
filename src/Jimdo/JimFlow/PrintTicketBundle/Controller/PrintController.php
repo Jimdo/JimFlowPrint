@@ -50,7 +50,7 @@ class PrintController extends Controller
     private function doPrint($data, Request $request, $printer)
     {
 
-        $this->assertFormValid($request);
+        //$this->assertFormValid($request);
 
         $templateDataService = $this->container->get('jimdo.template_data_view');
         $templateData = $templateDataService->getTemplateData();
