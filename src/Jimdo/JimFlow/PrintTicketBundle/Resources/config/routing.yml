@@ -6,10 +6,6 @@ JimdoJimFlow\PrintTicketBundle_oauth:
   resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/oauth.yml"
   prefix:   /admin/oauth
 
-JimdoJimFlow\PrintTicketBundle_printer_config:
-  resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/printer.yml"
-  prefix:   /admin/printer
-
 JimdoJimFlow\PrintTicketBundle_template:
   resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/template.yml"
   prefix:   /template
