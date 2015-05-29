@@ -48,151 +48,62 @@ class Client
      */
     public function submitPrintJob($printerId, array $configuration)
     {
-        //XXX Default caps for our Epson needs to replaced with some kind of configuration
-        $capabilities = '{
-  "capabilities": [
-    {
-     "name": "psk:PageScaling",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "Reduce/Enlarge",
-     "options": [
+        //XXX Default ticket for our Epson needs to replaced with some kind of configuration
+        $ticket = '{
+  "version": "1.0",
+  "print": {
+    "vendor_ticket_item": [
       {
-       "name": "psk:None",
-       "default": true,
-       "psk:DisplayName": "Actual Size"
-      }
-     ]
-    },
-    {
-     "name": "psk:JobCopiesAllDocuments",
-     "type": "ParameterDef",
-     "value": "1",
-     "psf:Mandatory": "psk:Unconditional",
-     "psf:Multiple": "1",
-     "psf:DataType": "xsd:integer",
-     "psf:MinValue": "1",
-     "psf:UnitType": "copies",
-     "psk:DisplayName": "Copies",
-     "psf:DefaultValue": "1",
-     "psf:MaxValue": "99"
-    },
-    {
-     "name": "psk:JobDuplexAllDocumentsContiguously",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "2-Sided Printing",
-     "options": [
+        "id": "psk:PageInputBin",
+        "value": "epns200:Back"
+      },
       {
-       "name": "psk:OneSided",
-       "default": true,
-       "psk:DisplayName": "Off"
-      }
-     ]
-    },
-    {
-     "name": "psk:JobPageOrder",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "Reverse Order",
-     "options": [
+        "id": "psk:PageMediaType",
+        "value": "psk:Plain"
+      },
       {
-       "name": "psk:Reverse",
-       "default": true,
-       "psk:DisplayName": "On"
+        "id": "psk:PageScaling",
+        "value": "psk:None"
       }
-     ]
+    ],
+    "color": {
+      "vendor_id": "psk:Color",
+      "type": 0
     },
-    {
-     "name": "psk:PageInputBin",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "Paper Source",
-     "options": [
-      {
-       "name": "epns200:Back",
-       "psk:DisplayName": "Rear MP tray"
-      }
-     ]
+    "duplex": {
+      "type": 0
     },
-    {
-     "name": "psk:PageMediaSize",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "Paper Size",
-     "options": [
-      {
-       "psk:MediaSizeWidth": "101600",
-       "name": "psk:NorthAmerica4x6",
-       "psk:MediaSizeHeight": "152400",
-       "psk:DisplayName": "4 x 6 in"
-      }
-     ]
+    "page_orientation": {
+      "type": 2
     },
-    {
-     "name": "psk:PageMediaType",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "Paper Type",
-     "options": [
-      {
-       "name": "psk:Plain",
-       "default": true,
-       "psk:DisplayName": "plain papers"
-      }
-     ]
+    "copies": {
+      "copies": 1
     },
-    {
-     "name": "psk:PageResolution",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "Quality",
-     "options": [
-      {
-       "name": "epns200:Level2",
-       "default": true,
-       "psk:DisplayName": "Standard",
-       "scoredProperties": {
-        "psk:ResolutionX": "300",
-        "psk:ResolutionY": "300"
-       }
-      }
-     ]
+    "dpi": {
+      "horizontal_dpi": 300,
+      "vertical_dpi": 300,
+      "vendor_id": "epns200:Level2"
     },
-    {
-     "name": "psk:PageOrientation",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "Orientation",
-     "options": [
-      {
-       "name": "psk:ReverseLandscape",
-       "psk:DisplayName": "Landscape"
-      }
-     ]
+    "fit_to_page": {
+      "type": 1
     },
-    {
-     "name": "psk:PageOutputColor",
-     "type": "Feature",
-     "psf:SelectionType": "psk:PickOne",
-     "psk:DisplayName": "Color",
-     "options": [
-      {
-       "name": "psk:Color",
-       "default": true,
-       "psk:DisplayName": "Color"
-      }
-     ]
+    "media_size": {
+      "width_microns": 101600,
+      "height_microns": 152400,
+      "is_continuous_feed": false,
+      "vendor_id": "psk:NorthAmerica4x6"
+    },
+    "reverse_order": {
+      "reverse_order": false
     }
-   ]
-}
-';
+  }
+}';
         //XXX Use mime
         $data = array(
             'printerid' => $printerId,
             'content' => base64_encode($configuration['content']),
             'contentType' => $configuration['mime'],
-            'capabilities' => $capabilities,
+            'ticket' => $ticket,
             'title' => 'Ticket',
             'tag' => 'ticket',
             'contentTransferEncoding' => 'base64'
