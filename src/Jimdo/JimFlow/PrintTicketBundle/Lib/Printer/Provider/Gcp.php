@@ -9,7 +9,7 @@ class Gcp implements ProviderInterface
     const STATUS_ONLINE = 'ONLINE';
 
     /**
-     * @var \Jimdo\PrintTicketBundle\Lib\Google\GCP\Client
+     * @var Client
      */
     private $gcpClient;
 

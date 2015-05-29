@@ -7,7 +7,7 @@ class NameSortAscending implements ProviderInterface
 {
 
     /**
-     * @var \Jimdo\PrintTicketBundle\Lib\Printer\Provider\ProviderInterface
+     * @var ProviderInterface
      */
     private $provider;
 
@@ -19,7 +19,7 @@ class NameSortAscending implements ProviderInterface
     }
 
     /**
-     * @return \Jimdo\PrintTicketBundle\Lib\Printer\Config[]
+     * @return Config
      */
     public function getPrinters()
     {
