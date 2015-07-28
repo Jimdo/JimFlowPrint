@@ -18,10 +18,10 @@
     "jms/aop-bundle": "1.1.*",
     "knplabs/knp-snappy-bundle": "1.*",
     "sensio/buzz-bundle": "1.*",
-    "zendframework/zend-cache": "2.5.1",
     "google/apiclient": "1.0.*@beta",
     "doctrine/doctrine-fixtures-bundle": "2.2.*",
-    "graylog2/gelf-php": "1.2.3"
+    "graylog2/gelf-php": "1.2.3",
+    "zendframework/zendframework": "2.4.4"
   },
 
   "autoload": {
