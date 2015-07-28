@@ -18,32 +18,11 @@
     "jms/aop-bundle": "1.1.*",
     "knplabs/knp-snappy-bundle": "1.*",
     "sensio/buzz-bundle": "1.*",
-    "zf2": "master",
+    "zendframework/zend-cache": "2.5.1",
     "google/apiclient": "1.0.*@beta",
     "doctrine/doctrine-fixtures-bundle": "2.2.*",
     "graylog2/gelf-php": "1.2.3"
   },
-
-
-  "repositories": [
-    {
-      "type": "package",
-      "package": {
-        "version": "master",
-        "name": "zf2",
-        "source": {
-          "type": "git",
-          "url": "http://github.com/zendframework/zf2.git",
-          "reference": "master"
-        },
-        "autoload": {
-          "psr-0": {
-            "Zend\\": "library/"
-          }
-        }
-      }
-    }
-  ],
 
   "autoload": {
     "psr-0": {
