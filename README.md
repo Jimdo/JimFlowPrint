@@ -1,12 +1,16 @@
-JimFlowPrint is a component of JimFlow
+# JimFlowPrint
 
-see http://jimflow.jimdo.com for more information.
+**JimFlowPrint enables you to print your tickets out of your issue tracking system with just one click, using the [Google Cloud Print](http://www.google.com/cloudprint/learn/) API.
 
-JimFlowPrint enables you to print your tickets out of your issue tracking system with just one click, using the [Google Cloud Print](http://www.google.com/cloudprint/learn/) API.
+(Screenshot github repo with buttons + photo of printed ticket + photo of tickets on kanban board)
+
+JimFlowPrint is a component of **[JimFlow](http://jimflow.jimdo.com)**.
 
 If you need any help e.g. with embedding the print buttons into your ticket system, head to: [https://groups.google.com/forum/?fromgroups#!forum/jimflow](https://groups.google.com/forum/?fromgroups#!forum/jimflow)
 
 ## Setup
+
+It's complicated™
 
 ### Requirements
 
@@ -48,22 +52,18 @@ You can install the application with any configuration management tool you prefe
 
 Go to your webservers root directory and run following commands:
 
-Clone the github repository:
+Clone the github repository so that the content files of the repository are in the webserver root.
+
+For example:
 
 ```
-git clone git://github.com/Jimdo/JimFlowPrint.git
+cd /var
+rm -rf www
+git clone git://github.com/Jimdo/JimFlowPrint.git www
 
 ```
 
-Move the application to the directory:
-
-```
-shopt -s dotglob nullglob
-mv JimFlowPrint/* .
-rm -rf JimFlowPrint/
-```
-
-Install composer
+#### Install composer
 
 ```
 curl -s http://getcomposer.org/installer | php
@@ -71,20 +71,20 @@ curl -s http://getcomposer.org/installer | php
 php composer.phar install
 ```
 
-Prepare Symfony:
+#### Prepare Symfony:
 
 ```
 ./bin/build_bootstrap
 mkdir app/cache app/logs
 ```
 
-Check for potential symfony2 errors and [requirements](http://symfony.com/doc/2.3/reference/requirements.html)
+...and check for potential symfony2 errors and [requirements](http://symfony.com/doc/2.3/reference/requirements.html)
 
 ```
 php app/check.php
 ```
 
-Configure Symfony
+#### Configure Symfony
 
 ```
 cp app/config/parameters.example.ini app/config/parameters.ini
@@ -96,21 +96,21 @@ See the comments above each parameter for more information.
 You can also make adjustments to `config_prod.yml`, to e.g. add another logging component, but you should be fine with the default at the start.
 
 
-Create the database and the tables
+#### Create the database and the tables
 
 ```
 php app/console doctrine:database:create
 php app/console doctrine:migrations:migrate
 ```
 
-Install assets (Javascript/CSS files)
+#### Install assets (Javascript/CSS files)
 
 ```
 php app/console assets:install --symlink web/
 php app/console assetic:dump
 ```
 
-Clear the cache
+#### Clear the cache
 
 ```
 php app/console cache:clear --env=prod
