@@ -2,3 +2,105 @@
     width: 100%;
     height: 100%;
 }
+
+#content #print-headline {
+  	color: rgb(80,80,80);
+    font-size: 36px;
+	font-weight: 400;
+    margin: 20px 0;
+}
+
+#content .button {
+  background: rgb(8,130,188);
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Helvetica Neue", "Roboto Light", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 1em;
+  margin: 5px 10px 5px 0;
+  padding: 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+#content .gray {
+  background: rgb(8,130,188);
+}
+
+#content .gray:hover,
+#content .gray:focus {
+  background: rgb(7,111,160);
+}
+
+#content .gray:active {
+  border:1px solid #c6c6c4;
+  color: #222;
+  -webkit-box-shadow: inset 0 0 2px 4px #f1f1f1, 0 1px 0 0 #eeeeee;
+  -moz-box-shadow: inset 0 0 2px 4px #f1f1f1, 0 1px 0 0 #eeeeee;
+  box-shadow: inset 0 0 2px 4px #f1f1f1, 0 1px 0 0 #eeeeee;
+}
+
+#content .inactive {
+    background-color: rgb(180,180,180);
+    padding: 20px;
+    position: relative;
+    cursor: default;
+}
+#content .inactive:hover,
+#content .inactive:active,
+#content .inactive:focus {
+    background-color: rgb(233,123,123);
+}
+
+@media all and (max-width: 960px) {
+  #header {
+  	display: none;
+  }
+  #content {
+    width: 95%;
+  }
+  #content img {
+  	display: block;
+    margin: 20px 0 20px 5px;
+    width: 55%!important;
+    height: auto!important;
+  }
+  #content #card {
+    height: 40%;
+    min-height: 200px;
+    width:100%;
+  }
+  #content #text {
+  	padding: 5px;
+  }
+  #card-container {
+    float: none;
+    margin: 0;
+  }
+  #printer-buttons {
+  	display: -webkit-box;
+  	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-flow: row wrap;
+  }
+  #printer-buttons .button {
+     -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+  }
+  #footer {
+  	display: none;
+  }
+}
