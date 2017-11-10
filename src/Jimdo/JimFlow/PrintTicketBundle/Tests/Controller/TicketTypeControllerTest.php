@@ -24,7 +24,7 @@ class TicketTypeControllerTest extends WebTestCase
      */
     public function editShouldShowAForm()
     {
-
+        $this->markTestSkipped('Y U NO IMPLEMENT ME?!');
     }
 
     /**
@@ -32,6 +32,6 @@ class TicketTypeControllerTest extends WebTestCase
      */
     public function editFormShouldPersistMyChangesOnSubmit()
     {
-
+        $this->markTestSkipped('Y U NO IMPLEMENT ME?!');
     }
 }

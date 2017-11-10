@@ -21,9 +21,9 @@
      <navigation>
         {% include 'JimdoJimFlowPrintTicketBundle:backend:navigation.html.twig' %}
     </navigation>
-    {% if app.session.hasFlash('notice') %}
+    {% for flashMessage in app.session.flashbag.get('notice') %}
         <div id="flash-notice">
-            {{ app.session.flash('notice') }}
-    </div>
-    {% endif %}
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
 {% endblock %}

@@ -1,0 +1,3 @@
+# https://developers.google.com/identity/protocols/OAuth2
+google_client_id: 'some_id'
+google_client_secret: 'some_s3cr3t'

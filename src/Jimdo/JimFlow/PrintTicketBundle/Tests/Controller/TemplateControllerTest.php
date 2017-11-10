@@ -25,7 +25,7 @@ class TemplateControllerTest extends WebTestCase
         $printerProvider->expects($this->any())->method('getPrinters')->will($this->returnValue($printers));
 
         $this->client = static::createClient();
-        $this->client->getContainer()->set('jimdo.printing.provider.gcp', $printerProvider);;
+        $this->client->getContainer()->set('jimdo.printing.provider.gcp', $printerProvider);
     }
 
     /**
@@ -60,13 +60,51 @@ class TemplateControllerTest extends WebTestCase
 
         $crawler = $this->client->request('GET', 'template/ticket.html?' . http_build_query($data) . '&title=foo');
 
-	$data['id'] = substr($data['id'], 1);
+	    $data['id'] = substr($data['id'], 1);
 
         foreach ($data as $key => $value) {
-            $this->assertEquals(1, $crawler->filter('div.big-meta p:contains("' . $value . '")')->count(), $value);
+            $this->assertEquals(1, $crawler->filter('p:contains("' . $value . '")')->count(), $value);
         }
 
         $this->assertEquals(1, $crawler->filter('#text:contains("foo")')->count());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldRedirectToAdminPanelWhenRenderingTicketIfConnectingToGoogleFails()
+    {
+
+        $printerProvider = $this->getMock('Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Provider\Gcp', array(), array(), '', false);
+        $printerProvider->expects($this->any())->method('getPrinters')->will($this->throwException(new \Exception()));
+        $this->client->getContainer()->set('jimdo.printing.provider.gcp', $printerProvider);
+
+
+        $this->client->request('GET', 'template/ticket.html');
+        $response = $this->client->getResponse();
+
+        $this->assertEquals('/admin/tickettype/', $response->headers->get('Location'));
+        $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldRedirectToAdminPanelWhenRenderingScheduleIfConnectingToGoogleFails()
+    {
+
+        $printerProvider = $this->getMock('Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Provider\Gcp', array(), array(), '', false);
+
+        // throw exception, simulate something went wrong with Google
+        $printerProvider->expects($this->any())->method('getPrinters')->will($this->throwException(new \Exception()));
+        $this->client->getContainer()->set('jimdo.printing.provider.gcp', $printerProvider);
+
+
+        $this->client->request('GET', 'template/story.html');
+        $response = $this->client->getResponse();
+
+        $this->assertEquals('/admin/tickettype/', $response->headers->get('Location'));
+        $this->assertEquals(302, $response->getStatusCode());
     }
 
     /**

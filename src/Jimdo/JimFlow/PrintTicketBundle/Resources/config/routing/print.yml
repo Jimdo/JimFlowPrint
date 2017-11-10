@@ -5,3 +5,7 @@ printer:
 print_story:
     pattern:  /story
     defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printstory" }
+
+printers_api:
+    pattern:  /printer
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printers" }

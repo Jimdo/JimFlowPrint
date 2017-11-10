@@ -3,12 +3,12 @@
 namespace Jimdo\JimFlow\PrintTicketBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Jimdo\JimFlow\PrintTicketBundle\Form\ColorType;
 
 class TicketType extends AbstractType
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $data = $options['data'];
 
@@ -31,6 +31,7 @@ class TicketType extends AbstractType
                     'required' => false,
                 ))
         ;
+
     }
 
     private function getIsFallbackType($isFallback)

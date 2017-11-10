@@ -51,4 +51,4 @@ services:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Generator\Service
     arguments:
       - @knp_snappy.pdf
-      - {page-size: 'A6', orientation: 'Landscape', lowquality: false, margin-top: 0, margin-bottom: 0, margin-left: 0, margin-right: 0}
+      - {page-size: 'A6', orientation: 'Landscape', lowquality: false, margin-top: 5, margin-bottom: 0, margin-left: 0, margin-right: 0}

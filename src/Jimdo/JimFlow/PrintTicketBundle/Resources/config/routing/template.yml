@@ -27,3 +27,7 @@ template_story_print:
   defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Print:printstory" }
   requirements:
     _method:  POST
+
+template_ticket_pdf:
+    pattern:  /ticket.pdf
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:TemplateView:ticketpdf" }
