@@ -6,3 +6,4 @@ imports:
     - { resource: "services/google.yml" }
     - { resource: "services/templatedata.yml" }
     - { resource: "services/buzz.yml" }
+    - { resource: "services/images.yml" }

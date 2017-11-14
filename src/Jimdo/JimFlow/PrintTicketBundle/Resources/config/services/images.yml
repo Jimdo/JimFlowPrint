@@ -1,0 +1,4 @@
+services:
+  jimdo.image_upload:
+      class: Jimdo\JimFlow\PrintTicketBundle\Lib\ImageUploader
+      arguments: ['%image_upload_dir%', '%kernel.root_dir%/../web']
