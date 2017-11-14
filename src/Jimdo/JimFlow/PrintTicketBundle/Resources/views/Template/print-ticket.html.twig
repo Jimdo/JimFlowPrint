@@ -2,8 +2,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         {% stylesheets
-            'bundles/jimdojimflowprintticket/css/templates/ticket/shared.css'
-            'bundles/jimdojimflowprintticket/css/templates/ticket/print.css'
+            'bundles/jimdojimflowprintticket/css/templates/ticket/networkteam/shared.css'
+            'bundles/jimdojimflowprintticket/css/templates/ticket/networkteam/print.css'
             'bundles/jimdojimflowprintticket/js/plugins/jquery.fitText/jquery.fittext.css'
         %}
         <link rel="stylesheet" href="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset(asset_url) }}" />
@@ -19,37 +19,82 @@
     </head>
     <body>
         <div id="card" class="ticket-card">
-            <div id="description">
-                <div id="ticketnumber" class="b-b">
-                   <p>#{{ id|slice(1,id|length) }}</p>
+            <div class="cardHeader clearfix">
+                <div class="cardHeader-projectLogo" style="{{ projectLogoUrl ? ('background-image: url(\'' ~ projectLogoUrl ~ '\')')|raw : '' }}">
                 </div>
-                <div id="project">
-                    <p>{{ project }}</p>
+                <div class="cardHeader-project {{ not dueDate ? 'cardHeader-project--extended' : '' }}">
+                    {{ project }}
                 </div>
-                <div name="title" id="text">{{ title }}</div>
+                {% if estimatedHours %}
+                    <div class="cardHeader-estimatedHours">
+                        {{ estimatedHours }}h
+                    </div>
+                {% endif %}
+                {% if dueDate %}
+                    <div class="cardHeader-dueDate">
+                        {{ dueDate|date('d.m.') }}
+                    </div>
+                {% endif %}
             </div>
-            <div id="metaarea" style="{{ type.isBackgroundFilled ? 'background-color:' ~ type.backgroundColor : ''}}">
-                <div id="type" class="small-meta"  style="background-color: {{ type.backgroundColor }}">
-                    <p>{{ type.name }}</p>
-                </div>
-                <div id="created-at" class="second b-l b-b big-meta" >
-                    <p>created</p>
-                    <p>{{ created }}</p>
-                </div>
-                <div id="reported-by" class="second b-l b-b big-meta">
-                    <p>reported by</p>
-                    <p>{{ reporter }}</p>
-                </div>
-                <div class="qr-code b-l">
-                    <img id="qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl={{ id }}" />
-                </div>
 
+            <div class="cardBody clearfix">
+                <div class="cardBody-text cardBody-text--withIssues">
+                    <span class="cardBody-id">#{{ id|slice(1,id|length) }}</span> {{ title }}
+                </div>
+                <div class="cardBody-issues">
+                    {% for id, relation in relatedIssues|sort|reverse(true) %}
+                        <div class="cardBody-issue">
+                            <span class="cardBody-issue-header">{{ relation }}</span>
+                            <span class="text--grey">#</span>{{ id }}
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
+
+            <div class="cardFooter clearfix">
+                <div class="cardFooter-left">
+                    <div class="cardFooter-skills">
+                        {% for skill in skills %}
+                            {% if skill.image %}
+                                <div class="cardFooter-skill">
+                                    <img width="167" height="67" src="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset('/images/upload/' ~ skill.image) }}">
+                                </div>
+                            {% else %}
+                                <div class="cardFooter-skill {{ skill.isBackgroundFilled ? 'cardFooter-skill--filled' : '' }}" style="{{ skill.isBackgroundFilled ? 'background-color:' ~ skill.backgroundColor : ''}}">
+                                    {{ skill.name }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="cardFooter-meta">
+                        <div class="cardFooter-meta-team">
+                            <span class="cardFooter-meta-legend">
+                                Team:
+                            </span>
+                            {% for member in teamMembers %}
+                                <span
+                                    {{- loop.first ? ' class="text--bold"' : '' -}}>
+                                    {{- member -}}
+                                    {{- not loop.last ? ',' : '' -}}
+                                </span>
+                            {% endfor %}
+                        </div>
+                        <div class="cardFooter-meta-created">
+                            <span class="cardFooter-meta-legend">
+                                Erstellt:
+                            </span>
+                            {{ created|date('d.m.Y') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="cardFooter-right">
+                    <img class="cardFooter-right-qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl={{ id }}" />
+                </div>
             </div>
         </div>
         <script type="text/javascript">
             $(function() {
-                $('#text').fitText();
+                $('.cardBody-text').fitText();
             });
         </script>
     </body>

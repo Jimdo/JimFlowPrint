@@ -12,7 +12,13 @@
                 'title':getDataAttr(element, 'title'),
                 'created':getDataAttr(element, 'created'),
                 'type':getDataAttr(element, 'type'),
-                'project':getDataAttr(element, 'project')
+                'project':getDataAttr(element, 'project'),
+                'project_logo_url':getDataAttr(element, 'project-logo-url'),
+                'due_date':getDataAttr(element, 'due-date'),
+                'estimated_hours':getDataAttr(element, 'estimated-hours'),
+                'skills':getDataAttr(element, 'skills'),
+                'team_members':getDataAttr(element, 'team-members'),
+                'related_issues':getDataAttr(element, 'related-issues'),
             },
             value;
 
@@ -20,7 +26,7 @@
             value = data[key] || '';
             query += '&' + key + '=' + value;
         }
-
+        
         return '?' + query.substr(1, query.length - 1);
     }
 
@@ -30,6 +36,7 @@
 
         iFrame.setAttribute('allowtransparency', true);
         iFrame.setAttribute('style', getDataAttr(element, 'style'));
+        console.log(window.location.protocol + '//{{app.request.host ~ path('print_buttons') }}' + query);
         iFrame.setAttribute('src', window.location.protocol + '//{{app.request.host ~ path('print_buttons') }}' + query);
 
         element.parentNode.insertBefore(iFrame, element);
