@@ -11,6 +11,7 @@ Note: Update assets in production
 * php app/console assets:install web/ --env=prod
 * php app/console assetic:dump --env=prod
 
+Another Note: Due to issues with wkhtmltopdf >= 0.12.4 regarding full page scaling, an installation of wkhtmltopdf version 0.12.3 is recommended.
 
 -----
 
