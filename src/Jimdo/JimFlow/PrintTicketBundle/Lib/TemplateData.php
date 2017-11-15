@@ -44,7 +44,14 @@ class TemplateData
             'created' => $request->get('created'),
             'id' => $request->get('id'),
             'title' => $request->get('title'),
+            'project' => $request->get('project'),
+            'projectLogoUrl' => $request->get('project_logo_url'),
             'reporter' => $request->get('reporter'),
+            'dueDate' => $request->get('due_date'),
+            'estimatedHours' => $request->get('estimated_hours'),
+            'skills' => $request->get('skills'),
+            'teamMembers' => $request->get('team_members'),
+            'relatedIssues' => $request->get('related_issues'),
             'type' => $request->get('type'),
             'printer' => $request->get('printer')
         );

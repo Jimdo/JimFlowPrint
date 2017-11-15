@@ -12,7 +12,8 @@ services:
   jimdo.gcp_printing:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\PrintingService
     arguments:
-      - @jimdo.gcp_printer
+      # - @jimdo.gcp_printer
+      - @jimdo.cups_printer
       - @jimdo.pdf_generator
       - @jimdo.mimeinfo
 
@@ -32,6 +33,19 @@ services:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Provider\Util\NameSortAscending
     arguments:
       - @jimdo.printing.provider.gcp
+
+
+  jimdo.cups_printer:
+      class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\CupsPrinter
+
+  jimdo.printing.provider.cups:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Provider\Cups
+
+  jimdo.printing.provider.cups.sorted:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Printer\Provider\Util\NameSortAscending
+    arguments:
+      - @jimdo.printing.provider.cups
+
 
   jimdo.pdf_generator:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Generator\Service

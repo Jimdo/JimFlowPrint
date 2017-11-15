@@ -2,17 +2,15 @@
 
 namespace Jimdo\JimFlow\PrintTicketBundle\Controller;
 
+use Jimdo\JimFlow\PrintTicketBundle\Entity\Skill;
+use Jimdo\JimFlow\PrintTicketBundle\Form\Skill as SkillForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
-use Jimdo\JimFlow\PrintTicketBundle\Entity\TicketType;
-use Jimdo\JimFlow\PrintTicketBundle\Form\TicketType as TicketTypeForm;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * TicketType controller.
- *
+ * Skill controller.
  */
-class TicketTypeController extends Controller
+class SkillController extends Controller
 {
     /**
      * @return \Symfony\Bundle\FrameworkBundle\Controller\Response
@@ -22,7 +20,7 @@ class TicketTypeController extends Controller
         $entities = $this->repository()->findAll();
 
         return $this->render(
-            'JimdoJimFlowPrintTicketBundle:TicketType:index.html.twig',
+            'JimdoJimFlowPrintTicketBundle:Skill:index.html.twig',
             array(
                  'entities' => $entities
             )
@@ -34,13 +32,13 @@ class TicketTypeController extends Controller
      */
     public function newAction()
     {
-        $ticketType = new TicketType();
-        $form = $this->createTicketTypeForm($ticketType);
+        $skill = new Skill();
+        $form = $this->createSkillForm($skill);
 
         return $this->render(
-            'JimdoJimFlowPrintTicketBundle:TicketType:new.html.twig',
+            'JimdoJimFlowPrintTicketBundle:Skill:new.html.twig',
             array(
-                 'entity' => $ticketType,
+                 'entity' => $skill,
                  'form' => $form->createView()
             )
         );
@@ -51,25 +49,32 @@ class TicketTypeController extends Controller
      */
     public function createAction()
     {
-        $ticketType = new TicketType();
+        $skill = new Skill();
         $request = $this->getRequest();
-        $form = $this->createTicketTypeForm($ticketType);
+        $form = $this->createSkillForm($skill);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->entityManager();
-            $em->persist($ticketType);
+
+            if ($file = $skill->getImage()) {
+                $fileName = $this->get('jimdo.image_upload')->upload($file);
+
+                $skill->setImage($fileName);
+            }
+
+            $em->persist($skill);
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('notice', 'Created your ticket type.');
-            return $this->redirect($this->generateUrl('tickettype_edit', array('id' => $ticketType->getId())));
+            $this->get('session')->getFlashBag()->add('notice', 'Created your skill.');
 
+            return $this->redirect($this->generateUrl('skill_edit', array('id' => $skill->getId())));
         }
 
         return $this->render(
-            'JimdoJimFlowPrintTicketBundle:TicketType:new.html.twig',
+            'JimdoJimFlowPrintTicketBundle:Skill:new.html.twig',
             array(
-                 'entity' => $ticketType,
+                 'entity' => $skill,
                  'form' => $form->createView()
             )
         );
@@ -82,23 +87,30 @@ class TicketTypeController extends Controller
      */
     public function editAction($id)
     {
+        $imageUpload = $this->get('jimdo.image_upload');
         $em = $this->entityManager();
-
         $entity = $this->repository()->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find TicketType entity.');
+            throw $this->createNotFoundException('Unable to find Skill entity.');
         }
 
-        $editForm = $this->createTicketTypeForm($entity);
+        $imageSrc = $imageUpload->getImageSrc($entity->getImage());
+
+        if ($entity->getImage()) {
+            $entity->setImage($imageUpload->getFileObject($entity->getImage()));
+        }
+
+        $editForm = $this->createSkillForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render(
-            'JimdoJimFlowPrintTicketBundle:TicketType:edit.html.twig',
+            'JimdoJimFlowPrintTicketBundle:Skill:edit.html.twig',
             array(
                  'entity' => $entity,
                  'edit_form' => $editForm->createView(),
                  'delete_form' => $deleteForm->createView(),
+                 'imageSrc' => $imageSrc
             )
         );
     }
@@ -110,15 +122,23 @@ class TicketTypeController extends Controller
      */
     public function updateAction($id)
     {
+        $imageUpload = $this->get('jimdo.image_upload');
         $em = $this->entityManager();
 
         $entity = $this->repository()->find($id);
+        $oldImage = null;
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find TicketType entity.');
+        if ($entity->getImage()) {
+            $oldImage = $imageUpload->getFileObject($entity->getImage());
         }
 
-        $editForm = $this->createTicketTypeForm($entity);
+        $entity->setImage($oldImage);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Skill entity.');
+        }
+
+        $editForm = $this->createSkillForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         $request = $this->getRequest();
@@ -126,15 +146,33 @@ class TicketTypeController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            // Don't delete skill image?
+            if ($editForm->get('deleteImage')->getData() !== true) {
+
+                // Skill got new image?
+                if ($file = $entity->getImage()) {
+                    $fileName = $imageUpload->upload($file);
+
+                    $entity->setImage($fileName);
+
+                    if ($oldImage) {
+                        $imageUpload->delete($oldImage);
+                    }
+                } elseif ($oldImage) {
+                    $entity->setImage($oldImage->getBaseName());
+                }
+            }
+
             $em->persist($entity);
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('notice', 'Saved your changes.');
-            return $this->redirect($this->generateUrl('tickettype_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('skill_edit', array('id' => $id)));
         }
 
+
         return $this->render(
-            'JimdoJimFlow\PrintTicketBundle:TicketType:edit.html.twig',
+            'JimdoJimFlow\PrintTicketBundle:Skill:edit.html.twig',
             array(
                  'entity' => $entity,
                  'edit_form' => $editForm->createView(),
@@ -150,6 +188,7 @@ class TicketTypeController extends Controller
      */
     public function deleteAction($id)
     {
+        $imageUpload = $this->get('jimdo.image_upload');
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
@@ -159,7 +198,13 @@ class TicketTypeController extends Controller
             $entity = $this->repository()->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find TicketType entity.');
+                throw $this->createNotFoundException('Unable to find Skill entity.');
+            }
+
+            if ($entity->getImage()) {
+                $image = $imageUpload->getFileObject($entity->getImage());
+
+                $imageUpload->delete($image);
             }
 
             $em = $this->entityManager();
@@ -167,8 +212,9 @@ class TicketTypeController extends Controller
             $em->flush();
         }
 
-        $this->get('session')->getFlashBag()->add('notice', 'Deleted ticket type');
-        return $this->redirect($this->generateUrl('tickettype_list'));
+        $this->get('session')->getFlashBag()->add('notice', 'Deleted skill');
+
+        return $this->redirect($this->generateUrl('skill_list'));
     }
 
     /**
@@ -186,9 +232,9 @@ class TicketTypeController extends Controller
      * @param $entity
      * @return FormInterface
      */
-    private function createTicketTypeForm($entity)
+    private function createSkillForm($entity)
     {
-        return $this->createForm(new TicketTypeForm(), $entity);
+        return $this->createForm(new SkillForm(), $entity);
     }
 
     /**
@@ -196,8 +242,7 @@ class TicketTypeController extends Controller
      */
     private function entityManager()
     {
-            return $this->getDoctrine()->getManager();
-
+        return $this->getDoctrine()->getManager();
     }
 
     /**
@@ -206,7 +251,7 @@ class TicketTypeController extends Controller
     private function repository()
     {
         $em = $this->entityManager();
-        $repository = $em->getRepository('JimdoJimFlowPrintTicketBundle:TicketType');
+        $repository = $em->getRepository('JimdoJimFlowPrintTicketBundle:Skill');
 
         return $repository;
     }

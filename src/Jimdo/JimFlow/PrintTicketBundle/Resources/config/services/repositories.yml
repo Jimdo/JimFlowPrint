@@ -6,6 +6,12 @@ services:
     arguments:
       - 'JimdoJimFlowPrintTicketBundle:TicketType'
 
+  jimdo.skill_entity_repository:
+    class:            Jimdo\JimFlow\PrintTicketBundle\Entity\SkillRepository
+    factory_service:  doctrine.orm.default_entity_manager
+    factory_method: getRepository
+    arguments:
+      - 'JimdoJimFlowPrintTicketBundle:Skill'
 
   jimdo.google_auth_token_entity_repository:
       class:            Jimdo\JimFlow\PrintTicketBundle\Entity\GoogleAuthTokenRepository
@@ -19,3 +25,8 @@ services:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\TicketTypeEntityFilter
     arguments:
       - @jimdo.ticket_type_entity_repository
+
+  jimdo.skill_entity_filter:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\SkillEntityFilter
+    arguments:
+      - @jimdo.skill_entity_repository

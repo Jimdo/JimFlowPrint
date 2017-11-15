@@ -2,6 +2,10 @@ JimdoJimFlow\PrintTicketBundle_tickettype:
   resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/tickettype.yml"
   prefix:   /admin/tickettype
 
+JimdoJimFlow\PrintTicketBundle_skill:
+  resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/skill.yml"
+  prefix:   /admin/skill
+
 JimdoJimFlow\PrintTicketBundle_oauth:
   resource: "@JimdoJimFlowPrintTicketBundle/Resources/config/routing/oauth.yml"
   prefix:   /admin/oauth

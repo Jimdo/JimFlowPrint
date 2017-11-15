@@ -2,6 +2,19 @@ JimFlowPrint is a component of JimFlow
 
 see http://jimflow.jimdo.com for more information.
 
+## Updated for networkteam Kanban boards
+
+Implement CUPS printer driver and some enhancements.
+
+Note: Update assets in production
+
+* php app/console assets:install web/ --env=prod
+* php app/console assetic:dump --env=prod
+
+Another Note: Due to issues with wkhtmltopdf >= 0.12.4 regarding full page scaling, an installation of wkhtmltopdf version 0.12.3 is recommended.
+
+-----
+
 JimFlowPrint enables you to print your tickets out of your issue tracking system with just one click, using the [Google Cloud Print](http://www.google.com/cloudprint/learn/) API.
 
 If you need any help e.g. with embedding the print buttons into your ticket system, head to: [https://groups.google.com/forum/?fromgroups#!forum/jimflow](https://groups.google.com/forum/?fromgroups#!forum/jimflow)

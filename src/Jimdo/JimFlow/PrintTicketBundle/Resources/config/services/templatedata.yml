@@ -11,5 +11,6 @@ services:
     arguments:
       - @request
       - @jimdo.template_ticket_filter_chain
-      - @jimdo.printing.provider.gcp.sorted
+      # - @jimdo.printing.provider.gcp.sorted
+      - @jimdo.printing.provider.cups.sorted
     scope: request

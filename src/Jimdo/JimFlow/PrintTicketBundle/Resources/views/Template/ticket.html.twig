@@ -3,8 +3,8 @@
         {% block additional_css %}
             {{ parent() }}
             {% stylesheets filter='cssrewrite'
-                '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/ticket/shared.css'
-                '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/ticket/view.css'
+                '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/ticket/networkteam/shared.css'
+                '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/ticket/networkteam/view.css'
             %}
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
@@ -15,33 +15,77 @@
             <form id="kanban_form"  action="{{ path('template_ticket_print') }}" method="POST">
                 <div id="card-container">
                     <div id="card" class="ticket-card">
-                        <div id="description">
-                            <div id="ticketnumber" class="b-b">
-                                <p>#{{ id|slice(1,id|length) }}</p>
-                                <input type="hidden" name="id" value="{{ id }}"/>
+                        <div class="cardHeader clearfix">
+                            <div class="cardHeader-projectLogo" style="{{ projectLogoUrl ? ('background-image: url(\'' ~ projectLogoUrl ~ '\')')|raw : '' }}">
                             </div>
-                            <textarea name="title" id="text">{{ title }}</textarea>
+                            <div class="cardHeader-project {{ not dueDate ? 'cardHeader-project--extended' : '' }}">
+                                {{ project }}
+                            </div>
+                            {% if estimatedHours %}
+                                <div class="cardHeader-estimatedHours">
+                                    {{ estimatedHours }}h
+                                </div>
+                            {% endif %}
+                            {% if dueDate %}
+                                <div class="cardHeader-dueDate">
+                                    {{ dueDate|date('d.m.') }}
+                                </div>
+                            {% endif %}
                         </div>
-                        <div id="metaarea" style="{{ type.isBackgroundFilled ? 'background-color:' ~ type.backgroundColor : ''}}">
-                            <div id="type" class="small-meta" style="background-color: {{ type.backgroundColor }}">
-                                <p>{{ type.name }}</p>
-                                <input type="hidden" name="type" value="{{ type.name }}"/>
+
+                        <div class="cardBody clearfix">
+                            <div class="cardBody-text cardBody-text--withIssues">
+                                <span class="cardBody-id">#{{ id|slice(1,id|length) }}</span> {{ title }}
                             </div>
-                            <div id="created-at" class="second b-l b-b big-meta" >
-                                <p>created:</p>
-                                <p>{{ created }}</p>
-                                <input type="hidden" name="created" value="{{ created }}"/>
+                            <div class="cardBody-issues">
+                                {% for id, relation in relatedIssues|sort|reverse(true) %}
+                                    <div class="cardBody-issue">
+                                        <span class="cardBody-issue-header">{{ relation }}</span>
+                                        <span class="text--grey">#</span>{{ id }}
+                                    </div>
+                                {% endfor %}
                             </div>
-                            <div id="reported-by" class="second b-l b-b big-meta">
-                                <p>reported by</p>
-                                <p>{{ reporter }}</p>
-                                <input type="hidden" name="reporter" value="{{ reporter }}"/>
-                            </div>
-                            <div class="qr-code b-l">
-                                <img id="qr" class="b-l" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl={{ id }}" />
-                           </div>
-                                
                         </div>
+
+                        <div class="cardFooter clearfix">
+                            <div class="cardFooter-left">
+                                <div class="cardFooter-skills">
+                                    {% for skill in skills %}
+                                        {% if skill.image %}
+                                            <div class="cardFooter-skill">
+                                                <img width="167" height="67" src="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset('/images/upload/' ~ skill.image) }}">
+                                            </div>
+                                        {% else %}
+                                            <div class="cardFooter-skill {{ skill.isBackgroundFilled ? 'cardFooter-skill--filled' : '' }}" style="{{ skill.isBackgroundFilled ? 'background-color:' ~ skill.backgroundColor : ''}}">
+                                                {{ skill.name }}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="cardFooter-meta">
+                                    <div class="cardFooter-meta-team">
+                                        <span class="cardFooter-meta-legend">
+                                            Team:
+                                        </span>
+                                        {% for member in teamMembers %}
+                                            <span
+                                                {{- loop.first ? ' class="text--bold"' : '' -}}>
+                                                {{- member -}}
+                                                {{- not loop.last ? ',' : '' -}}
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="cardFooter-meta-created">
+                                        <span class="cardFooter-meta-legend">
+                                            Erstellt:
+                                        </span>
+                                        {{ created|date('d.m.Y') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cardFooter-right">
+                                <img class="cardFooter-right-qr" src="http://chart.apis.google.com/chart?cht=qr&chs=190x190&chld=H|0&chl={{ id }}" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,9 +96,39 @@
                     <div>
                         <a class="button gray" href="{{ path('template_story') }}">Print a story</a>
                         <a class="button gray {{ isAdmin ? '' : 'inactive' }}" href="{{ path('tickettype_list') }}">Manage ticket types</a>
+                        <a class="button gray {{ isAdmin ? '' : 'inactive' }}" href="{{ path('skill_list') }}">Manage skills</a>
                     </div>
                 </div>
                 <div style="clear:both;"></div>
+
+                {% set skillNames = '' %}
+                {% for skill in skills %}
+                    {% set skillNames = skillNames ~ skill.name ~ ';' %}
+                {% endfor %}
+
+                {% set teamMemberNames = '' %}
+                {% for member in teamMembers %}
+                    {% set teamMemberNames = teamMemberNames ~ member ~ ';' %}
+                {% endfor %}
+
+                {% set relatedIssuesString = '' %}
+                {% for id, relation in relatedIssues %}
+                    {% set relatedIssuesString = relatedIssuesString ~ id ~ ',' ~ relation ~ ';' %}
+                {% endfor %}
+
+                <input type="hidden" name="id" value="{{ id }}"/>
+                <input type="hidden" name="type" value="{{ type.name }}"/>
+                <input type="hidden" name="title" value="{{ title }}"/>
+                <input type="hidden" name="created" value="{{ created }}"/>
+                <input type="hidden" name="reporter" value="{{ reporter }}"/>
+                <input type="hidden" name="project" value="{{ project }}"/>
+                <input type="hidden" name="due_date" value="{{ dueDate }}"/>
+                <input type="hidden" name="project" value="{{ project }}"/>
+                <input type="hidden" name="project_logo_url" value="{{ projectLogoUrl }}"/>
+                <input type="hidden" name="estimated_hours" value="{{ estimatedHours }}"/>
+                <input type="hidden" name="skills" value="{{ skillNames }}"/>
+                <input type="hidden" name="team_members" value="{{ teamMemberNames }}"/>
+                <input type="hidden" name="related_issues" value="{{ relatedIssuesString }}"/>
 
                 {{ form_widget(form._token) }}
             </form>
