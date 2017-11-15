@@ -8,6 +8,7 @@ Implement CUPS printer driver and some enhancements.
 
 Note: Update assets in production
 
+* sudo su www-data
 * php app/console assets:install web/ --env=prod
 * php app/console assetic:dump --env=prod
 

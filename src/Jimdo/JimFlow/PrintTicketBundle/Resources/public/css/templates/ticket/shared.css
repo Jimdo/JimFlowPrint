@@ -30,6 +30,7 @@
     text-align: right;
     width: 32%;
     overflow: hidden;
+    position: relative;
 }
 
 #metaarea div p {
@@ -93,11 +94,12 @@
 #qr {
     height: 158px;
     width: 158px;
-    margin-top: 44px;
 }
 
 .qr-code {
-    height: 57%;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
 }
 
 .b-b {
