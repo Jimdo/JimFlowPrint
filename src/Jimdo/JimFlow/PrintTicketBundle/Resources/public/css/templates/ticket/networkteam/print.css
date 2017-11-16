@@ -14,12 +14,9 @@ p {
 }
 
 #card {
-    margin-top : 4mm;
-    margin-left: 4mm;
     position: relative;
-    width: 133mm;
+    width: 141mm;
     height: 95mm;
-    border: 1px solid black;
 }
 
 .cardBody-text {

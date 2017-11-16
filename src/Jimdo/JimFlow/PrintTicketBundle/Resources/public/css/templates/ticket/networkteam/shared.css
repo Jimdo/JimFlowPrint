@@ -66,6 +66,7 @@
 
 .cardBody-text {
     height: 150px;
+    hyphens: auto;
 }
 
 .cardBody-text--withIssues {
@@ -137,8 +138,12 @@
     color: #000;
     font-size: 14px;
     overflow: hidden;
-    border-bottom: 1px solid #c4c4c4;
     border-right: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+}
+
+.cardFooter-skill:nth-of-type(odd) {
+    border-left: 1px solid #c4c4c4;
 }
 
 .cardFooter-skill--filled {

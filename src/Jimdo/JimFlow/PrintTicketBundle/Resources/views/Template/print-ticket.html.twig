@@ -38,7 +38,7 @@
             </div>
 
             <div class="cardBody clearfix">
-                <div class="cardBody-text cardBody-text--withIssues">
+                <div class="cardBody-text {{ relatedIssues|length > 0 ? 'cardBody-text--withIssues' : '' }}">
                     <span class="cardBody-id">#{{ id|slice(1,id|length) }}</span> {{ title }}
                 </div>
                 <div class="cardBody-issues">
