@@ -5,10 +5,17 @@
             {% stylesheets filter='cssrewrite'
                 '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/ticket/networkteam/shared.css'
                 '@JimdoJimFlowPrintTicketBundle/Resources/public/css/templates/ticket/networkteam/view.css'
+                '@JimdoJimFlowPrintTicketBundle/Resources/public/js/plugins/jquery.fitText/jquery.fittext.css'
             %}
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
 
+            {% javascripts
+                '@JimdoJimFlowPrintTicketBundle/Resources/public/js/jquery.js'
+                '@JimdoJimFlowPrintTicketBundle/Resources/public/js/plugins/jquery.fitText/jquery.fittext.js'
+            %}
+            <script type="text/javascript" src="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset(asset_url) }}"></script>
+            {% endjavascripts %}
         {% endblock %}
 
         {% block body %}
@@ -132,4 +139,10 @@
 
                 {{ form_widget(form._token) }}
             </form>
+
+            <script type="text/javascript">
+                $(function() {
+                    $('.cardBody-text').fitText();
+                });
+            </script>
         {% endblock %}
