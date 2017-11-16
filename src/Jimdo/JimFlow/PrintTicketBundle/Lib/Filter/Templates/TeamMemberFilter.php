@@ -15,6 +15,12 @@ class TeamMemberFilter implements FilterInterface
     public function filter(array $data, $key)
     {
         $members = explode(';', $data[$key]);
+        $members = array_filter(
+            $members,
+            function ($val) {
+                return $val;
+            }
+        );
 
         $data[$key] = $members;
 
