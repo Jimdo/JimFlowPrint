@@ -9,9 +9,10 @@
             %}
             <link rel="stylesheet" href="{{ asset_url }}" />
             {% endstylesheets %}
+        {% endblock %}
 
+        {% block additional_js %}
             {% javascripts
-                '@JimdoJimFlowPrintTicketBundle/Resources/public/js/jquery.js'
                 '@JimdoJimFlowPrintTicketBundle/Resources/public/js/plugins/jquery.fitText/jquery.fittext.js'
             %}
             <script type="text/javascript" src="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset(asset_url) }}"></script>
