@@ -24,7 +24,7 @@
 
         for (var key in data) {
             value = data[key] || '';
-            query += '&' + key + '=' + value;
+            query += '&' + key + '=' + encodeURIComponent(value);
         }
         
         return '?' + query.substr(1, query.length - 1);
