@@ -14,6 +14,7 @@ p {
 }
 
 #card {
+    margin-left: 4mm;
     position: relative;
     width: 133mm;
     height: 95mm;
