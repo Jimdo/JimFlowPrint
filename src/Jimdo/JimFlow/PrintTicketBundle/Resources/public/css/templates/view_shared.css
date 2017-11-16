@@ -43,7 +43,6 @@ p {
 	position: relative;
 	width: 503px;
 	height: 359px;
-	border: 1px solid black;
 }
 
 #text {
@@ -59,9 +58,9 @@ p {
 }
 
 .story-card #text {
-    height: 98%;	
+    height: 98%;
 }
 
 .ticket-card #text {
-    height: 86%;	
+    height: 86%;
 }
