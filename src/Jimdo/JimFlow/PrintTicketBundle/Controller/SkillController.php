@@ -17,7 +17,12 @@ class SkillController extends Controller
      */
     public function indexAction()
     {
-        $entities = $this->repository()->findAll();
+        $entities = $this->repository()->findBy(
+            [],
+            [
+                'name' => 'ASC',
+            ]
+        );
 
         return $this->render(
             'JimdoJimFlowPrintTicketBundle:Skill:index.html.twig',

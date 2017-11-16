@@ -10,6 +10,11 @@
             <div class="ticket" style="background-color: {{ entity.backgroundColor }}">
                {{ entity.name }}
             </div>
+            <div class="ticket">
+                {% if entity.image %}
+                    <img style="margin: -5px 0;" height="40" src="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset('/images/upload/' ~ entity.image) }}">
+                {% endif %}
+            </div>
             <div class="edit">
                 <a class="button gray" href="{{ path('skill_edit', { 'id': entity.id }) }}">edit</a>
             </div>
