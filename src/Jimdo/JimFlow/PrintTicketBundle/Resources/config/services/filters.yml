@@ -1,18 +1,22 @@
 services:
-  jimdo.printer_filter:
-    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\PrinterEntityFilter
-    arguments:
-      - @jimdo.printer_entity_repository
-
   jimdo.ticket_date_filter:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\TicketDateFilter
 
   jimdo.ticket_id_filter:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\TicketIdFilter
 
+  jimdo.team_member_filter:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\TeamMemberFilter
+
+  jimdo.related_issue_filter:
+    class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\Templates\RelatedIssueFilter
+
   jimdo.template_ticket_filter_chain:
     class: Jimdo\JimFlow\PrintTicketBundle\Lib\Filter\FilterChain
     calls:
       - [add, [@jimdo.ticket_type_entity_filter, 'type' ]]
+      - [add, [@jimdo.skill_entity_filter, 'skills' ]]
       - [add, [@jimdo.ticket_date_filter, 'created' ]]
       - [add, [@jimdo.ticket_id_filter, 'id' ]]
+      - [add, [@jimdo.team_member_filter, 'teamMembers' ]]
+      - [add, [@jimdo.related_issue_filter, 'relatedIssues' ]]

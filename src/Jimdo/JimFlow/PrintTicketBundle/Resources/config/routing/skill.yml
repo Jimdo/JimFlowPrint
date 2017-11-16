@@ -1,0 +1,26 @@
+skill_list:
+    pattern:  /
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Skill:index" }
+
+skill_new:
+    pattern:  /new
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Skill:new" }
+
+skill_create:
+    pattern:  /create
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Skill:create" }
+    requirements: { _method: post }
+
+skill_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Skill:edit" }
+
+skill_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Skill:update" }
+    requirements: { _method: post }
+
+skill_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "JimdoJimFlowPrintTicketBundle:Skill:delete" }
+    requirements: { _method: post }

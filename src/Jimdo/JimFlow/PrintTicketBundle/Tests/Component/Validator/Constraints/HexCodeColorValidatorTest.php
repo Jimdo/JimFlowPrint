@@ -4,6 +4,7 @@ namespace Jimdo\JimFlow\PrintTicketBundle\Tests\Component\Validator\Constraints;
 use Symfony\Bundle\FrameworkBundle\Test;
 use Jimdo\JimFlow\PrintTicketBundle\Component\Validator\Constraints\HexColorCodeValidator;
 use Jimdo\JimFlow\PrintTicketBundle\Component\Validator\Constraints\HexColorCode;
+use Symfony\Component\Validator\ExecutionContext;
 
 class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -31,8 +32,13 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldNotAllowValuesWithHashAndLessThanThreeCharacters()
     {
+        $executionContext = $this->getExecutionContextMock();
+        $executionContext->expects($this->once())->method('addViolation');
+
+        $this->validator->initialize($executionContext);
+
         $codeWithLessThanThreeCharacters = '#aa';
-        $this->assertFalse($this->validator->isValid($codeWithLessThanThreeCharacters, $this->hexCodeConstraint));
+        $this->validator->validate($codeWithLessThanThreeCharacters, $this->hexCodeConstraint);
     }
 
     /**
@@ -40,8 +46,13 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldNotAllowValuesWithHashAndMoreThanSixCharacters()
     {
+        $executionContext = $this->getExecutionContextMock();
+        $executionContext->expects($this->once())->method('addViolation');
+
+        $this->validator->initialize($executionContext);
+
         $codeWithMoreThanSixChars = '#aaaaaaa';
-        $this->assertFalse($this->validator->isValid($codeWithMoreThanSixChars, $this->hexCodeConstraint));
+        $this->validator->validate($codeWithMoreThanSixChars, $this->hexCodeConstraint);
     }
 
     /**
@@ -49,8 +60,13 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldNotAllowValuesWithHashAndMoreThanThreeAndLessThanSixCharacters()
     {
+        $executionContext = $this->getExecutionContextMock();
+        $executionContext->expects($this->once())->method('addViolation');
+
+        $this->validator->initialize($executionContext);
+
         $codeWithFourChars = '#aaaa';
-        $this->assertFalse($this->validator->isValid($codeWithFourChars, $this->hexCodeConstraint));
+        $this->validator->validate($codeWithFourChars, $this->hexCodeConstraint);
     }
 
     /**
@@ -58,8 +74,13 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldNotAllowValuesContainingAlphanumericCharactersGreaterThanF()
     {
+        $executionContext = $this->getExecutionContextMock();
+        $executionContext->expects($this->once())->method('addViolation');
+
+        $this->validator->initialize($executionContext);
+
         $code = '#GGG';
-        $this->assertFalse($this->validator->isValid($code, $this->hexCodeConstraint));
+        $this->validator->validate($code, $this->hexCodeConstraint);
     }
 
     /**
@@ -67,8 +88,13 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldAllowValuesContainingAlphanumericValuesFromZeroToNineAndFromAtoFWithLengthOfSix()
     {
+        $executionContext = $this->getExecutionContextMock();
+        $executionContext->expects($this->never())->method('addViolation');
+
+        $this->validator->initialize($executionContext);
+
         $validCode = '#aa123b';
-        $this->assertTrue($this->validator->isValid($validCode, $this->hexCodeConstraint));
+        $this->validator->validate($validCode, $this->hexCodeConstraint);
     }
 
     /**
@@ -76,8 +102,13 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldAllowValuesContainingAlphanumericValuesFromZeroToNineAndFromAtoFWithLengthOfThreePlusHash()
     {
+        $executionContext = $this->getExecutionContextMock();
+        $executionContext->expects($this->never())->method('addViolation');
+
+        $this->validator->initialize($executionContext);
+
         $validCode = '#ff0';
-        $this->assertTrue($this->validator->isValid($validCode, $this->hexCodeConstraint));
+        $this->validator->validate($validCode, $this->hexCodeConstraint);
     }
 
     /**
@@ -85,8 +116,13 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldBeCaseInsensitive()
     {
+        $executionContext = $this->getExecutionContextMock();
+        $executionContext->expects($this->never())->method('addViolation');
+
+        $this->validator->initialize($executionContext);
+
         $validCode = '#FfFf2A';
-        $this->assertTrue($this->validator->isValid($validCode, $this->hexCodeConstraint));
+        $this->validator->validate($validCode, $this->hexCodeConstraint);
     }
 
     /**
@@ -94,25 +130,26 @@ class HexCodeColorValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldSetValidatorMessageWhenInvalidValuesAreProvided()
     {
-        $someInvalidCode = 'XXXX';
         $someMessage = self::SOME_MESSAGE;
 
+        $executionContext = $this->getExecutionContextMock();
+        $executionContext->expects($this->once())->method('addViolation')->with($someMessage);
+
+        $this->validator->initialize($executionContext);
+
+        $someInvalidCode = 'XXXX';
+
         $this->hexCodeConstraint->message = $someMessage;
-        $this->assertFalse($this->validator->isValid($someInvalidCode, $this->hexCodeConstraint));
-        $this->assertEquals($someMessage, $this->validator->getMessageTemplate());
+        $this->validator->validate($someInvalidCode, $this->hexCodeConstraint);
     }
 
-     /**
-     * @test
+    /**
+     * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    public function itShouldNotSetValidatorMessageWhenValidValuesAreProvided()
+    private function getExecutionContextMock()
     {
-        $someValidCode = '#000';
-        $someMessage = self::SOME_MESSAGE;
-
-        $this->hexCodeConstraint->message = $someMessage;
-        $this->assertTrue($this->validator->isValid($someValidCode, $this->hexCodeConstraint));
-        $this->assertNull($this->validator->getMessageTemplate());
+        $executionContext = $this->getMock('Symfony\Component\Validator\ExecutionContext', array(), array(), '', false);
+        return $executionContext;
     }
 
 }

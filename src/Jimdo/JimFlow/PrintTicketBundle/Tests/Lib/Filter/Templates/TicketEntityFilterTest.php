@@ -93,7 +93,7 @@ class TicketEntityFilterTest extends \PHPUnit_Framework_TestCase
         $entity = $data[$someKeyName];
 
 
-        $this->assertEquals('ff0000', $entity->getBackgroundColor());
+        $this->assertEquals('#ff0000', $entity->getBackgroundColor());
 
     }
 

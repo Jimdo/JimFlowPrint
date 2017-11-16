@@ -4,6 +4,7 @@ namespace Jimdo\JimFlow\PrintTicketBundle\Lib\Listener;
 
 use \Doctrine\ORM\Event\LifecycleEventArgs;
 use \Jimdo\JimFlow\PrintTicketBundle\Entity\TicketType;
+use Jimdo\JimFlow\PrintTicketBundle\Entity\TicketTypeRepository;
 
 class TicketTypeFallback
 {
@@ -13,7 +14,7 @@ class TicketTypeFallback
     private $entityManager;
 
     /**
-     * @var \Jimdo\PrintTicketBundle\Entity\TicketType
+     * @var TicketType
      */
     private $entity;
 
@@ -58,7 +59,7 @@ class TicketTypeFallback
     private function unsetCurrentFallbackTicketType()
     {
         /**
-         * @var \Jimdo\PrintTicketBundle\Entity\TicketTypeRepository
+         * @var TicketTypeRepository
          */
         $repository = $this->entityManager->getRepository('JimdoJimFlowPrintTicketBundle:TicketType');
 

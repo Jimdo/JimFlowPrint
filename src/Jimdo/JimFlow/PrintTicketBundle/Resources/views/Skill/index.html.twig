@@ -1,0 +1,35 @@
+{% extends 'JimdoJimFlowPrintTicketBundle:backend:backend_layout.html.twig' %}
+{% block body %}
+{{ parent() }}
+<h1>Skills list</h1>
+
+
+<div id="ticket_list">
+    {% for entity in entities %}
+        <div class="item">
+            <div class="ticket" style="background-color: {{ entity.backgroundColor }}">
+               {{ entity.name }}
+            </div>
+            <div class="ticket">
+                {% if entity.image %}
+                    <img style="margin: -5px 0;" height="40" src="{{ app.request.scheme ~  '://' ~  app.request.host ~ asset('/images/upload/' ~ entity.image) }}">
+                {% endif %}
+            </div>
+            <div class="edit">
+                <a class="button gray" href="{{ path('skill_edit', { 'id': entity.id }) }}">edit</a>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+
+    {% endfor %}
+
+</div>
+
+<p>
+    <a class="button orange" href="{{ path('skill_new') }}">
+        Add skill
+    </a>
+</p>
+
+
+{% endblock %}

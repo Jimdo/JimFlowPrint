@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Jimdo\JimFlow\PrintTicketBundle\Entity\TicketType;
 use Jimdo\JimFlow\PrintTicketBundle\Form\TicketType as TicketTypeForm;
+use Symfony\Component\Form\FormInterface;
 
 /**
  * TicketType controller.
@@ -53,14 +54,14 @@ class TicketTypeController extends Controller
         $ticketType = new TicketType();
         $request = $this->getRequest();
         $form = $this->createTicketTypeForm($ticketType);
-        $form->bindRequest($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->entityManager();
             $em->persist($ticketType);
             $em->flush();
 
-            $this->get('session')->setFlash('notice', 'Created your ticket type.');
+            $this->get('session')->getFlashBag()->add('notice', 'Created your ticket type.');
             return $this->redirect($this->generateUrl('tickettype_edit', array('id' => $ticketType->getId())));
 
         }
@@ -122,13 +123,13 @@ class TicketTypeController extends Controller
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
 
-            $this->get('session')->setFlash('notice', 'Saved your changes.');
+            $this->get('session')->getFlashBag()->add('notice', 'Saved your changes.');
             return $this->redirect($this->generateUrl('tickettype_edit', array('id' => $id)));
         }
 
@@ -152,7 +153,7 @@ class TicketTypeController extends Controller
         $form = $this->createDeleteForm($id);
         $request = $this->getRequest();
 
-        $form->bindRequest($request);
+        $form->handleRequest($request);
 
         if ($form->isValid()) {
             $entity = $this->repository()->find($id);
@@ -166,13 +167,13 @@ class TicketTypeController extends Controller
             $em->flush();
         }
 
-        $this->get('session')->setFlash('notice', 'Deleted ticket type');
+        $this->get('session')->getFlashBag()->add('notice', 'Deleted ticket type');
         return $this->redirect($this->generateUrl('tickettype_list'));
     }
 
     /**
      * @param $id
-     * @return Symfony\Component\Form\FormBuilder
+     * @return FormInterface
      */
     private function createDeleteForm($id)
     {
@@ -183,7 +184,7 @@ class TicketTypeController extends Controller
 
     /**
      * @param $entity
-     * @return \Symfony\Bundle\FrameworkBundle\Controller\Form
+     * @return FormInterface
      */
     private function createTicketTypeForm($entity)
     {
@@ -195,7 +196,7 @@ class TicketTypeController extends Controller
      */
     private function entityManager()
     {
-            return $this->getDoctrine()->getEntityManager();
+            return $this->getDoctrine()->getManager();
 
     }
 

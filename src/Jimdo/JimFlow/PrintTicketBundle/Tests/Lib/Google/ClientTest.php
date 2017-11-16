@@ -1,104 +1,174 @@
 <?php
-use \Jimdo\JimFlow\PrintTicketBundle\Lib\Google\GCP\Client as GcpClient;
-use \Jimdo\JimFlow\PrintTicketBundle\Lib\Google\Client;
+
+use Jimdo\JimFlow\PrintTicketBundle\Lib\Google\Client;
+use Mockery as m;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
 
-    private $httpClient;
-    private $gcpClient;
-
-    public function setUp()
+    public function tearDown()
     {
-        $this->httpClient = $this->getMock('\Buzz\Browser', array(), array(), '', false);
+        parent::tearDown();
+        m::close();
     }
 
     /**
      * @test
      */
-    public function itShouldUseHttpClientToObtainAuthToken()
+    public function itShouldRequestWithGivenUrlAndAccessToken()
     {
-        $response = $this->getMock('\Buzz\Message\Response', array(), array(), '', false);
-        $response->expects($this->once())->method('getContent')->will($this->returnValue('Auth=dd'));
+        $someAccessToken = 'srdsf';
+        $someUrl = 'http://example.org';
 
-        $this->httpClient->expects($this->once())->method('post')->with('https://www.google.com/accounts/ClientLogin')->will($this->returnValue($response));
-        $client = new Client($this->httpClient, '', '', '');
-        $client->get('http://examlple.com');
-    }
+        $expectedHeaders = array(
+            'Authorization' => 'Bearer ' . $someAccessToken
+        );
 
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     */
-    public function itShouldThrowAnInvalidArgumentExceptionIfNoAuthIsProvided()
-    {
-        $response = $this->getMock('\Buzz\Message\Response', array(), array(), '', false);
-        $response->expects($this->once())->method('getContent')->will($this->returnValue('NoAuthForYou'));
+        $aSuccessfulResponse = $this->aSuccessfulResponse();
 
-        $this->httpClient->expects($this->once())->method('post')->with('https://www.google.com/accounts/ClientLogin')->will($this->returnValue($response));
-        $client = new Client($this->httpClient, '', '', '');
-        $client->get('http://examlple.com');
-    }
+        $aHttpClient = $this->aHttpClient();
 
-    /**
-     * @test
-     */
-    public function itShouldAddGoogleAuthenticationCodeToFurtherRequests()
-    {
-        $url = 'http://example.com';
-        $header = array('x-test: 1');
-        $authCode = '123';
-        $response = $this->getMock('\Buzz\Message\Response', array(), array(), '', false);
-        $response->expects($this->once())->method('getContent')->will($this->returnValue('Auth=' . $authCode));
+        $anAccessTokenHandler = $this->anAccessTokenHandler();
+        $anAccessTokenHandler->shouldReceive('retrieveAccessToken')
+            ->andReturn($someAccessToken);
 
-        $this->httpClient->expects($this->once())->method('post')->with('https://www.google.com/accounts/ClientLogin')->will($this->returnValue($response));
-        $this->httpClient->expects($this->once())->method('get')->with($url, array_merge($header, array('Authorization: GoogleLogin Auth=' . $authCode)));
 
-        $client = new Client($this->httpClient, '', '', '');
-        $client->get($url, $header);
+        $aHttpClient->shouldReceive('get')
+            ->with($someUrl, $expectedHeaders)
+            ->andReturn($aSuccessfulResponse);
+
+
+        $client = new Client($aHttpClient, $anAccessTokenHandler);
+
+        $client->get($someUrl);
+
+        $aHttpClient->shouldHaveReceived('get')
+            ->with($someUrl, $expectedHeaders)
+            ->once();
     }
 
     /**
      * @test
      */
-    public function itShouldUseHttpClientToPerformGetRequestWithGivenUrlAndHeaders()
+    public function itShouldRefreshAccessTokenWhenRequestFailsWith403()
     {
-        $url = 'http://google.com';
-        $headers = array('x-awkward: 1');
 
-        $this->httpClient->expects($this->once())->method('get')->with($url, $this->contains($headers[0]));
+        $someUrl = 'http://example.org';
 
-        $client = $this->getMock('\Jimdo\JimFlow\PrintTicketBundle\Lib\Google\Client', array('isAuthorized'), array($this->httpClient, '', '', ''));
-        $client->expects($this->once())->method('isAuthorized')->will($this->returnValue(true));
-        $client->get($url, $headers);
+        $a403Response = $this->aResponse();
+        $a403Response->shouldReceive('getStatusCode')
+            ->andReturn(403);
+
+        $aHttpClient = $this->aHttpClient();
+
+        $anAccessTokenHandler = $this->anAccessTokenHandler();
+        $anAccessTokenHandler->shouldIgnoreMissing();
+
+        $aHttpClient->shouldReceive('get')
+            ->andReturn($a403Response);
+
+        $client = new Client($aHttpClient, $anAccessTokenHandler);
+
+        $client->get($someUrl);
+
+        // assertion
+        $anAccessTokenHandler->shouldHaveReceived('refreshAccessToken')
+            ->once();
     }
 
     /**
      * @test
      */
-    public function itShouldUseHttpClientToPerformPostRequestWithGivenUrlHeadersAndBody()
+    public function itShouldTryRequestAgainWhenWhenRequestFailsWith403()
     {
-        $url = 'http://google.com';
-        $headers = array('x-awkward: 1');
-        $content = array('foo' => 'bar');
 
-        $this->httpClient->expects($this->once())->method('post')->with($url, $this->contains($headers[0]), $content);
+        $someUrl = 'http://example.org';
 
-        $client = $this->getMock('\Jimdo\JimFlow\PrintTicketBundle\Lib\Google\Client', array('isAuthorized'), array($this->httpClient, '', '', ''));
-        $client->expects($this->once())->method('isAuthorized')->will($this->returnValue(true));
-        $client->post($url, $headers, $content);
+        $a403Response = $this->aResponse();
+        $a403Response->shouldReceive('getStatusCode')
+            ->andReturn(403);
+
+        $aHttpClient = $this->aHttpClient();
+
+        $anAccessTokenHandler = $this->anAccessTokenHandler();
+        $anAccessTokenHandler->shouldIgnoreMissing();
+
+        $aHttpClient->shouldReceive('get')
+            ->andReturn($a403Response);
+
+        $client = new Client($aHttpClient, $anAccessTokenHandler);
+
+        $client->get($someUrl);
+
+        // assertion
+        $aHttpClient->shouldHaveReceived('get')
+            ->twice();
     }
 
     /**
      * @test
      */
-    public function itShouldAllowToSetTheAuthToken()
+    public function itShouldPostUsingHttpClient()
     {
-        $someToken = 'ABCLOLOL';
-        $client = new Client($this->httpClient, '', '', '');
-        $client->setAuthToken($someToken);
 
-        $this->assertEquals($someToken, $client->getAuthToken());
+        $someUrl = 'http://example.org';
+        $somePostBody = 'sdjklewjklfds';
+
+        $aSuccessfulResponse = $this->aSuccessfulResponse();
+
+
+        $anAccessTokenHandler = $this->anAccessTokenHandler();
+        $anAccessTokenHandler->shouldIgnoreMissing();
+
+        $aHttpClient = $this->aHttpClient();
+        $aHttpClient->shouldReceive('post')
+            ->andReturn($aSuccessfulResponse);
+
+        $client = new Client($aHttpClient, $anAccessTokenHandler);
+
+        $client->post($someUrl, array(), $somePostBody);
+
+        // assertion
+        $aHttpClient->shouldHaveReceived('post')
+            ->once()
+            ->with($someUrl, m::any() ,$somePostBody);
     }
 
+    /**
+     * @return m\MockInterface
+     */
+    private function aSuccessfulResponse()
+    {
+        $aSuccessfulResponse = $this->aResponse();
+        $aSuccessfulResponse->shouldReceive('getStatusCode')
+            ->andReturn(200);
+        return $aSuccessfulResponse;
+    }
+
+    /**
+     * @return m\MockInterface
+     */
+    private function aResponse()
+    {
+        $aSuccessfulResponse = m::mock('Buzz\Message\Response');
+        return $aSuccessfulResponse;
+    }
+
+    /**
+     * @return m\MockInterface
+     */
+    private function aHttpClient()
+    {
+        $httpClient = m::mock('Buzz\Browser');
+        return $httpClient;
+    }
+
+    /**
+     * @return m\MockInterface
+     */
+    private function anAccessTokenHandler()
+    {
+        $accessTokenHandler = m::mock('Jimdo\JimFlow\PrintTicketBundle\Lib\Google\AccessToken');
+        return $accessTokenHandler;
+    }
 }

@@ -1,0 +1,194 @@
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+} 
+.clearfix:after {
+  clear: both;
+}
+.clearfix {
+  zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+.cardHeader {
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #979797;
+}
+
+.cardHeader-projectLogo {
+    float: left;
+    height: 39px;
+    width: 39px;
+    background-size: cover;
+}
+
+.cardHeader-project {
+    display: inline-block;
+    float: left;
+    height: 40px;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 4px;
+    padding-top: 9px;
+    font-weight: bold;
+    font-size: 26px ;
+}
+
+.cardHeader-project--extended {
+    max-width: 375px;
+}
+
+.cardHeader-estimatedHours {
+    float: right;
+    color: #999;
+    font-size: 26px;
+    text-align: right;
+    padding-top: 9px;
+    padding-right: 4px;
+}
+
+.cardHeader-dueDate {
+    float: right;
+    font-size: 26px;
+    text-align: right;
+    padding-top: 9px;
+    padding-right: 12px;
+    color: rgb(207, 32, 19);
+}
+
+.cardBody {
+    width: 100%;
+    height: 150px;
+}
+
+.cardBody-text {
+    height: 150px;
+    hyphens: auto;
+}
+
+.cardBody-text--withIssues {
+    height: 125px !important;
+}
+
+.cardBody-id {
+    color: #808080;
+}
+
+.cardBody-issues {
+    height: 25px;
+    padding-right: 4px;
+}
+
+.cardBody-issue {
+    float: right;
+    margin-left: 20px;
+    line-height: 15px;
+}
+
+.cardBody-issue-header {
+    display: block;
+    text-align: left;
+    font-size: 6px;
+    line-height: 8px;
+}
+
+.cardBody-text {
+    margin: 0;
+    border: none;
+    width: 98%;
+    padding: 2% 0 0 2%;
+    font-family: inherit;
+    font-size: 46px;
+    height: 139px;
+    line-height: 1;
+    resize: none;
+    outline: none;
+    overflow-y: scroll;
+}
+
+.cardBody-issues {
+    overflow: hidden;
+}
+
+.cardFooter {
+    width: 100%;
+    height: 163px;
+    border-top: 1px solid #979797;
+}
+
+.cardFooter-left {
+    float: left;
+    width: 334px;
+}
+
+.cardFooter-skills {
+    width: 100%;
+    height: 135px;
+}
+
+.cardFooter-skill {
+    float: left;
+    text-align: center;
+    line-height: 67px;
+    width: 167px;
+    height: 67px;
+    color: #000;
+    font-size: 14px;
+    overflow: hidden;
+    border-right: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+}
+
+.cardFooter-skill:nth-of-type(odd) {
+    border-left: 1px solid #c4c4c4;
+}
+
+.cardFooter-skill--filled {
+    color: #fff;
+}
+
+.cardFooter-meta {
+    height: 22px;
+    font-size: 8px;
+    padding-top: 2px;
+}
+
+.cardFooter-meta-legend {
+    display: inline-block;
+    width: 40px;
+    padding-left: 4px;
+}
+
+.cardFooter-meta-team {
+    line-height: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardFooter-meta-created {
+    line-height: 14px
+}
+
+.cardFooter-right {
+    float: right;
+    text-align: right;
+    width: 158px;
+}
+
+.cardFooter-right-qr {
+    margin-top: 8px;
+    height: 158px;
+    width: 158px;   
+}
+
+.text--bold {
+    font-weight: bold;
+}
+
+.text--grey {
+    color: #808080;
+}

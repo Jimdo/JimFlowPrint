@@ -11,6 +11,7 @@ security:
 
     providers:
         in_memory:
+          memory:
             users:
                 %admin.username%: { password: %admin.password%, roles: 'ROLE_ADMIN' }
 

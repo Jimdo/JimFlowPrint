@@ -1,0 +1,24 @@
+body {
+    font: 12px/170% Helvetica, Helvetica Neue, Helvetica-Neue, Arial, sans-serif;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+#card {
+    position: relative;
+    width: 141mm;
+    height: 95mm;
+}
+
+.cardBody-text {
+    overflow-y: visible;
+}
