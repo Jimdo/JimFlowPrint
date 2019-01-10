@@ -43,6 +43,7 @@ class TemplateData
         return array(
             'created' => $request->get('created'),
             'id' => $request->get('id'),
+            'issueUrl' => $request->get('issue_url'),
             'title' => $request->get('title'),
             'project' => $request->get('project'),
             'projectLogoUrl' => $request->get('project_logo_url'),
